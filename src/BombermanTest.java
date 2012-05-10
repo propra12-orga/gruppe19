@@ -9,8 +9,8 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.tiled.TiledMap;
  
 public class BombermanTest extends BasicGame {
-	private float playerX=320;
-	private float playerY=240;
+	private float playerX=20;
+	private float playerY=20;
 	private TiledMap map;	
 	private Animation player;
 	public BombermanTest() {
