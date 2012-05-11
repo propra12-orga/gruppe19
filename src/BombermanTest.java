@@ -10,10 +10,11 @@ import org.newdawn.slick.tiled.TiledMap;
 
 public class BombermanTest extends BasicGame {
 
-	private float playerX = 20;
-	private float playerY = 20;
+	private float playerX = 1;
+	private float playerY = 1;
 	private TiledMap map;
 	private Animation player;
+	Boolean debug = true;				//True um zusätzliche Infos anzuzeigen.
 
 	public BombermanTest() {
 		super("BOMBASTISCHER MANN");
@@ -37,7 +38,9 @@ public class BombermanTest extends BasicGame {
 			playerX--;
 		}
 		if (container.getInput().isKeyDown(Input.KEY_RIGHT)) {
+
 			playerX++;
+
 		}
 		if (container.getInput().isKeyDown(Input.KEY_UP)) {
 			playerY--;
@@ -45,14 +48,16 @@ public class BombermanTest extends BasicGame {
 		if (container.getInput().isKeyDown(Input.KEY_DOWN)) {
 			playerY++;
 		}
-		if (container.getInput().isKeyDown(Input.KEY_ESCAPE)) { //Esc beendet Spiel
+		if (container.getInput().isKeyDown(Input.KEY_ESCAPE)) { // Esc beendet
+																// Spiel
 			System.exit(0);
 		}
 	}
 
 	public void render(GameContainer container, Graphics g) {
 		map.render(0, 0);
-		g.drawAnimation(player, playerX, playerY);
+		g.drawAnimation(player, playerX * 32, playerY * 32);
+		if (debug) {g.drawString("X:" + playerX + " Y:" + playerY, 32, 460);}
 	}
 
 	public static void main(String[] argv) throws SlickException {
