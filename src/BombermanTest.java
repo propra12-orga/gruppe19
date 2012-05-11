@@ -45,6 +45,9 @@ public class BombermanTest extends BasicGame {
 		if (container.getInput().isKeyDown(Input.KEY_DOWN)) {
 			playerY++;
 		}
+		if (container.getInput().isKeyDown(Input.KEY_ESCAPE)) { //Esc beendet Spiel
+			System.exit(0);
+		}
 	}
 
 	public void render(GameContainer container, Graphics g) {
