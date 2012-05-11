@@ -4,8 +4,18 @@
   <image source="collision.png" width="80" height="32"/>
  </tileset>
  <layer name="Kachelebene 1" width="30" height="30">
-  <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+3NsQ0AAAjDsPb/p/kCGBwps5ukR2/H5XK5XC6Xy+VyuV/diwdv6SaVEA4AAA==
+  <data encoding="base64" compression="zlib">
+   eJztzbENAAAIw7D2/6f5AhgcKbObpEdvx+VyuVwul8vlcrlf3YsHPsUAdQ==
+  </data>
+ </layer>
+ <layer name="Kopie von Kachelebene 1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzbENAAAIw7D2/6f5AhgcKbObpEdvx+VyuVwul8vlcrlf3YsHPsUAdQ==
+  </data>
+ </layer>
+ <layer name="Kopie von Kopie von Kachelebene 1" width="30" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzbENAAAIw7D2/6f5AhgcKbObpEdvx+VyuVwul8vlcrlf3YsHPsUAdQ==
   </data>
  </layer>
 </map>
