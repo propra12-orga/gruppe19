@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="20" height="15" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="test" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles_test" tilewidth="32" tileheight="32">
   <image source="tiles_test.png" width="512" height="512"/>
  </tileset>
  <layer name="Kachelebene 1" width="20" height="15">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAAxNkYGAQpDJmpBIeNW/UvFHzhr551MQAtGs5r7AEAAA=
+   H4sIAAAAAAAACxNkYGAQpBJmRKIpxejmUZsedd+o+0bdRx/3UbN8AQCbi+vlsAQAAA==
   </data>
  </layer>
 </map>
