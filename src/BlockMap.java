@@ -10,6 +10,7 @@ public class BlockMap {
 	public static ArrayList<Object> entities;
  
 	public BlockMap(String ref) throws SlickException {
+	
 		entities = new ArrayList<Object>();
 		tmap = new TiledMap(ref, "res");
 		mapWidth = tmap.getWidth() * tmap.getTileWidth();
