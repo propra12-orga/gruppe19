@@ -35,8 +35,8 @@ public class BombermanTest extends BasicGame {
 			player.addFrame(sheet.getSprite(frame, 0), 150);
 		}
 
-		playerPoly = new Polygon(new float[] { playerX, playerY, playerX + 32,
-				playerY, playerX + 32, playerY + 32, playerX, playerY + 32 });
+		playerPoly = new Polygon(new float[] { playerX, playerY, playerX + 31,
+				playerY, playerX + 31, playerY + 31, playerX, playerY + 31 });
 	}
 
 	
@@ -82,7 +82,7 @@ public class BombermanTest extends BasicGame {
 
 		if (playerX % 32 != 0) {// Für X
 
-			if (Xtendency = pos) {
+			if (Xtendency == pos) {
 
 				moveplayer(playerX + 1, playerY);
 			} else {
@@ -93,7 +93,7 @@ public class BombermanTest extends BasicGame {
 
 		if (playerY % 32 != 0) {// Für Y
 
-			if (Ytendency = pos) {
+			if (Ytendency == pos) {
 
 				moveplayer(playerX, playerY + 1);
 			} else {
