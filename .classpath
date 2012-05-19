@@ -9,5 +9,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="lib/jars/slick.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ilgar/workspace/lib/jars/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/Ilgar/workspace/lib/nativs-win"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Ilgar/workspace/lib/jars/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Ilgar/workspace/lib/jars/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
