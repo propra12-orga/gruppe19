@@ -24,7 +24,7 @@ public class BombermanTest extends BasicGame {
   private Polygon playerPoly;
   private boolean Xtendency, Ytendency;
   
-  Boolean debug = true; // True um zusätzliche Infos anzuzeigen.
+  Boolean debug = true; // True um zusï¿½tzliche Infos anzuzeigen.
   
   public BombermanTest() {
     super("BOMBASTISCHER MANN");
@@ -78,6 +78,11 @@ public class BombermanTest extends BasicGame {
       playerY = Ytemp;
       playerPoly.setX(playerX);
       playerPoly.setY(playerY);
+      if(Xtemp != x){
+        Xtendency = !Xtendency;
+      } else if(Ytemp != y){
+        Ytendency = !Ytendency;
+      }
     }
   }
   
@@ -113,7 +118,7 @@ public class BombermanTest extends BasicGame {
      * er sich bewegt wird dabei von Xtendency bzw. Ytendency bestimmt.
      */
     
-    if ((playerX % 32) != 0) {// Für X
+    if ((playerX % 32) != 0) {// Fï¿½r X
       if (Xtendency) {
         moveplayer(playerX + 1, playerY);
       } else {
@@ -121,7 +126,7 @@ public class BombermanTest extends BasicGame {
       }
     }
     
-    if ((playerY % 32) != 0) {// Für Y
+    if ((playerY % 32) != 0) {// Fï¿½r Y
       if (Ytendency) {
         moveplayer(playerX, playerY + 1);
       } else {
