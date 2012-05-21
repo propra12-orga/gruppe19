@@ -10,10 +10,10 @@ public static void main(String[] args) {
 //Buttons, labels, frames, panels
 final CardLayout cardlayout = new CardLayout();
 
-final JFrame window = new JFrame("Bombastischer Mann");  //Name des Frames
+final JFrame window = new JFrame("Bombastischer Mann"); //Name des Frames
 JPanel menu = new JPanel();
 JPanel buttons = new JPanel();
-JLabel titeltext = new JLabel("BOMBERMAN (work in progress)"); //Name der Ueberschrift
+JLabel titeltext = new JLabel("Work in progress"); //Name der Ueberschrift
 
 Dimension groessebutton = new Dimension(160,50);  //steuert die Groesse aller Buttons
 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -62,7 +62,7 @@ cardlayout.show(window.getContentPane(), "hauptmenu");
 //Singleplayer
 ActionListener splayer = new ActionListener() {
 @Override public void actionPerformed(ActionEvent evt) {
-       //Anweisungen um den Singleplayer zu starten
+       //Anweisungen um Singleplayer zu starten
                                                        }
 };
 
