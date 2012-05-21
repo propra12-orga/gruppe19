@@ -9,13 +9,7 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Polygon;
 
 public class BombermanTest extends BasicGame {
-  
-  public static void main(String[] argv) throws SlickException {
-    final AppGameContainer container = new AppGameContainer(
-        new BombermanTest(), 640, 480, false);
-    container.start();
-  }
-  
+
   private float playerX = 32;
   private float playerY = 32;
   @SuppressWarnings("unused")
@@ -24,7 +18,7 @@ public class BombermanTest extends BasicGame {
   private Polygon playerPoly;
   private boolean Xtendency, Ytendency;
   
-  Boolean debug = true; // True um zus�tzliche Infos anzuzeigen.
+  Boolean debug = true; // True um zus�ｽtzliche Infos anzuzeigen.
   
   public BombermanTest() {
     super("BOMBASTISCHER MANN");
@@ -118,7 +112,7 @@ public class BombermanTest extends BasicGame {
      * er sich bewegt wird dabei von Xtendency bzw. Ytendency bestimmt.
      */
     
-    if ((playerX % 32) != 0) {// F�r X
+    if ((playerX % 32) != 0) {// F�ｽr X
       if (Xtendency) {
         moveplayer(playerX + 1, playerY);
       } else {
@@ -126,7 +120,7 @@ public class BombermanTest extends BasicGame {
       }
     }
     
-    if ((playerY % 32) != 0) {// F�r Y
+    if ((playerY % 32) != 0) {// F�ｽr Y
       if (Ytendency) {
         moveplayer(playerX, playerY + 1);
       } else {
