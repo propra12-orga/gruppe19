@@ -3,10 +3,12 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Polygon;
+
 
 public class BombermanTest extends BasicGame {
 
@@ -14,6 +16,7 @@ public class BombermanTest extends BasicGame {
   private float playerY = 32;
   @SuppressWarnings("unused")
   private BlockMap map;
+  private Image ausgang;
   private Animation player;
   private Polygon playerPoly;
   private boolean Xtendency, Ytendency;
@@ -48,6 +51,7 @@ public class BombermanTest extends BasicGame {
     container.setVSync(true);
     final SpriteSheet sheet = new SpriteSheet("res/bomberman1.png", 32, 32);
     map = new BlockMap("res/testmap2.tmx");
+    ausgang = new Image("res/door.png");
     player = new Animation();
     player.setAutoUpdate(true);
     for (int frame = 0; frame < 3; frame++) {
@@ -83,6 +87,7 @@ public class BombermanTest extends BasicGame {
   @Override
   public void render(GameContainer container, Graphics g) {
     BlockMap.tmap.render(0, 0);
+    g.drawImage(ausgang, 538, 408);
     g.drawAnimation(player, playerX, playerY);
     g.draw(playerPoly);
     if (debug) {
