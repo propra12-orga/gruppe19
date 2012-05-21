@@ -161,9 +161,9 @@ public class BombermanTest extends BasicGame {
         moveplayer(playerX, playerY + 1);
       }
     }
-    
-    if (container.getInput().isKeyDown(Input.KEY_ESCAPE)) { // Esc beendet
-      // Spiel
+     /* ESC und Ecke rechts unten beenden das Spiel - Ecke fungiert als Ausgang */
+    if (container.getInput().isKeyDown(Input.KEY_ESCAPE) || playerX == 544 && playerY == 416) { 
+      
       System.exit(0);
     }
   }
