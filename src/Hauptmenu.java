@@ -2,6 +2,9 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.SlickException;
+
 public class Hauptmenu {
 
 
@@ -13,13 +16,13 @@ final CardLayout cardlayout = new CardLayout();
 final JFrame window = new JFrame("Bombastischer Mann"); //Name des Frames
 JPanel menu = new JPanel();
 JPanel buttons = new JPanel();
-JLabel titeltext = new JLabel("Work in progress"); //Name der Ueberschrift
+JLabel titeltext = new JLabel("BOMBERMAAAN"); //Name der Ueberschrift
 
 Dimension groessebutton = new Dimension(160,50);  //steuert die Groesse aller Buttons
 Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-JButton singleb = new JButton("Einzelspieler");
-JButton multib = new JButton("Multiplayer (In Arbeit!) ");
+JButton singleb = new JButton("Play! (Windowed)");
+JButton fullb = new JButton("Play! (Fullscreen) ");
 JButton optionenb = new JButton("Optionen (In Arbeit!) ");
 JButton exitb = new JButton("Beenden");
 
@@ -35,14 +38,14 @@ titeltext.setHorizontalAlignment(0);
 window.setResizable(false);
 
 singleb.setPreferredSize(groessebutton);
-multib.setPreferredSize(groessebutton);
+fullb.setPreferredSize(groessebutton);
 optionenb.setPreferredSize(groessebutton);
 exitb.setPreferredSize(groessebutton);
 
 
 //buttons zu den panels hinzufuegen
 buttons.add(singleb);
-buttons.add(multib);
+buttons.add(fullb);
 buttons.add(optionenb);
 buttons.add(exitb);
 
@@ -63,13 +66,39 @@ cardlayout.show(window.getContentPane(), "hauptmenu");
 ActionListener splayer = new ActionListener() {
 @Override public void actionPerformed(ActionEvent evt) {
        //Anweisungen um Singleplayer zu starten
+  AppGameContainer container = null;
+  try {
+      container = new AppGameContainer(new BombermanTest(), 640, 480, false);
+  } catch (SlickException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+  }
+  try {
+      container.start();
+  } catch (SlickException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+  }
                                                        }
 };
 
-//Multiplayer (hat noch keine Funktion)
-ActionListener mplayer = new ActionListener() {
+// Fullscreen
+ActionListener fscreen = new ActionListener() {
        @Override public void actionPerformed(ActionEvent evt) {
-       //Anweisungen um Multiplayer zu starten
+         // Fullscreen
+         AppGameContainer container = null;
+         try {
+             container = new AppGameContainer(new BombermanTest(), 640, 480, true);
+         } catch (SlickException e1) {
+             // TODO Auto-generated catch block
+             e1.printStackTrace();
+         }
+         try {
+             container.start();
+         } catch (SlickException e1) {
+             // TODO Auto-generated catch block
+             e1.printStackTrace();
+         }
                                                               }
 };
 
@@ -83,7 +112,7 @@ ActionListener beenden = new ActionListener() {
 
 //listener hinzufuegen
 singleb.addActionListener(splayer);
-multib.addActionListener(mplayer);
+fullb.addActionListener(fscreen);
 exitb.addActionListener(beenden);
 }
 
