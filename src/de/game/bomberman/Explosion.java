@@ -1,28 +1,25 @@
 package de.game.bomberman;
 
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.geom.Polygon;
 
-public class Block extends SpielObjekt {
+public class Explosion extends SpielObjekt {
   
-  public Block(int x, int y, int poly[]) {
-    super(x, y);
-    kollisionsFlaeche = new Polygon(new float[] { x + poly[0], y + poly[1], x + poly[2],
-        y + poly[3], x + poly[4], y + poly[5], x + poly[6], y + poly[7], });
+  public Explosion(int x, int y, String image) {
+    super(x, y, image);
     // TODO Auto-generated constructor stub
   }
   
-  public Block(int x, int y) {
+  public Explosion(int x, int y) {
     super(x, y);
     // TODO Auto-generated constructor stub
   }
   
-  public Block(String image) {
+  public Explosion(String image) {
     super(image);
     // TODO Auto-generated constructor stub
   }
   
-  public Block() {
+  public Explosion() {
     // TODO Auto-generated constructor stub
   }
   
