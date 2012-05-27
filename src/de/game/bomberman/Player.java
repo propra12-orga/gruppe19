@@ -92,10 +92,6 @@ public class Player extends SpielObjekt {
     }
   }
   
-  public boolean pruefeKollsion(SpielObjekt spielObjekt) {
-    return kollisionsFlaeche.contains(spielObjekt.getX(), spielObjekt.getY());
-  }
-  
   public boolean isXtendency() {
     return Xtendency;
   }

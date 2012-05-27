@@ -2,6 +2,7 @@ package de.game.bomberman;
 
 import java.util.*;
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Polygon;
 
 public class Bomberman extends BasicGame {
   private Player Player1;
@@ -56,8 +57,8 @@ public class Bomberman extends BasicGame {
       Player1.update(arg1);
       for(int i=0;i<Bomben.size();i++){
         Bombe bomb = Bomben.get(i);
-        bomb.update(arg1);
-        if( bomb.isExplode()){
+        bomb.update(arg1);        
+        if( bomb.isBombIsDead()){
           Bomben.remove(bomb);
         }
       }
@@ -91,10 +92,23 @@ public class Bomberman extends BasicGame {
       }
       
       if (container.getInput().isKeyPressed(Player1.getBomb())) {
-        if (((Player1.getX() % 32) == 0) && ((Player1.getY() % 32) == 0)) {
-          Bombe NeueBombe = new Bombe(Player1.getX(), Player1.getY(),
-              "res/bomb.png");
-          Bomben.add(NeueBombe);
+        float BombX;
+        float BombY;
+        boolean kollision = false;
+        BombX = Math.round(Player1.getX()/32.);
+        BombY = Math.round(Player1.getY()/32.);
+        BombX*=32.;
+        BombY*=32.;
+        Bombe tmpBomb = new Bombe((int)BombX, (int)BombY,"res/bomb.png");
+        for(int i=0;i<Bomben.size();i++){
+          Bombe bomb = Bomben.get(i);        
+          kollision = bomb.pruefeKollsion(tmpBomb);
+          if (kollision==true) {
+            break;
+          }
+        }
+        if (kollision==false){
+          Bomben.add(tmpBomb);
         }
       }
       
