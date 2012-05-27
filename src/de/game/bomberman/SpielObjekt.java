@@ -55,4 +55,12 @@ public abstract class SpielObjekt {
   public void setKollFlaeche(Polygon Poly){
     kollisionsFlaeche = Poly;
   }
+  
+  public boolean pruefeKollsion(SpielObjekt spielObjekt) {
+    return kollisionsFlaeche.contains(this.x,this.y);
+  }
+  
+  public boolean pruefePolyKollision(Polygon flaeche) {
+    return kollisionsFlaeche.contains(flaeche);
+  }
 }

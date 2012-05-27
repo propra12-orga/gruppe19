@@ -1,6 +1,5 @@
 package de.game.bomberman;
 import java.util.*;
-
 import org.newdawn.slick.*;
 
 public class Bomberman extends BasicGame {
@@ -10,17 +9,14 @@ public class Bomberman extends BasicGame {
   static final boolean debug = true;
   private Exit exit;
   private SpielEnde ende;
-  
   public Bomberman(String title) {
     super(title);
     // TODO Auto-generated constructor stub
   }
-  
   public Bomberman() {
     // TODO Auto-generated constructor stub
     super("BOMBASTISCHER MANN");
   }
-  
   @Override
   public void render(GameContainer container, Graphics g) throws SlickException {
     // TODO Auto-generated method stub
@@ -35,7 +31,6 @@ public class Bomberman extends BasicGame {
       ende.draw(g);
     }
   }
-  
   @Override
   public void init(GameContainer container) throws SlickException {
     // TODO Auto-generated method stub
@@ -47,7 +42,6 @@ public class Bomberman extends BasicGame {
     ende = new SpielEnde(container.getHeight(), container.getWidth(),
         fontGameOver);
   }
-  
   @Override
   public void update(GameContainer container, int arg1) throws SlickException {
     // TODO Auto-generated method stub
@@ -55,11 +49,10 @@ public class Bomberman extends BasicGame {
     if (!ende.isGameOver()) {
       Player1.update(arg1);   
       Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
-
       for(int i=0;i<Bomben.size();i++){
         Bombe bomb = Bomben.get(i);
         bomb.update(arg1);
-        if( bomb.isExplode()){
+        if( bomb.isBombIsDead()){
           Bomben.remove(bomb);
         }
       }
@@ -93,14 +86,26 @@ public class Bomberman extends BasicGame {
       }
       
       if (container.getInput().isKeyPressed(Player1.getBomb())) {
-        if (((Player1.getX() % 32) == 0) && ((Player1.getY() % 32) == 0)) {
-          Bombe NeueBombe = new Bombe(Player1.getX(), Player1.getY(),
-              "res/bomb.png");
-          Bomben.add(NeueBombe);
+        float BombX;
+        float BombY;
+        boolean kollision = false;
+        BombX = Math.round(Player1.getX()/32.);
+        BombY = Math.round(Player1.getY()/32.);
+        BombX*=32.;
+        BombY*=32.;
+        Bombe tmpBomb = new Bombe((int)BombX, (int)BombY,"res/bomb.png");
+        for(int i=0;i<Bomben.size();i++){
+          Bombe bomb = Bomben.get(i);        
+          kollision = bomb.pruefeKollsion(tmpBomb);
+          if (kollision==true) {
+            break;
+          }
+        }
+        if (kollision==false){
+          Bomben.add(tmpBomb);
         }
       }
       
-
       if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
           || exit.pruefeKollsion(Player1)) {
         ende.setGameOver(true);
