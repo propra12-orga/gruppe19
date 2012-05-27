@@ -14,7 +14,7 @@ public class SpielEnde extends SpielObjekt {
   private Color transparent;
   private Font fontGameOver;
   private boolean isGameOver;
-  private static final String GAME_OVER = "Game Over";
+  private static final String GAME_OVER = "Try Again?"+"\n"+"      Y/N";
 
   public SpielEnde(int height, int width, Font fontGameOver) {
       this.height = height;
@@ -33,7 +33,7 @@ public class SpielEnde extends SpielObjekt {
       g.fillRect(0, 0, width, height);
       g.setColor(Color.white);
       g.setFont(fontGameOver);
-      g.drawString(GAME_OVER, (width / 2) - (textWidth / 2), (height / 2) - textHeight);
+      g.drawString(GAME_OVER, (width / 2) - (textWidth / 2), ((height / 2))+100 - textHeight);
   }
 
   public void setGameOver(boolean isGameOver) {
