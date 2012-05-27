@@ -1,6 +1,7 @@
 package de.game.bomberman;
 
 import java.util.*;
+
 import org.newdawn.slick.*;
 
 public class Bomberman extends BasicGame {
@@ -53,7 +54,8 @@ public class Bomberman extends BasicGame {
     // TODO Auto-generated method stub
     
     if (!ende.isGameOver()) {
-      Player1.update(arg1);
+      Player1.update(arg1);     Player1.update(arg1); 
+
       for(int i=0;i<Bomben.size();i++){
         Bombe bomb = Bomben.get(i);
         bomb.update(arg1);
@@ -61,7 +63,7 @@ public class Bomberman extends BasicGame {
           Bomben.remove(bomb);
         }
       }
-      
+     
       if (container.getInput().isKeyDown(Player1.getLeft())) {
         Player1.setXtendency(false);
         if ((Player1.getX() % 32) == 0) {
@@ -98,13 +100,20 @@ public class Bomberman extends BasicGame {
         }
       }
       
+
       if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
           || exit.pruefeKollsion(Player1)) {
         ende.setGameOver(true);
       }
     } else {
-      if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
-        System.exit(0);
+      if (container.getInput().isKeyPressed(Input.KEY_N)) {
+        container.exit();
+      }
+      if (container.getInput().isKeyPressed(Input.KEY_Y)){
+        Player1.setX(32);
+        Player1.setY(32);
+        
+        ende.setGameOver(false);
       }
     }
   }
