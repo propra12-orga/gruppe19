@@ -1,5 +1,4 @@
 package de.game.bomberman;
-
 import java.util.*;
 
 import org.newdawn.slick.*;
@@ -54,7 +53,8 @@ public class Bomberman extends BasicGame {
     // TODO Auto-generated method stub
     
     if (!ende.isGameOver()) {
-      Player1.update(arg1);     Player1.update(arg1); 
+      Player1.update(arg1);   
+      Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
 
       for(int i=0;i<Bomben.size();i++){
         Bombe bomb = Bomben.get(i);
@@ -112,7 +112,8 @@ public class Bomberman extends BasicGame {
       if (container.getInput().isKeyPressed(Input.KEY_Y)){
         Player1.setX(32);
         Player1.setY(32);
-        
+        Player1.kollisionsFlaeche.setX(32);
+        Player1.kollisionsFlaeche.setY(32);
         ende.setGameOver(false);
       }
     }
