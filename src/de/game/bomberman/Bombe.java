@@ -6,7 +6,6 @@ import org.newdawn.slick.geom.Polygon;
 
 public class Bombe extends SpielObjekt {
   
-  private int time = 5000;
   private int ExplodeRadius = 2;
   private Image im;
   private int counter;
@@ -60,15 +59,7 @@ public class Bombe extends SpielObjekt {
     }
     if(!explode) im.draw(x, y);
   }
-  
-  public int getTime() {
-    return time;
-  }
-  
-  public void setTime(int time) {
-    this.time = time;
-  }
-  
+
   public boolean isExplode() {
     return explode;
   }
@@ -80,10 +71,10 @@ public class Bombe extends SpielObjekt {
   @Override
   public void update(int delta) {
     counter+=1;
-    if(counter==500){
+    if(counter==200){
       setExplode(true);
       buildExplodeArray(ExplodeRadius);
-    } else if(counter==750){
+    } else if(counter==350){
       setBombIsDead(true);
     }
   }
