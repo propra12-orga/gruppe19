@@ -80,10 +80,10 @@ public class Bombe extends SpielObjekt {
   @Override
   public void update(int delta) {
     counter+=1;
-    if(counter==100){
+    if(counter==500){
       setExplode(true);
       buildExplodeArray(ExplodeRadius);
-    } else if(counter==100){
+    } else if(counter==750){
       setBombIsDead(true);
     }
   }
