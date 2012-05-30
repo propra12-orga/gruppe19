@@ -1,5 +1,4 @@
-#Wed May 23 10:44:07 CEST 2012
 eclipse.preferences.version=1
-encoding//src/StateBasedGame/Bomberman.java=UTF-8
-encoding//src/StateBasedGame/GameplayState.java=UTF-8
-encoding//src/StateBasedGame/MainMenuState.java=UTF-8
+encoding//src/stateBasedGame/Bomberman.java=UTF-8
+encoding//src/stateBasedGame/GameplayState.java=UTF-8
+encoding//src/stateBasedGame/MainMenuState.java=UTF-8

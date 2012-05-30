@@ -1,25 +1,36 @@
 package de.game.bomberman;
+
 import java.util.*;
 import org.newdawn.slick.*;
 
 public class Bomberman extends BasicGame {
+  
+  public static BlockMap map;
   private Player Player1;
   private List<Bombe> Bomben = new ArrayList<Bombe>();
-  public static BlockMap map;
-  static final boolean debug = true;
   private Exit exit;
   private SpielEnde ende;
+     
+  static final boolean debug = true;
+  
+  // KONSTRUKTOREN:
+  
   public Bomberman(String title) {
     super(title);
     // TODO Auto-generated constructor stub
   }
+  
   public Bomberman() {
     // TODO Auto-generated constructor stub
     super("BOMBASTISCHER MANN");
   }
+  
+  // RENDER BLOCK:
+  
   @Override
   public void render(GameContainer container, Graphics g) throws SlickException {
     // TODO Auto-generated method stub
+    
     container.setVSync(true);
     BlockMap.tmap.render(0, 0);
     for (SpielObjekt bomb : Bomben) {
@@ -31,32 +42,43 @@ public class Bomberman extends BasicGame {
       ende.draw(g);
     }
   }
+  
+  
+  
+  // INIT BLOCK:
+  
   @Override
   public void init(GameContainer container) throws SlickException {
     // TODO Auto-generated method stub
+    
     map = new BlockMap("res/testmap2.tmx");
     Player1 = new Player(32, 32, "res/bomberman1.png");
+    
     exit = new Exit(544, 416, "res/Exit.png");
     Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
         new Image("res/fonts/game_over_font.png"));
     ende = new SpielEnde(container.getHeight(), container.getWidth(),
         fontGameOver);
+    
   }
+  
+  // UPDATE BLOCK:
+  
   @Override
   public void update(GameContainer container, int arg1) throws SlickException {
     // TODO Auto-generated method stub
     
     if (!ende.isGameOver()) {
-      Player1.update(arg1);   
+      Player1.update(arg1);
       Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
-      for(int i=0;i<Bomben.size();i++){
+      for (int i = 0; i < Bomben.size(); i++) {
         Bombe bomb = Bomben.get(i);
         bomb.update(arg1);
-        if( bomb.isBombIsDead()){
+        if (bomb.isBombIsDead()) {
           Bomben.remove(bomb);
         }
       }
-     
+      
       if (container.getInput().isKeyDown(Player1.getLeft())) {
         Player1.setXtendency(false);
         if ((Player1.getX() % 32) == 0) {
@@ -86,22 +108,32 @@ public class Bomberman extends BasicGame {
       }
       
       if (container.getInput().isKeyPressed(Player1.getBomb())) {
+        
+        
+        // Eigentlich müsste jetzt ein sound abgespielt werden :(
+        System.out.println("test");
+        Sound fx = null;
+        fx = new Sound("res/sfx/sfxtest.wav");
+        fx.play();
+      
+        
+
         float BombX;
         float BombY;
         boolean kollision = false;
-        BombX = Math.round(Player1.getX()/32.);
-        BombY = Math.round(Player1.getY()/32.);
-        BombX*=32.;
-        BombY*=32.;
-        Bombe tmpBomb = new Bombe((int)BombX, (int)BombY,"res/bomb.png");
-        for(int i=0;i<Bomben.size();i++){
-          Bombe bomb = Bomben.get(i);        
+        BombX = Math.round(Player1.getX() / 32.);
+        BombY = Math.round(Player1.getY() / 32.);
+        BombX *= 32.;
+        BombY *= 32.;
+        Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, "res/bomb.png");
+        for (int i = 0; i < Bomben.size(); i++) {
+          Bombe bomb = Bomben.get(i);
           kollision = bomb.pruefeKollsion(tmpBomb);
-          if (kollision==true) {
+          if (kollision == true) {
             break;
           }
         }
-        if (kollision==false){
+        if (kollision == false) {
           Bomben.add(tmpBomb);
         }
       }
@@ -114,7 +146,7 @@ public class Bomberman extends BasicGame {
       if (container.getInput().isKeyPressed(Input.KEY_N)) {
         container.exit();
       }
-      if (container.getInput().isKeyPressed(Input.KEY_Y)){
+      if (container.getInput().isKeyPressed(Input.KEY_Y)) {
         Player1.setX(32);
         Player1.setY(32);
         Player1.kollisionsFlaeche.setX(32);
