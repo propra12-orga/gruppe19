@@ -11,7 +11,7 @@ public class Bomberman extends BasicGame {
   private Exit exit;
   private SpielEnde ende;
      
-  static final boolean debug = true;
+  static final boolean debug = false;
   
   // KONSTRUKTOREN:
   
@@ -70,7 +70,7 @@ public class Bomberman extends BasicGame {
     
     if (!ende.isGameOver()) {
       Player1.update(arg1);
-      Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
+     // Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
       for (int i = 0; i < Bomben.size(); i++) {
         Bombe bomb = Bomben.get(i);
         bomb.update(arg1);
