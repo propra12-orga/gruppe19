@@ -111,10 +111,13 @@ public class Bomberman extends BasicGame {
         
         
         // Eigentlich müsste jetzt ein sound abgespielt werden :(
-        System.out.println("test");
-        Sound fx = null;
-        fx = new Sound("res/sfx/sfxtest.wav");
+        
+        Sound fx = new Sound("res/sfx/sfxtest.wav");
         fx.play();
+        
+        System.out.println("test");
+       
+  
       
         
 
