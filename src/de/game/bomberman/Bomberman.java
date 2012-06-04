@@ -7,10 +7,10 @@ public class Bomberman extends BasicGame {
   
   public static MapAnalyzer map;
   private Player Player1;
-  public  List<Bombe> Bomben = new ArrayList<Bombe>();
-  public  List<Explosion> Explosionen = new ArrayList<Explosion>();
+  public static List<Bombe> Bomben = new ArrayList<Bombe>();
   private Exit exit;
   private SpielEnde ende;
+  static public Explosion explosion;
      
   static final boolean debug = false;
   
@@ -141,8 +141,6 @@ public class Bomberman extends BasicGame {
           Bomben.add(tmpBomb);
         }
       }
-      
-      
       
       if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
           || exit.pruefeKollsion(Player1)) {
