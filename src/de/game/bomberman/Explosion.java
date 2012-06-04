@@ -1,5 +1,7 @@
 package de.game.bomberman;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
@@ -7,9 +9,15 @@ import org.newdawn.slick.SlickException;
 public class Explosion extends SpielObjekt {
   
   private Image im;
+  public ArrayList<Object> expb;
+  
   
   public Explosion(int x, int y, String image) {
     super(x, y, image);
+    
+    expb = new ArrayList<Object>();
+    expb.add(new Block(x, y));
+    
     try {
       im = new Image(image);
     } catch (SlickException e) {

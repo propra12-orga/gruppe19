@@ -82,27 +82,18 @@ public class Bombe extends SpielObjekt {
 
   private void buildExplodeArray(int explodeRadius2) {
     
-    expb = new ArrayList<Object>();
-    
     expl.add(new Explosion(x, y, "/res/explosion.png"));
+    
     // Explosionen in x-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
       expl.add(new Explosion(x+32*i, y, "/res/explosion.png"));
       expl.add(new Explosion(x-32*i, y, "/res/explosion.png"));
-    }
-    for(int i=1;i<=ExplodeRadius;i++){
-      expb.add(new Block(x+32*i, y));
-      expb.add(new Block(x-32*i, y));
     }
     
     // Explosionen in y-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
       expl.add(new Explosion(x, y+32*i, "/res/explosion.png"));
       expl.add(new Explosion(x, y-32*i, "/res/explosion.png"));
-    }
-    for(int i=1;i<=ExplodeRadius;i++){
-      expb.add(new Block(x, y+32*i));
-      expb.add(new Block(x, y-32*i));
     }
   }
 
