@@ -5,15 +5,10 @@ import org.newdawn.slick.geom.Polygon;
 
 public class Block extends SpielObjekt {
   
-  public Block(int x, int y, int poly[]) {
-    super(x, y);
-    kollisionsFlaeche = new Polygon(new float[] { x + poly[0], y + poly[1], x + poly[2],
-        y + poly[3], x + poly[4], y + poly[5], x + poly[6], y + poly[7], });
-    // TODO Auto-generated constructor stub
-  }
-  
   public Block(int x, int y) {
     super(x, y);
+    kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31,
+        y + 31, x, y + 31 });
     // TODO Auto-generated constructor stub
   }
   

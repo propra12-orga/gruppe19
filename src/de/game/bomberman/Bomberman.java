@@ -5,7 +5,7 @@ import org.newdawn.slick.*;
 
 public class Bomberman extends BasicGame {
   
-  public static BlockMap map;
+  public static MapAnalyzer map;
   private Player Player1;
   private List<Bombe> Bomben = new ArrayList<Bombe>();
   private Exit exit;
@@ -32,7 +32,7 @@ public class Bomberman extends BasicGame {
     // TODO Auto-generated method stub
     
     container.setVSync(true);
-    BlockMap.tmap.render(0, 0);
+    MapAnalyzer.tmap.render(0, 0);
     for (SpielObjekt bomb : Bomben) {
       bomb.draw(g);
     }
@@ -51,7 +51,7 @@ public class Bomberman extends BasicGame {
   public void init(GameContainer container) throws SlickException {
     // TODO Auto-generated method stub
     
-    map = new BlockMap("res/testmap2.tmx");
+    map = new MapAnalyzer("res/testmap2.tmx");
     Player1 = new Player(32, 32, "res/bomberman1.png");
     
     exit = new Exit(544, 416, "res/Exit.png");
@@ -70,7 +70,7 @@ public class Bomberman extends BasicGame {
     
     if (!ende.isGameOver()) {
       Player1.update(arg1);
-     // Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
+      Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
       for (int i = 0; i < Bomben.size(); i++) {
         Bombe bomb = Bomben.get(i);
         bomb.update(arg1);
@@ -110,16 +110,12 @@ public class Bomberman extends BasicGame {
       if (container.getInput().isKeyPressed(Player1.getBomb())) {
         
         
-        // Eigentlich mÃ¼sste jetzt ein sound abgespielt werden :(
+        // Eigentlich müsste jetzt ein sound abgespielt werden :(
         
         Sound fx = new Sound("res/sfx/sfxtest.wav");
         fx.play();
         
         System.out.println("test");
-       
-  
-      
-        
 
         float BombX;
         float BombY;
