@@ -67,26 +67,13 @@ public class Player extends SpielObjekt {
       } else if (Ytemp != this.y) {
         Ytendency = !Ytendency;
       }
-    }
+    } 
   }
   
   private boolean entityCollisionWith() {
     
     for (int i = 0; i < Bomberman.map.entities.size(); i++) {
       Block entity1 = (Block) Bomberman.map.entities.get(i);
-      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
-        return true;
-      }
-    }
-    return false;
-  }
-  
-  // Explosion-Tod
-  
-  private boolean expbCollisionWith() {
-    
-    for (int i = 0; i < Bomberman.Bomben.expb.size(); i++) {
-      Block entity1 = (Block) Bomberman.Bomben.expb.get(i);
       if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
         return true;
       }

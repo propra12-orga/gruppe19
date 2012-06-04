@@ -10,6 +10,7 @@ public class Bomberman extends BasicGame {
   public static List<Bombe> Bomben = new ArrayList<Bombe>();
   private Exit exit;
   private SpielEnde ende;
+  static public Explosion explosion;
      
   static final boolean debug = false;
   
@@ -78,6 +79,10 @@ public class Bomberman extends BasicGame {
           Bomben.remove(bomb);
         }
       }
+      
+     // if (explosion.pruefeKollsion(Player1)){
+     //   ende.setGameOver(true);
+     // }
       
       if (container.getInput().isKeyDown(Player1.getLeft())) {
         Player1.setXtendency(false);
