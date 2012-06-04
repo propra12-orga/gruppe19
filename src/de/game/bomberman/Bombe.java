@@ -13,6 +13,7 @@ public class Bombe extends SpielObjekt {
   private boolean explode;
   private boolean BombIsDead;
   private List<Explosion> expl = new ArrayList<Explosion>();
+  public ArrayList<Object> expb;
   
   /**
    * @return the explodeRadius
@@ -30,8 +31,7 @@ public class Bombe extends SpielObjekt {
   
   public Bombe(int x, int y, String image) throws SlickException {
     super(x, y, image);
-    kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31,
-        y + 31, x, y + 31 });
+    kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31, y + 31, x, y + 31 });
     // TODO Auto-generated constructor stub
     im = new Image(image);
     explode = false;
@@ -82,18 +82,27 @@ public class Bombe extends SpielObjekt {
 
   private void buildExplodeArray(int explodeRadius2) {
     
+    expb = new ArrayList<Object>();
+    
     expl.add(new Explosion(x, y, "/res/explosion.png"));
     // Explosionen in x-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
       expl.add(new Explosion(x+32*i, y, "/res/explosion.png"));
       expl.add(new Explosion(x-32*i, y, "/res/explosion.png"));
-
     }
+    for(int i=1;i<=ExplodeRadius;i++){
+      expb.add(new Block(x+32*i, y));
+      expb.add(new Block(x-32*i, y));
+    }
+    
     // Explosionen in y-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
       expl.add(new Explosion(x, y+32*i, "/res/explosion.png"));
       expl.add(new Explosion(x, y-32*i, "/res/explosion.png"));
-
+    }
+    for(int i=1;i<=ExplodeRadius;i++){
+      expb.add(new Block(x, y+32*i));
+      expb.add(new Block(x, y-32*i));
     }
   }
 

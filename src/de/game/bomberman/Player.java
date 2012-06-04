@@ -11,8 +11,7 @@ public class Player extends SpielObjekt {
   int zeile = 0;
   int spalte = 0; // Zur Auswahl der Animationsphasen im Spritesheet
   
-  private SpriteSheet p1sheet = new SpriteSheet("res/charsets/player1.png", 32,
-      32); // Spritesheet für Player1
+  private SpriteSheet p1sheet = new SpriteSheet("res/charsets/player1.png", 32, 32);
   private int left, right, up, down, bomb;
   
   public Player(int x, int y, String image) throws SlickException {
@@ -75,6 +74,19 @@ public class Player extends SpielObjekt {
     
     for (int i = 0; i < Bomberman.map.entities.size(); i++) {
       Block entity1 = (Block) Bomberman.map.entities.get(i);
+      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
+        return true;
+      }
+    }
+    return false;
+  }
+  
+  // Explosion-Tod
+  
+  private boolean expbCollisionWith() {
+    
+    for (int i = 0; i < Bomberman.Bomben.expb.size(); i++) {
+      Block entity1 = (Block) Bomberman.Bomben.expb.get(i);
       if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
         return true;
       }
