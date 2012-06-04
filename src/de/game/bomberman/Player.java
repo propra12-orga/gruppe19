@@ -57,7 +57,7 @@ public class Player extends SpielObjekt {
     kollisionsFlaeche.setX(x);
     kollisionsFlaeche.setY(y);
     
-    if (entityCollisionWith()) {
+    if (festeCollisionWith() || zerstCollisionWith()) {
       this.x = Xtemp;
       this.y = Ytemp;
       kollisionsFlaeche.setX(this.x);
@@ -70,16 +70,28 @@ public class Player extends SpielObjekt {
     } 
   }
   
-  private boolean entityCollisionWith() {
+  private boolean festeCollisionWith() {
     
-    for (int i = 0; i < Bomberman.map.entities.size(); i++) {
-      Block entity1 = (Block) Bomberman.map.entities.get(i);
+    for (int i = 0; i < Bomberman.map.festeMauer.size(); i++) {
+      Block entity1 = (Block) Bomberman.map.festeMauer.get(i);
       if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
         return true;
       }
     }
     return false;
   }
+  
+  private boolean zerstCollisionWith() {
+    
+    for (int i = 0; i < Bomberman.map.zerstMauer.size(); i++) {
+      Block entity1 = (Block) Bomberman.map.zerstMauer.get(i);
+      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   
   @Override
   public void draw(Graphics g) {

@@ -9,7 +9,8 @@ public class MapAnalyzer {
   public static TiledMap tmap;
   public int mapWidth;
   public int mapHeight;
-  public ArrayList<Object> entities;
+  public ArrayList<Object> festeMauer;
+  public ArrayList<Object> zerstMauer;
   
   /*
    * tiled-Map wird analysiert. Entsprechend der jeweiligen ID, wird ein Polygon gesetzt.
@@ -17,7 +18,8 @@ public class MapAnalyzer {
   
   public MapAnalyzer(String ref) throws SlickException {
     
-    entities = new ArrayList<Object>();
+    festeMauer = new ArrayList<Object>();
+    zerstMauer = new ArrayList<Object>();
     tmap = new TiledMap(ref, "res");
     mapWidth = tmap.getWidth() * tmap.getTileWidth();
     mapHeight = tmap.getHeight() * tmap.getTileHeight();
@@ -26,9 +28,17 @@ public class MapAnalyzer {
       for (int y = 0; y < tmap.getHeight(); y++) {
         final int tileID = tmap.getTileId(x, y, 0);
         if (tileID == 17) {
-          entities.add(new Block(x * 32, y * 32));
-        }
-      }
+          festeMauer.add(new Block(x * 32, y * 32));
+         }
+       }
+     }
+    for (int x = 0; x < tmap.getWidth(); x++) {
+      for (int y = 0; y < tmap.getHeight(); y++) {
+        final int tileID = tmap.getTileId(x, y, 0);
+        if (tileID == 2) {
+          zerstMauer.add(new Block(x * 32, y * 32));
+         }
+       }
+     }
     }
-  }
 }
