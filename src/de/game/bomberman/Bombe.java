@@ -1,6 +1,7 @@
 package de.game.bomberman;
 
 import java.util.*;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Polygon;
 
@@ -80,16 +81,19 @@ public class Bombe extends SpielObjekt {
   }
 
   private void buildExplodeArray(int explodeRadius2) {
+    
     expl.add(new Explosion(x, y, "/res/explosion.png"));
     // Explosionen in x-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
       expl.add(new Explosion(x+32*i, y, "/res/explosion.png"));
       expl.add(new Explosion(x-32*i, y, "/res/explosion.png"));
+
     }
     // Explosionen in y-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
       expl.add(new Explosion(x, y+32*i, "/res/explosion.png"));
       expl.add(new Explosion(x, y-32*i, "/res/explosion.png"));
+
     }
   }
 

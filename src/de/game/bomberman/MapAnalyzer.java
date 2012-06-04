@@ -26,8 +26,7 @@ public class MapAnalyzer {
       for (int y = 0; y < tmap.getHeight(); y++) {
         final int tileID = tmap.getTileId(x, y, 0);
         if (tileID == 17) {
-          entities.add(
-              new Block(x * 32, y * 32));
+          entities.add(new Block(x * 32, y * 32));
         }
       }
     }
