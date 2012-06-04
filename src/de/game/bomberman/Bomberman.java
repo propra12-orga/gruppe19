@@ -7,7 +7,7 @@ public class Bomberman extends BasicGame {
   
   public static MapAnalyzer map;
   private Player Player1;
-  private List<Bombe> Bomben = new ArrayList<Bombe>();
+  public static List<Bombe> Bomben = new ArrayList<Bombe>();
   private Exit exit;
   private SpielEnde ende;
      

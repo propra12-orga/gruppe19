@@ -7,8 +7,7 @@ public class Block extends SpielObjekt {
   
   public Block(int x, int y) {
     super(x, y);
-    kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31,
-        y + 31, x, y + 31 });
+    kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31, y + 31, x, y + 31 });
     // TODO Auto-generated constructor stub
   }
   
