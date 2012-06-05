@@ -50,6 +50,9 @@ public class Bomberman extends BasicGame {
   public void init(GameContainer container) throws SlickException {
     // TODO Auto-generated method stub
     
+    Music music = new Music("res/Music/test.ogg");  // Hier wird die Musik geladen...
+    music.loop();                                   // ... und im Loop abgespielt
+    
     map = new MapAnalyzer("res/testmap2.tmx");
     player.add(0, new Player(32, 32, 1));
     player.add(1, new Player(544, 32, 2));
@@ -97,7 +100,6 @@ public class Bomberman extends BasicGame {
             pl.move(+1, 0);
           }
         }
-        
         if (container.getInput().isKeyDown(pl.getUp())) {
           pl.setYtendency(false);
           if ((pl.getY() % 32) == 0) {
