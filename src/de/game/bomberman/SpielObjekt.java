@@ -49,10 +49,10 @@ public abstract class SpielObjekt {
   }
   
   public boolean pruefeKollsion(SpielObjekt spielObjekt) {
-    return kollisionsFlaeche.contains(this.x,this.y);
+    return kollisionsFlaeche.intersects(spielObjekt.getkollFlaeche());
   }
   
   public boolean pruefePolyKollision(Polygon flaeche) {
-    return kollisionsFlaeche.contains(flaeche.getX(),flaeche.getY());
+    return kollisionsFlaeche.intersects(flaeche);
   }
 }

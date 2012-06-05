@@ -50,8 +50,9 @@ public class Bomberman extends BasicGame {
   public void init(GameContainer container) throws SlickException {
     // TODO Auto-generated method stub
     
-    Music music = new Music("res/Music/test.ogg");  // Hier wird die Musik geladen...
-    music.loop();                                   // ... und im Loop abgespielt
+    Music music = new Music("res/Music/test.ogg"); // Hier wird die Musik
+                                                   // geladen...
+    music.loop(); // ... und im Loop abgespielt
     
     map = new MapAnalyzer("res/testmap2.tmx");
     player.add(0, new Player(32, 32, 1));
@@ -70,10 +71,14 @@ public class Bomberman extends BasicGame {
   public void update(GameContainer container, int arg1) throws SlickException {
     // TODO Auto-generated method stub
     
-    if (!ende.isGameOver()) {
-      for (Player pl : player) {
-        pl.update(arg1);
+    if (ende.isGameOver()) {
+      if (container.getInput().isKeyPressed(Input.KEY_N)) {
+        container.exit();
       }
+      if (container.getInput().isKeyPressed(Input.KEY_Y)) {
+        restartGame(container);
+      }
+    } else {
       for (int i = 0; i < bomben.size(); i++) {
         Bombe bomb = bomben.get(i);
         bomb.update(arg1);
@@ -81,12 +86,8 @@ public class Bomberman extends BasicGame {
           bomben.remove(bomb);
         }
       }
-      
-      // if (explosion.pruefeKollsion(Player1)){
-      // ende.setGameOver(true);
-      // }
-      
       for (Player pl : player) {
+        pl.update(arg1);
         if (container.getInput().isKeyDown(pl.getLeft())) {
           pl.setXtendency(false);
           if ((pl.getX() % 32) == 0) {
@@ -123,8 +124,7 @@ public class Bomberman extends BasicGame {
           BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
           Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
           for (int i = 0; i < bomben.size(); i++) {
-            Bombe bomb = bomben.get(i);
-            kollision = bomb.pruefeKollsion(tmpBomb);
+            kollision = bomben.get(i).pruefeKollsion(tmpBomb);
             if (kollision == true) {
               break;
             }
@@ -139,19 +139,17 @@ public class Bomberman extends BasicGame {
         if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
             || exit.pruefeKollsion(pl)) {
           ende.setGameOver(true);
-        } else {
-          if (container.getInput().isKeyPressed(Input.KEY_N)) {
-            container.exit();
-          }
-          if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-            pl.setX(32);
-            pl.setY(32);
-            pl.kollisionsFlaeche.setX(32);
-            pl.kollisionsFlaeche.setY(32);
-            ende.setGameOver(false);
-          }
         }
       }
     }
+  }
+
+  private void restartGame(GameContainer container) throws SlickException {
+    player.clear();
+    bomben.clear();
+    ende = null;
+    exit = null;
+    map = null;
+    init(container);
   }
 }
