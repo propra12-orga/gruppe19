@@ -116,8 +116,6 @@ public class Bomberman extends BasicGame {
         
         if (container.getInput().isKeyPressed(pl.getBomb())) {
           // Eigentlich m�sste jetzt ein sound abgespielt werden :(
-          Sound fx = new Sound("res/sfx/sfxtest.wav");
-          fx.play();
           float BombX;
           float BombY;
           boolean kollision = false;
@@ -133,6 +131,8 @@ public class Bomberman extends BasicGame {
           }
           if (kollision == false) {
             bomben.add(tmpBomb);
+            Sound fx = new Sound("res/sfx/sfxtest.wav");
+            fx.play();
           }
         }
         
