@@ -8,36 +8,23 @@ import org.newdawn.slick.SlickException;
 
 public class Explosion extends SpielObjekt {
   
+  private static String imPath = "/res/explosion.png";
   private Image im;
   public ArrayList<Object> expb;
   
   
-  public Explosion(int x, int y, String image) {
-    super(x, y, image);
+  public Explosion(int x, int y) throws SlickException {
+    super(x, y);
     
     expb = new ArrayList<Object>();
     expb.add(new Block(x, y));
     
     try {
-      im = new Image(image);
+      im = new Image(imPath);
     } catch (SlickException e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
     }
-    // TODO Auto-generated constructor stub
-  }
-  
-  public Explosion(int x, int y) {
-    super(x, y);
-    // TODO Auto-generated constructor stub
-  }
-  
-  public Explosion(String image) {
-    super(image);
-    // TODO Auto-generated constructor stub
-  }
-  
-  public Explosion() {
     // TODO Auto-generated constructor stub
   }
   

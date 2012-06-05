@@ -8,29 +8,15 @@ import de.game.bomberman.SpielObjekt;
 
 public class Exit extends SpielObjekt {
   
-  
+  static private String imPath = "res/Exit.png"; 
   private Image im;
   
-  public Exit(int x, int y, String image) throws SlickException {
-    super(x, y, image);
+  public Exit(int x, int y) throws SlickException {
+    super(x, y);
     // TODO Auto-generated constructor stub
     kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31,
         y + 31, x, y + 31 });
-    im = new Image(image);
-  }
-  
-  public Exit(int x, int y) {
-    super(x, y);
-    // TODO Auto-generated constructor stub
-  }
-  
-  public Exit(String image) {
-    super(image);
-    // TODO Auto-generated constructor stub
-  }
-  
-  public Exit() {
-    // TODO Auto-generated constructor stub
+    im = new Image(imPath);
   }
   
   @Override

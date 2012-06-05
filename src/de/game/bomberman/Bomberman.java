@@ -6,12 +6,12 @@ import org.newdawn.slick.*;
 public class Bomberman extends BasicGame {
   
   public static MapAnalyzer map;
-  private Player Player1;
-  public static List<Bombe> Bomben = new ArrayList<Bombe>();
+  private static List<Player> player = new ArrayList<Player>();
+  private static List<Bombe> bomben = new ArrayList<Bombe>();
   private Exit exit;
   private SpielEnde ende;
   static public Explosion explosion;
-     
+  
   static final boolean debug = false;
   
   // KONSTRUKTOREN:
@@ -34,17 +34,15 @@ public class Bomberman extends BasicGame {
     
     container.setVSync(true);
     MapAnalyzer.tmap.render(0, 0);
-    for (SpielObjekt bomb : Bomben) {
+    for (Bombe bomb : bomben) {
       bomb.draw(g);
     }
     exit.draw(g);
-    Player1.draw(g);
-    if (ende.isGameOver()) {
-      ende.draw(g);
+    for (Player pl : player) {
+      pl.draw(g);
     }
+    ende.draw(g);
   }
-  
-  
   
   // INIT BLOCK:
   
@@ -53,14 +51,14 @@ public class Bomberman extends BasicGame {
     // TODO Auto-generated method stub
     
     map = new MapAnalyzer("res/testmap2.tmx");
-    Player1 = new Player(32, 32, "res/bomberman1.png");
-    
-    exit = new Exit(544, 416, "res/Exit.png");
-    Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
-        new Image("res/fonts/game_over_font.png"));
-    ende = new SpielEnde(container.getHeight(), container.getWidth(),
-        fontGameOver);
-    
+    player.add(0, new Player(32, 32, 1));
+    player.add(1, new Player(544, 32, 2));
+    player.get(0).setKeys(Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_UP,
+        Input.KEY_DOWN, Input.KEY_SPACE);
+    player.get(1).setKeys(Input.KEY_A, Input.KEY_D, Input.KEY_W, Input.KEY_S,
+        Input.KEY_LCONTROL);
+    exit = new Exit(544, 416);
+    ende = new SpielEnde(container.getHeight(), container.getWidth());
   }
   
   // UPDATE BLOCK:
@@ -70,106 +68,88 @@ public class Bomberman extends BasicGame {
     // TODO Auto-generated method stub
     
     if (!ende.isGameOver()) {
-      Player1.update(arg1);
-      Player1.update(arg1); // zweimal, so bewegt sich Bomberman schneller
-      for (int i = 0; i < Bomben.size(); i++) {
-        Bombe bomb = Bomben.get(i);
+      for (Player pl : player) {
+        pl.update(arg1);
+      }
+      for (int i = 0; i < bomben.size(); i++) {
+        Bombe bomb = bomben.get(i);
         bomb.update(arg1);
         if (bomb.isBombIsDead()) {
-          Bomben.remove(bomb);
+          bomben.remove(bomb);
         }
       }
       
-     // if (explosion.pruefeKollsion(Player1)){
-     //   ende.setGameOver(true);
-     // }
+      // if (explosion.pruefeKollsion(Player1)){
+      // ende.setGameOver(true);
+      // }
       
-      if (container.getInput().isKeyDown(Player1.getLeft())) {
-        Player1.setXtendency(false);
-        if ((Player1.getX() % 32) == 0) {
-          Player1.move(-1, 0);
-        }
-      }
-      
-      if (container.getInput().isKeyDown(Player1.getRight())) {
-        Player1.setXtendency(true);
-        if ((Player1.getX() % 32) == 0) {
-          Player1.move(+1, 0);
-        }
-      }
-      
-      if (container.getInput().isKeyDown(Player1.getUp())) {
-        Player1.setYtendency(false);
-        if ((Player1.getY() % 32) == 0) {
-          Player1.move(0, -1);
-        }
-      }
-      
-      if (container.getInput().isKeyDown(Player1.getDown())) {
-        Player1.setYtendency(true);
-        if ((Player1.getY() % 32) == 0) {
-          Player1.move(0, +1);
-        }
-      }
-      
-      if (container.getInput().isKeyPressed(Player1.getBomb())) {
-        
-        
-        // Eigentlich müsste jetzt ein sound abgespielt werden :(
-        
-        Sound fx = new Sound("res/sfx/sfxtest.wav");
-        fx.play();
-        
-        System.out.println("test");
-
-        float BombX;
-        float BombY;
-        boolean kollision = false;
-        BombX = Math.round(Player1.getX() / 32.);
-        BombY = Math.round(Player1.getY() / 32.);
-        BombX *= 32.;
-        BombY *= 32.;
-        Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, "res/bomb.png");
-        for (int i = 0; i < Bomben.size(); i++) {
-          Bombe bomb = Bomben.get(i);
-          kollision = bomb.pruefeKollsion(tmpBomb);
-          if (kollision == true) {
-            break;
+      for (Player pl : player) {
+        if (container.getInput().isKeyDown(pl.getLeft())) {
+          pl.setXtendency(false);
+          if ((pl.getX() % 32) == 0) {
+            pl.move(-1, 0);
           }
         }
-        if (kollision == false) {
-          Bomben.add(tmpBomb);
+        
+        if (container.getInput().isKeyDown(pl.getRight())) {
+          pl.setXtendency(true);
+          if ((pl.getX() % 32) == 0) {
+            pl.move(+1, 0);
+          }
         }
-      }
-      
-      if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
-          || exit.pruefeKollsion(Player1)) {
-        ende.setGameOver(true);
-      }
-    } else {
-      if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        container.exit();
-      }
-      if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        Player1.setX(32);
-        Player1.setY(32);
-        Player1.kollisionsFlaeche.setX(32);
-        Player1.kollisionsFlaeche.setY(32);
-        ende.setGameOver(false);
+        
+        if (container.getInput().isKeyDown(pl.getUp())) {
+          pl.setYtendency(false);
+          if ((pl.getY() % 32) == 0) {
+            pl.move(0, -1);
+          }
+        }
+        
+        if (container.getInput().isKeyDown(pl.getDown())) {
+          pl.setYtendency(true);
+          if ((pl.getY() % 32) == 0) {
+            pl.move(0, +1);
+          }
+        }
+        
+        if (container.getInput().isKeyPressed(pl.getBomb())) {
+          // Eigentlich mï¿½sste jetzt ein sound abgespielt werden :(
+          Sound fx = new Sound("res/sfx/sfxtest.wav");
+          fx.play();
+          float BombX;
+          float BombY;
+          boolean kollision = false;
+          BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
+          BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
+          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
+          for (int i = 0; i < bomben.size(); i++) {
+            Bombe bomb = bomben.get(i);
+            kollision = bomb.pruefeKollsion(tmpBomb);
+            if (kollision == true) {
+              break;
+            }
+          }
+          if (kollision == false) {
+            bomben.add(tmpBomb);
+          }
+        }
+        
+        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
+            || exit.pruefeKollsion(pl)) {
+          ende.setGameOver(true);
+        } else {
+          if (container.getInput().isKeyPressed(Input.KEY_N)) {
+            container.exit();
+          }
+          if (container.getInput().isKeyPressed(Input.KEY_Y)) {
+            pl.setX(32);
+            pl.setY(32);
+            pl.kollisionsFlaeche.setX(32);
+            pl.kollisionsFlaeche.setY(32);
+            ende.setGameOver(false);
+          }
+        }
       }
     }
   }
-  
-  // /**
-  // * @param args
-  // * @throws SlickException
-  // */
-  // public static void main(String[] args) throws SlickException {
-  // // TODO Auto-generated method stub
-  // AppGameContainer container = new AppGameContainer(new Bomberman());
-  // container.setDisplayMode(640, 480, false);
-  // container.setClearEachFrame(false);
-  // container.setMinimumLogicUpdateInterval(25);
-  // container.start();
-  // }
 }

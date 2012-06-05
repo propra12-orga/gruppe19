@@ -1,12 +1,11 @@
 package de.game.bomberman;
 
 import java.util.*;
-
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Polygon;
 
 public class Bombe extends SpielObjekt {
   
+  private static String imPath = "res/bomb.png";
   private int ExplodeRadius = 2;
   private Image im;
   private int counter;
@@ -29,27 +28,11 @@ public class Bombe extends SpielObjekt {
     ExplodeRadius = explodeRadius;
   }
   
-  public Bombe(int x, int y, String image) throws SlickException {
-    super(x, y, image);
-    kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31, y + 31, x, y + 31 });
-    // TODO Auto-generated constructor stub
-    im = new Image(image);
+  public Bombe(int x, int y) throws SlickException {
+    super(x, y);
+    im = new Image(imPath);
     explode = false;
     counter = 0;
-  }
-  
-  public Bombe(int x, int y) {
-    super(x, y);
-    // TODO Auto-generated constructor stub
-  }
-  
-  public Bombe(String image) {
-    super(image);
-    // TODO Auto-generated constructor stub
-  }
-  
-  public Bombe() {
-    // TODO Auto-generated constructor stub
   }
   
   @Override
@@ -70,7 +53,7 @@ public class Bombe extends SpielObjekt {
   }
   
   @Override
-  public void update(int delta) {
+  public void update(int delta) throws SlickException {
     counter+=1;
     if(counter==200){
       setExplode(true);
@@ -80,20 +63,20 @@ public class Bombe extends SpielObjekt {
     }
   }
 
-  private void buildExplodeArray(int explodeRadius2) {
+  private void buildExplodeArray(int explodeRadius2) throws SlickException {
     
-    expl.add(new Explosion(x, y, "/res/explosion.png"));
+    expl.add(new Explosion(x, y));
     
     // Explosionen in x-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
-      expl.add(new Explosion(x+32*i, y, "/res/explosion.png"));
-      expl.add(new Explosion(x-32*i, y, "/res/explosion.png"));
+      expl.add(new Explosion(x+32*i, y));
+      expl.add(new Explosion(x-32*i, y));
     }
     
     // Explosionen in y-Richtung
     for(int i=1;i<=ExplodeRadius;i++){
-      expl.add(new Explosion(x, y+32*i, "/res/explosion.png"));
-      expl.add(new Explosion(x, y-32*i, "/res/explosion.png"));
+      expl.add(new Explosion(x, y+32*i));
+      expl.add(new Explosion(x, y-32*i));
     }
   }
 

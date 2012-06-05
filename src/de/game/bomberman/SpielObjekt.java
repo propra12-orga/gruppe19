@@ -5,31 +5,23 @@ import org.newdawn.slick.geom.Polygon;
 
 public abstract class SpielObjekt {
   
+  private static int sizeX = 31;
+  private static int sizeY = 31;
   protected int x;
   protected int y;
-  protected String image;
   protected Polygon kollisionsFlaeche;
   
-  public abstract void draw(Graphics g);
   
-  public void update(int delta) {
+  public abstract void draw(Graphics g) throws SlickException;
+  
+  public void update(int delta) throws SlickException {
   };
   
-  public SpielObjekt(int x, int y, String image) {
-    this(x, y);
-    this.image = image;
-  }
-  
-  public SpielObjekt(int x, int y) {
+  public SpielObjekt(int x, int y) throws SlickException {
     this.x = x;
     this.y = y;
-  }
-  
-  public SpielObjekt(String image) {
-    this.image = image;
-  }
-  
-  public SpielObjekt() {
+    kollisionsFlaeche = new Polygon(new float[] { x, y, x + sizeX, y, x + sizeX,
+        y + sizeY, x, y + sizeY });
   }
   
   public int getX() {
@@ -61,6 +53,6 @@ public abstract class SpielObjekt {
   }
   
   public boolean pruefePolyKollision(Polygon flaeche) {
-    return kollisionsFlaeche.contains(flaeche);
+    return kollisionsFlaeche.contains(flaeche.getX(),flaeche.getY());
   }
 }
