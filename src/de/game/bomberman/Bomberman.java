@@ -52,6 +52,9 @@ public class Bomberman extends BasicGame {
   public void init(GameContainer container) throws SlickException {
     // TODO Auto-generated method stub
     
+    Music music = new Music("res/Music/test.ogg");  // Hier wird die Musik geladen...
+    music.loop();                                   // ... und im Loop abgespielt
+    
     map = new MapAnalyzer("res/testmap2.tmx");
     Player1 = new Player(32, 32, "res/bomberman1.png");
     
@@ -115,7 +118,7 @@ public class Bomberman extends BasicGame {
       if (container.getInput().isKeyPressed(Player1.getBomb())) {
         
         
-        // Eigentlich müsste jetzt ein sound abgespielt werden :(
+        // Eigentlich mï¿½sste jetzt ein sound abgespielt werden :(
         
         Sound fx = new Sound("res/sfx/sfxtest.wav");
         fx.play();
