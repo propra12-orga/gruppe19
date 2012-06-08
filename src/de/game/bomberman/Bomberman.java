@@ -39,7 +39,13 @@ public class Bomberman extends BasicGame {
     // TODO Auto-generated method stub
     
     container.setVSync(true);
+    float scaleX = (float) container.getWidth()
+        / (float) (karte.getWidth() * karte.getTileWidth());
+    float scaleY = (float) container.getHeight()
+        / (float) (karte.getHeight() * karte.getTileHeight());
+    g.scale(scaleX, scaleY);
     karte.render(0, 0);
+    
     for (Bombe bomb : bomben) {
       bomb.draw(g);
     }
