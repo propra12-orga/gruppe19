@@ -24,20 +24,15 @@ public class Player extends SpielObjekt {
     super(x, y);
   }
   
-<<<<<<< HEAD
-  public Player(int x, int y, int color) throws SlickException {
-    super(x, y);
-    this.color = color; 
-=======
   /**
    * @param x
    * @param y
    * @param color
    * @throws SlickException
    */
-  public Player(int x, int y, int color) throws SlickException{
-    super(x,y);
->>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
+  public Player(int x, int y, int color) throws SlickException {
+    super(x, y);
+    this.color = color;
     switch (color) {
       case 1:
         playerSSheet = new SpriteSheet("res/charsets/player1.png", 32, 32);
@@ -61,13 +56,19 @@ public class Player extends SpielObjekt {
   }
   
   @Override
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see de.game.bomberman.SpielObjekt#update(int)
    */
   public void update(int delta) {
     
   }
   
+  /**
+   * @param delta
+   * @param spObj
+   */
   public void update(int delta, ArrayList<SpielObjekt> spObj) {
     if ((x % 32) != 0) {// Fuer X
       if (Xtendency) {
@@ -85,23 +86,12 @@ public class Player extends SpielObjekt {
     }
   }
   
-<<<<<<< HEAD
+  /**
+   * @param x
+   * @param y
+   * @param spObj
+   */
   public void move(int x, int y, ArrayList<SpielObjekt> spObj) {
-=======
-  /**
-   * @param x
-   * @param y
-   */
-  public void move(int x, int y) {
-    moveplayer(this.x + x, this.y + y);
-  }
-  
-  /**
-   * @param x
-   * @param y
-   */
-  private void moveplayer(int x, int y) {
->>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
     int Xtemp = this.x;
     int Ytemp = this.y;
     
@@ -120,43 +110,14 @@ public class Player extends SpielObjekt {
       } else if (Ytemp != this.y) {
         Ytendency = !Ytendency;
       }
-<<<<<<< HEAD
-=======
-    } 
-  }
-  
-  /**
-   * @return
-   */
-  private boolean festeCollisionWith() {
-    
-    for (int i = 0; i < Bomberman.map.festeMauer.size(); i++) {
-      Block entity1 = (Block) Bomberman.map.festeMauer.get(i);
-      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
-        return true;
-      }
->>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
     }
   }
   
-<<<<<<< HEAD
-=======
-  /**
-   * @return
+  /*
+   * (non-Javadoc)
+   * 
+   * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
-  private boolean zerstCollisionWith() {
-    
-    for (int i = 0; i < Bomberman.map.zerstMauer.size(); i++) {
-      Block entity1 = (Block) Bomberman.map.zerstMauer.get(i);
-      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  
->>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
   @Override
   public void draw(Graphics g) {
     
@@ -210,65 +171,114 @@ public class Player extends SpielObjekt {
     
     g.drawImage(playerSSheet.getSprite(spalte, zeile), x, y);
     g.draw(kollisionsFlaeche);
-    g.drawString("X:" + getX() + " Y:" + getY(), 32+(color-1)*128, 460);
+    g.drawString("X:" + getX() + " Y:" + getY(), 32 + (color - 1) * 128, 460);
   }
   
+  /**
+   * @return
+   */
   public boolean isXtendency() {
     return Xtendency;
   }
   
+  /**
+   * @param xtendency
+   */
   public void setXtendency(boolean xtendency) {
     Xtendency = xtendency;
   }
   
+  /**
+   * @return
+   */
   public boolean isYtendency() {
     return Ytendency;
   }
   
+  /**
+   * @param ytendency
+   */
   public void setYtendency(boolean ytendency) {
     Ytendency = ytendency;
   }
   
+  /**
+   * @return
+   */
   public int getUp() {
     return up;
   }
   
+  /**
+   * @param up
+   */
   public void setUp(int up) {
     this.up = up;
   }
   
+  /**
+   * @return
+   */
   public int getLeft() {
     return left;
   }
   
+  /**
+   * @param left
+   */
   public void setLeft(int left) {
     this.left = left;
   }
   
+  /**
+   * @return
+   */
   public int getDown() {
     return down;
   }
   
+  /**
+   * @param down
+   */
   public void setDown(int down) {
     this.down = down;
   }
   
+  /**
+   * @return
+   */
   public int getRight() {
     return right;
   }
   
+  /**
+   * @param right
+   */
   public void setRight(int right) {
     this.right = right;
   }
   
+  /**
+   * @return
+   */
   public int getBomb() {
     return bomb;
   }
   
+  /**
+   * @param bomb
+   */
   public void setBomb(int bomb) {
     this.bomb = bomb;
   }
   
+  /**
+   * @param left
+   * @param right
+   * @param up
+   * @param down
+   * @param bomb
+   */
   public void setKeys(int left, int right, int up, int down, int bomb) {
     this.left = left;
     this.right = right;
