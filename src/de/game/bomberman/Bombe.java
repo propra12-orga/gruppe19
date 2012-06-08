@@ -5,35 +5,42 @@ import org.newdawn.slick.*;
 
 public class Bombe extends SpielObjekt {
   
+//Image der Bombe
   private static String imPath = "res/bomb.png";
-  private int ExplodeRadius = 2;
+  private int ExplodeRadius = 2;                            // Radius
   private Image im;
-  private int counter;
+  private int counter;                                      // regelt die Zeit, wann Bomben explodieren: counter += 1: if counter==200 --> Bombe explodiert
   private boolean explode;
   private boolean BombIsDead;
-  private List<Explosion> expl = new ArrayList<Explosion>();
-  public ArrayList<Object> expb;
+  private List<Explosion> expl = new ArrayList<Explosion>(); // ArrayListe der Explosion; erstellt ein Array, welches die Weite der Explosion darstellt
+  public ArrayList<Object> expb;                                // ????????????????????????????????????
   
   /**
-   * @return the explodeRadius
+   * @return the ExplodeRadius
    */
   public int getExplodeRadius() {
     return ExplodeRadius;
   }
 
   /**
-   * @param explodeRadius the explodeRadius to set
+   * @param ExplodeRadius the explodeRadius to set
    */
   public void setExplodeRadius(int explodeRadius) {
     ExplodeRadius = explodeRadius;
   }
   
+  /**
+   * @param x
+   * @param y
+   * @throws SlickException
+   */
   public Bombe(int x, int y) throws SlickException {
     super(x, y);
     im = new Image(imPath);
     explode = false;
     counter = 0;
   }
+  
   
   @Override
   public void draw(Graphics g) {
@@ -44,10 +51,16 @@ public class Bombe extends SpielObjekt {
     if(!explode) im.draw(x, y);
   }
 
+  /**
+   * @return
+   */
   public boolean isExplode() {
     return explode;
   }
   
+  /**
+   * @param explode
+   */
   public void setExplode(boolean explode) {
     this.explode = explode;
   }
