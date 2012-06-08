@@ -15,13 +15,29 @@ public class Player extends SpielObjekt {
   private int left, right, up, down, bomb;
   protected int color = 1;
   
+  /**
+   * @param x
+   * @param y
+   * @throws SlickException
+   */
   public Player(int x, int y) throws SlickException {
     super(x, y);
   }
   
+<<<<<<< HEAD
   public Player(int x, int y, int color) throws SlickException {
     super(x, y);
     this.color = color; 
+=======
+  /**
+   * @param x
+   * @param y
+   * @param color
+   * @throws SlickException
+   */
+  public Player(int x, int y, int color) throws SlickException{
+    super(x,y);
+>>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
     switch (color) {
       case 1:
         playerSSheet = new SpriteSheet("res/charsets/player1.png", 32, 32);
@@ -45,6 +61,9 @@ public class Player extends SpielObjekt {
   }
   
   @Override
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#update(int)
+   */
   public void update(int delta) {
     
   }
@@ -66,7 +85,23 @@ public class Player extends SpielObjekt {
     }
   }
   
+<<<<<<< HEAD
   public void move(int x, int y, ArrayList<SpielObjekt> spObj) {
+=======
+  /**
+   * @param x
+   * @param y
+   */
+  public void move(int x, int y) {
+    moveplayer(this.x + x, this.y + y);
+  }
+  
+  /**
+   * @param x
+   * @param y
+   */
+  private void moveplayer(int x, int y) {
+>>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
     int Xtemp = this.x;
     int Ytemp = this.y;
     
@@ -85,9 +120,43 @@ public class Player extends SpielObjekt {
       } else if (Ytemp != this.y) {
         Ytendency = !Ytendency;
       }
+<<<<<<< HEAD
+=======
+    } 
+  }
+  
+  /**
+   * @return
+   */
+  private boolean festeCollisionWith() {
+    
+    for (int i = 0; i < Bomberman.map.festeMauer.size(); i++) {
+      Block entity1 = (Block) Bomberman.map.festeMauer.get(i);
+      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
+        return true;
+      }
+>>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
     }
   }
   
+<<<<<<< HEAD
+=======
+  /**
+   * @return
+   */
+  private boolean zerstCollisionWith() {
+    
+    for (int i = 0; i < Bomberman.map.zerstMauer.size(); i++) {
+      Block entity1 = (Block) Bomberman.map.zerstMauer.get(i);
+      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  
+>>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
   @Override
   public void draw(Graphics g) {
     

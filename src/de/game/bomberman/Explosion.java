@@ -13,6 +13,11 @@ public class Explosion extends SpielObjekt {
   public ArrayList<Object> expb;
   
   
+  /**
+   * @param x
+   * @param y
+   * @throws SlickException
+   */
   public Explosion(int x, int y) throws SlickException {
     super(x, y);
     
@@ -29,6 +34,9 @@ public class Explosion extends SpielObjekt {
   }
   
   @Override
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
+   */
   public void draw(Graphics g) {
     // TODO Auto-generated method stub
     im.draw(x,y);

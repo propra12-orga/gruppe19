@@ -5,6 +5,7 @@ import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
+
 public class Bomberman extends BasicGame {
   
   protected TiledMap karte;
@@ -30,6 +31,9 @@ public class Bomberman extends BasicGame {
   
   // RENDER BLOCK:
   
+  /* (non-Javadoc)
+   * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer, org.newdawn.slick.Graphics)
+   */
   @Override
   public void render(GameContainer container, Graphics g) throws SlickException {
     // TODO Auto-generated method stub
@@ -52,9 +56,11 @@ public class Bomberman extends BasicGame {
   public void init(GameContainer container) throws SlickException {
     // TODO Auto-generated method stub
     
-    Music music = new Music("res/Music/test.ogg"); // Hier wird die Musik
-                                                   // geladen...
-    music.loop(); // ... und im Loop abgespielt
+    // Hier wird die Musik
+    // geladen...
+    Music music = new Music("res/Music/test.ogg"); 
+    // ... und im Loop abgespielt
+    music.loop(); 
     
     initMap("res/testmap2.tmx");
     player.add(0, new Player(32, 32, 1));

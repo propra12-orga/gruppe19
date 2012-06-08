@@ -11,6 +11,11 @@ public class Exit extends SpielObjekt {
   static private String imPath = "res/Exit.png"; 
   private Image im;
   
+  /**
+   * @param x
+   * @param y
+   * @throws SlickException
+   */
   public Exit(int x, int y) throws SlickException {
     super(x, y);
     // TODO Auto-generated constructor stub
@@ -20,12 +25,18 @@ public class Exit extends SpielObjekt {
   }
   
   @Override
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
+   */
   public void draw(Graphics g) {
     // TODO Auto-generated method stub
     im.draw(x, y);
     
   }
   
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#pruefeKollsion(de.game.bomberman.SpielObjekt)
+   */
   public boolean pruefeKollsion(SpielObjekt spielObjekt) {
     return kollisionsFlaeche.intersects(spielObjekt.getkollFlaeche());
   }
