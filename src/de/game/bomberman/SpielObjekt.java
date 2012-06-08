@@ -13,14 +13,10 @@ public abstract class SpielObjekt {
   protected int y;
   protected Polygon kollisionsFlaeche;
   
-<<<<<<< HEAD
-=======
-  
   /**
    * @param g
    * @throws SlickException
    */
->>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
   public abstract void draw(Graphics g) throws SlickException;
   
   /**
@@ -70,13 +66,6 @@ public abstract class SpielObjekt {
     this.y = y;
   }
   
-<<<<<<< HEAD
-  public Polygon getkollFlaeche() {
-    return kollisionsFlaeche;
-  }
-  
-  public void setKollFlaeche(Polygon Poly) {
-=======
   /**
    * @return
    */
@@ -88,7 +77,6 @@ public abstract class SpielObjekt {
    * @param Poly
    */
   public void setKollFlaeche(Polygon Poly){
->>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
     kollisionsFlaeche = Poly;
   }
   
@@ -100,7 +88,10 @@ public abstract class SpielObjekt {
     return kollisionsFlaeche.intersects(spielObjekt.getkollFlaeche());
   }
   
-<<<<<<< HEAD
+  /**
+   * @param spObj
+   * @return
+   */
   public boolean pruefeKollsion(ArrayList<SpielObjekt> spObj) {
     for (int i = 0; i < spObj.size(); i++) {
       if (spObj.get(i).pruefeKollsion(this)) {
@@ -110,12 +101,10 @@ public abstract class SpielObjekt {
     return false;
   }
   
-=======
   /**
    * @param flaeche
    * @return
    */
->>>>>>> e5aec1b53c5e4e1f8379afc862d1072415583473
   public boolean pruefePolyKollision(Polygon flaeche) {
     return kollisionsFlaeche.intersects(flaeche);
   }
