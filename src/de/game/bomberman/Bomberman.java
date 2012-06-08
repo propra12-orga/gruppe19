@@ -1,18 +1,20 @@
 package de.game.bomberman;
 
 import java.util.*;
+
 import org.newdawn.slick.*;
+import org.newdawn.slick.tiled.TiledMap;
 
 public class Bomberman extends BasicGame {
   
-  public static MapAnalyzer map;
-  private static List<Player> player = new ArrayList<Player>();
-  private static List<Bombe> bomben = new ArrayList<Bombe>();
-  private Exit exit;
-  private SpielEnde ende;
-  static public Explosion explosion;
+  protected TiledMap karte;
+  protected ArrayList<Player> player = new ArrayList<Player>();
+  protected ArrayList<Bombe> bomben = new ArrayList<Bombe>();
+  protected ArrayList<SpielObjekt> Mauer = new ArrayList<SpielObjekt>();
+  protected Exit exit;
+  protected SpielEnde ende;
   
-  static final boolean debug = false;
+  protected boolean debug = false;
   
   // KONSTRUKTOREN:
   
@@ -33,7 +35,7 @@ public class Bomberman extends BasicGame {
     // TODO Auto-generated method stub
     
     container.setVSync(true);
-    MapAnalyzer.tmap.render(0, 0);
+    karte.render(0, 0);
     for (Bombe bomb : bomben) {
       bomb.draw(g);
     }
@@ -54,7 +56,7 @@ public class Bomberman extends BasicGame {
                                                    // geladen...
     music.loop(); // ... und im Loop abgespielt
     
-    map = new MapAnalyzer("res/testmap2.tmx");
+    initMap("res/testmap2.tmx");
     player.add(0, new Player(32, 32, 1));
     player.add(1, new Player(544, 32, 2));
     player.get(0).setKeys(Input.KEY_LEFT, Input.KEY_RIGHT, Input.KEY_UP,
@@ -87,31 +89,31 @@ public class Bomberman extends BasicGame {
         }
       }
       for (Player pl : player) {
-        pl.update(arg1);
+        pl.update(arg1, Mauer);
         if (container.getInput().isKeyDown(pl.getLeft())) {
           pl.setXtendency(false);
           if ((pl.getX() % 32) == 0) {
-            pl.move(-1, 0);
+            pl.move(-1, 0, Mauer);
           }
         }
         
         if (container.getInput().isKeyDown(pl.getRight())) {
           pl.setXtendency(true);
           if ((pl.getX() % 32) == 0) {
-            pl.move(+1, 0);
+            pl.move(+1, 0, Mauer);
           }
         }
         if (container.getInput().isKeyDown(pl.getUp())) {
           pl.setYtendency(false);
           if ((pl.getY() % 32) == 0) {
-            pl.move(0, -1);
+            pl.move(0, -1, Mauer);
           }
         }
         
         if (container.getInput().isKeyDown(pl.getDown())) {
           pl.setYtendency(true);
           if ((pl.getY() % 32) == 0) {
-            pl.move(0, +1);
+            pl.move(0, +1, Mauer);
           }
         }
         
@@ -143,13 +145,35 @@ public class Bomberman extends BasicGame {
       }
     }
   }
-
+  
   private void restartGame(GameContainer container) throws SlickException {
     player.clear();
     bomben.clear();
+    Mauer.clear();
     ende = null;
     exit = null;
-    map = null;
+    karte = null;
     init(container);
+  }
+  
+  public void initMap(String ref) throws SlickException {
+    
+    karte = new TiledMap(ref, "res");
+    
+    for (int x = 0; x < karte.getWidth(); x++) {
+      for (int y = 0; y < karte.getHeight(); y++) {
+        final int tileID = karte.getTileId(x, y, 0);
+        switch (tileID) {
+          case 2:
+            Mauer.add(new Block(x * 32, y * 32));
+            break;
+          case 17:
+            Mauer.add(new Block(x * 32, y * 32));
+            break;
+          default:
+            break;
+        }
+      }
+    }
   }
 }

@@ -1,7 +1,8 @@
 package de.game.bomberman;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.*;
 import de.game.bomberman.SpielObjekt;
 
 public class Player extends SpielObjekt {
@@ -12,13 +13,15 @@ public class Player extends SpielObjekt {
   int spalte = 0; // Zur Auswahl der Animationsphasen im Spritesheet
   protected SpriteSheet playerSSheet;
   private int left, right, up, down, bomb;
+  protected int color = 1;
   
   public Player(int x, int y) throws SlickException {
     super(x, y);
   }
   
-  public Player(int x, int y, int color) throws SlickException{
-    super(x,y);
+  public Player(int x, int y, int color) throws SlickException {
+    super(x, y);
+    this.color = color; 
     switch (color) {
       case 1:
         playerSSheet = new SpriteSheet("res/charsets/player1.png", 32, 32);
@@ -33,46 +36,46 @@ public class Player extends SpielObjekt {
         playerSSheet = new SpriteSheet("res/charsets/player4.png", 32, 32);
         break;
       default:
-        System.out.println("wrong color for player!"); 
+        System.out.println("wrong color for player!");
         break;
     }
-    if(color==1){
+    if (color == 1) {
       
     }
   }
   
   @Override
   public void update(int delta) {
-    if ((x % 32) != 0) {// F?r X
+    
+  }
+  
+  public void update(int delta, ArrayList<SpielObjekt> spObj) {
+    if ((x % 32) != 0) {// Fuer X
       if (Xtendency) {
-        move(1, 0);
+        move(1, 0, spObj);
       } else {
-        move(-1, 0);
+        move(-1, 0, spObj);
       }
     }
-    if ((y % 32) != 0) {// F?r Y
+    if ((y % 32) != 0) {// Fuer Y
       if (Ytendency) {
-        move(0, 1);
+        move(0, 1, spObj);
       } else {
-        move(0, -1);
+        move(0, -1, spObj);
       }
     }
   }
   
-  public void move(int x, int y) {
-    moveplayer(this.x + x, this.y + y);
-  }
-  
-  private void moveplayer(int x, int y) {
+  public void move(int x, int y, ArrayList<SpielObjekt> spObj) {
     int Xtemp = this.x;
     int Ytemp = this.y;
     
-    this.x = x;
-    this.y = y;
-    kollisionsFlaeche.setX(x);
-    kollisionsFlaeche.setY(y);
+    this.x += x;
+    this.y += y;
+    kollisionsFlaeche.setX(this.x);
+    kollisionsFlaeche.setY(this.y);
     
-    if (festeCollisionWith() || zerstCollisionWith()) {
+    if (pruefeKollsion(spObj)) {
       this.x = Xtemp;
       this.y = Ytemp;
       kollisionsFlaeche.setX(this.x);
@@ -82,31 +85,8 @@ public class Player extends SpielObjekt {
       } else if (Ytemp != this.y) {
         Ytendency = !Ytendency;
       }
-    } 
-  }
-  
-  private boolean festeCollisionWith() {
-    
-    for (int i = 0; i < Bomberman.map.festeMauer.size(); i++) {
-      Block entity1 = (Block) Bomberman.map.festeMauer.get(i);
-      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
-        return true;
-      }
     }
-    return false;
   }
-  
-  private boolean zerstCollisionWith() {
-    
-    for (int i = 0; i < Bomberman.map.zerstMauer.size(); i++) {
-      Block entity1 = (Block) Bomberman.map.zerstMauer.get(i);
-      if (kollisionsFlaeche.intersects(entity1.getkollFlaeche())) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   
   @Override
   public void draw(Graphics g) {
@@ -124,10 +104,6 @@ public class Player extends SpielObjekt {
         zeile = 0;
         
         spalte = (y % 64) / 8; // die y achse wird also in 8 Pixel große
-                               // abschnitte
-                               // geteilt denen jeweils eine Animationsphase
-                               // zugewiesen
-                               // wird.
         
         System.out.println(spalte);
         
@@ -164,10 +140,8 @@ public class Player extends SpielObjekt {
      */
     
     g.drawImage(playerSSheet.getSprite(spalte, zeile), x, y);
-    if (Bomberman.debug) {
-      g.draw(kollisionsFlaeche);
-      g.drawString("X:" + getX() + " Y:" + getY(), 32, 460);
-    }
+    g.draw(kollisionsFlaeche);
+    g.drawString("X:" + getX() + " Y:" + getY(), 32+(color-1)*128, 460);
   }
   
   public boolean isXtendency() {
@@ -226,7 +200,7 @@ public class Player extends SpielObjekt {
     this.bomb = bomb;
   }
   
-  public void setKeys(int left, int right, int up, int down, int bomb){
+  public void setKeys(int left, int right, int up, int down, int bomb) {
     this.left = left;
     this.right = right;
     this.up = up;

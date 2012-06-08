@@ -1,5 +1,7 @@
 package de.game.bomberman;
 
+import java.util.ArrayList;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Polygon;
 
@@ -11,7 +13,6 @@ public abstract class SpielObjekt {
   protected int y;
   protected Polygon kollisionsFlaeche;
   
-  
   public abstract void draw(Graphics g) throws SlickException;
   
   public void update(int delta) throws SlickException {
@@ -20,8 +21,8 @@ public abstract class SpielObjekt {
   public SpielObjekt(int x, int y) throws SlickException {
     this.x = x;
     this.y = y;
-    kollisionsFlaeche = new Polygon(new float[] { x, y, x + sizeX, y, x + sizeX,
-        y + sizeY, x, y + sizeY });
+    kollisionsFlaeche = new Polygon(new float[] { x, y, x + sizeX, y,
+        x + sizeX, y + sizeY, x, y + sizeY });
   }
   
   public int getX() {
@@ -38,18 +39,27 @@ public abstract class SpielObjekt {
   
   public void setY(int y) {
     this.y = y;
-  } 
+  }
   
-  public Polygon getkollFlaeche(){
+  public Polygon getkollFlaeche() {
     return kollisionsFlaeche;
   }
   
-  public void setKollFlaeche(Polygon Poly){
+  public void setKollFlaeche(Polygon Poly) {
     kollisionsFlaeche = Poly;
   }
   
   public boolean pruefeKollsion(SpielObjekt spielObjekt) {
     return kollisionsFlaeche.intersects(spielObjekt.getkollFlaeche());
+  }
+  
+  public boolean pruefeKollsion(ArrayList<SpielObjekt> spObj) {
+    for (int i = 0; i < spObj.size(); i++) {
+      if (spObj.get(i).pruefeKollsion(this)) {
+        return true;
+      }
+    }
+    return false;
   }
   
   public boolean pruefePolyKollision(Polygon flaeche) {
