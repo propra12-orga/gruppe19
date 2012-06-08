@@ -96,14 +96,9 @@ public class Hauptmenu {
       @Override
       public void actionPerformed(ActionEvent evt) {
         // Fullscreen
-        AppGameContainer container = null;
         try {
-          container = new AppGameContainer(new Bomberman(), 640, 480, true);
-        } catch (SlickException e1) {
-          // TODO Auto-generated catch block
-          e1.printStackTrace();
-        }
-        try {
+          AppGameContainer container = new AppGameContainer(null);
+          container = new AppGameContainer(new Bomberman(),container.getScreenWidth(), container.getScreenHeight(), true);
           container.start();
         } catch (SlickException e1) {
           // TODO Auto-generated catch block
