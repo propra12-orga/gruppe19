@@ -13,8 +13,13 @@ public class SpielEnde extends SpielObjekt {
   private Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
       new Image("res/fonts/game_over_font.png"));
   private boolean isGameOver;
-  private static final String GAME_OVER = "Try Again?" + "\n" + "      Y/N";
+  private static final String GAME_OVER = "Try Again?" + "\n" + "       Y/N";
   
+  /**
+   * @param height
+   * @param width
+   * @throws SlickException
+   */
   public SpielEnde(int height, int width) throws SlickException {
     super(height, width);
     this.height = height;
@@ -27,6 +32,9 @@ public class SpielEnde extends SpielObjekt {
   }
   
   @Override
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
+   */
   public void draw(Graphics g) {
     if (isGameOver()) {
       g.setColor(transparent);
@@ -38,10 +46,16 @@ public class SpielEnde extends SpielObjekt {
     }
   }
   
+  /**
+   * @param isGameOver
+   */
   public void setGameOver(boolean isGameOver) {
     this.isGameOver = isGameOver;
   }
   
+  /**
+   * @return
+   */
   public boolean isGameOver() {
     return isGameOver;
   }

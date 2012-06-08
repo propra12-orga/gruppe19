@@ -13,10 +13,21 @@ public class Player extends SpielObjekt {
   protected SpriteSheet playerSSheet;
   private int left, right, up, down, bomb;
   
+  /**
+   * @param x
+   * @param y
+   * @throws SlickException
+   */
   public Player(int x, int y) throws SlickException {
     super(x, y);
   }
   
+  /**
+   * @param x
+   * @param y
+   * @param color
+   * @throws SlickException
+   */
   public Player(int x, int y, int color) throws SlickException{
     super(x,y);
     switch (color) {
@@ -42,6 +53,9 @@ public class Player extends SpielObjekt {
   }
   
   @Override
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#update(int)
+   */
   public void update(int delta) {
     if ((x % 32) != 0) {// F?r X
       if (Xtendency) {
@@ -59,10 +73,18 @@ public class Player extends SpielObjekt {
     }
   }
   
+  /**
+   * @param x
+   * @param y
+   */
   public void move(int x, int y) {
     moveplayer(this.x + x, this.y + y);
   }
   
+  /**
+   * @param x
+   * @param y
+   */
   private void moveplayer(int x, int y) {
     int Xtemp = this.x;
     int Ytemp = this.y;
@@ -85,6 +107,9 @@ public class Player extends SpielObjekt {
     } 
   }
   
+  /**
+   * @return
+   */
   private boolean festeCollisionWith() {
     
     for (int i = 0; i < Bomberman.map.festeMauer.size(); i++) {
@@ -96,6 +121,9 @@ public class Player extends SpielObjekt {
     return false;
   }
   
+  /**
+   * @return
+   */
   private boolean zerstCollisionWith() {
     
     for (int i = 0; i < Bomberman.map.zerstMauer.size(); i++) {
