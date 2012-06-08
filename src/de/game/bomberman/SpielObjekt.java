@@ -12,11 +12,24 @@ public abstract class SpielObjekt {
   protected Polygon kollisionsFlaeche;
   
   
+  /**
+   * @param g
+   * @throws SlickException
+   */
   public abstract void draw(Graphics g) throws SlickException;
   
+  /**
+   * @param delta
+   * @throws SlickException
+   */
   public void update(int delta) throws SlickException {
   };
   
+  /**
+   * @param x
+   * @param y
+   * @throws SlickException
+   */
   public SpielObjekt(int x, int y) throws SlickException {
     this.x = x;
     this.y = y;
@@ -24,34 +37,60 @@ public abstract class SpielObjekt {
         y + sizeY, x, y + sizeY });
   }
   
+  /**
+   * @return
+   */
   public int getX() {
     return x;
   }
   
+  /**
+   * @param x
+   */
   public void setX(int x) {
     this.x = x;
   }
   
+  /**
+   * @return
+   */
   public int getY() {
     return y;
   }
   
+  /**
+   * @param y
+   */
   public void setY(int y) {
     this.y = y;
   } 
   
+  /**
+   * @return
+   */
   public Polygon getkollFlaeche(){
     return kollisionsFlaeche;
   }
   
+  /**
+   * @param Poly
+   */
   public void setKollFlaeche(Polygon Poly){
     kollisionsFlaeche = Poly;
   }
   
+  /**
+   * @param spielObjekt
+   * @return
+   */
   public boolean pruefeKollsion(SpielObjekt spielObjekt) {
     return kollisionsFlaeche.intersects(spielObjekt.getkollFlaeche());
   }
   
+  /**
+   * @param flaeche
+   * @return
+   */
   public boolean pruefePolyKollision(Polygon flaeche) {
     return kollisionsFlaeche.intersects(flaeche);
   }
