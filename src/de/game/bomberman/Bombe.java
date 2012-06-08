@@ -5,15 +5,18 @@ import org.newdawn.slick.*;
 
 public class Bombe extends SpielObjekt {
   
-//Image der Bombe
+    //Image der Bombe
   private static String imPath = "res/bomb.png";
-  private int ExplodeRadius = 2;                            // Radius
+    //Radius
+  private int ExplodeRadius = 2;                            
   private Image im;
-  private int counter;                                      // regelt die Zeit, wann Bomben explodieren: counter += 1: if counter==200 --> Bombe explodiert
+    //regelt die Zeit, wann Bomben explodieren: counter += 1: if counter==200 --> Bombe explodiert
+  private int counter;                                      
   private boolean explode;
   private boolean BombIsDead;
-  private List<Explosion> expl = new ArrayList<Explosion>(); // ArrayListe der Explosion; erstellt ein Array, welches die Weite der Explosion darstellt
-  public ArrayList<Object> expb;                                // ????????????????????????????????????
+    //ArrayListe der Explosion; erstellt ein Array, welches die Weite der Explosion darstellt
+  private List<Explosion> expl = new ArrayList<Explosion>(); 
+  public ArrayList<Object> expb;
   
   /**
    * @return the ExplodeRadius
@@ -29,6 +32,7 @@ public class Bombe extends SpielObjekt {
     ExplodeRadius = explodeRadius;
   }
   
+  
   /**
    * @param x
    * @param y
@@ -41,8 +45,10 @@ public class Bombe extends SpielObjekt {
     counter = 0;
   }
   
-  
   @Override
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
+   */
   public void draw(Graphics g) {
     // TODO Auto-generated method stub
     for (Explosion bombExpl : expl) {
@@ -66,6 +72,9 @@ public class Bombe extends SpielObjekt {
   }
   
   @Override
+  /* (non-Javadoc)
+   * @see de.game.bomberman.SpielObjekt#update(int)
+   */
   public void update(int delta) throws SlickException {
     counter+=1;
     if(counter==200){
@@ -76,6 +85,10 @@ public class Bombe extends SpielObjekt {
     }
   }
 
+  /**
+   * @param explodeRadius2
+   * @throws SlickException
+   */
   private void buildExplodeArray(int explodeRadius2) throws SlickException {
     
     expl.add(new Explosion(x, y));
