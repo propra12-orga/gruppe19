@@ -9,18 +9,23 @@ import org.newdawn.slick.SlickException;
 
 public class Hauptmenu {
   
+  /**
+   * @param args
+   */
   public static void main(String[] args) {
     
     // Buttons, labels, frames, panels
     final CardLayout cardlayout = new CardLayout();
     
-    final JFrame window = new JFrame("Bombastischer Mann"); // Name des Frames
+    // Name des Frames
+    final JFrame window = new JFrame("Bombastischer Mann"); 
     JPanel menu = new JPanel();
     JPanel buttons = new JPanel();
-    JLabel titeltext = new JLabel("BOMBERMAAAN"); // Name der Ueberschrift
+    // Name der Ueberschrift
+    JLabel titeltext = new JLabel("BOMBERMAAAN"); 
     
-    Dimension groessebutton = new Dimension(160, 50); // steuert die Groesse
-                                                      // aller Buttons
+    // steuert die Groesse aller Buttons
+    Dimension groessebutton = new Dimension(160, 50); 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
     JButton singleb = new JButton("Play! (Windowed)");
@@ -31,19 +36,20 @@ public class Hauptmenu {
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     
     // Layout wird festgesetzt
-    window.setSize(700, 450); // Groesse des Fensters in Pixeln
+    // Groesse des Fensters in Pixeln
+    window.setSize(700, 450); 
+    // Layout des Fensters
     window.setLayout(cardlayout);
     menu.setLayout(new GridLayout(3, 1));
     window.setLocation((int) screenSize.getWidth() / 2 - window.getWidth() / 2,
-        (int) screenSize.getHeight() / 2 - window.getHeight() / 2); // Position
-                                                                    // des
-                                                                    // Fensters
-                                                                    // bei
-                                                                    // erscheinen
+        (int) screenSize.getHeight() / 2 - window.getHeight() / 2);
+    
+    // Position des Fensters beim Erscheinen
     buttons.setLayout(new FlowLayout());
     titeltext.setHorizontalAlignment(0);
     window.setResizable(false);
     
+    // die Groesse der Buttons
     singleb.setPreferredSize(groessebutton);
     fullb.setPreferredSize(groessebutton);
     optionenb.setPreferredSize(groessebutton);
@@ -55,9 +61,8 @@ public class Hauptmenu {
     buttons.add(optionenb);
     buttons.add(exitb);
     
-    titeltext.setFont(new Font("Arial", Font.BOLD, 15)); // steuert Groesse und
-                                                         // Font des obersten
-                                                         // labels
+    // die Art des Fensters
+    titeltext.setFont(new Font("Arial", Font.BOLD, 15)); 
     
     // ...und in den frame
     menu.add(titeltext);
@@ -72,11 +77,16 @@ public class Hauptmenu {
     
     // Singleplayer
     ActionListener splayer = new ActionListener() {
+      
+      /* (non-Javadoc)
+       * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+       */
       @Override
       public void actionPerformed(ActionEvent evt) {
         // Anweisungen um Singleplayer zu starten
         AppGameContainer container = null;
         try {
+          // Fenster des Spiels
           container = new AppGameContainer(new Bomberman(), 640, 480, false);
         } catch (SlickException e1) {
           // TODO Auto-generated catch block

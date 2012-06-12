@@ -314,6 +314,10 @@ public class Bomberman extends BasicGame {
     init(container);
   }
   
+  /**
+   * @param ref Referenz 
+   * @throws SlickException
+   */
   public void initMap(String ref) throws SlickException {
     
     karte = new TiledMap(ref, "res");

@@ -11,8 +11,8 @@ public class Explosion extends SpielObjekt {
   private int counter=100;
   
   /**
-   * @param x
-   * @param y
+   * @param x Koordinate der Explosion
+   * @param y Koordinate der Exlplosion
    * @throws SlickException
    */
   public Explosion(int x, int y) throws SlickException {
@@ -37,6 +37,7 @@ public class Explosion extends SpielObjekt {
     counter-=1;
   }
   
+  //Zaehler
   public int getCounter() {
     return counter;
   }

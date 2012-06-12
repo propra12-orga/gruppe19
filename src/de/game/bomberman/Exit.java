@@ -12,8 +12,8 @@ public class Exit extends SpielObjekt {
   private Image im;
   
   /**
-   * @param x
-   * @param y
+   * @param x Koordinate des Exits
+   * @param y Koordinate des Exits
    * @throws SlickException
    */
   public Exit(int x, int y) throws SlickException {
