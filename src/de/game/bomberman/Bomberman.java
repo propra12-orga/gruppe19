@@ -297,23 +297,13 @@ public class Bomberman extends BasicGame {
           
         }
       }
-    }
-    
-    // expl.add(new Explosion(x, y));
-    //
-    // // Explosionen in x-Richtung
-    // for(int i=1;i<=ExplodeRadius;i++){
-    // expl.add(new Explosion(x+32*i, y));
-    // expl.add(new Explosion(x-32*i, y));
-    // }
-    //
-    // // Explosionen in y-Richtung
-    // for(int i=1;i<=ExplodeRadius;i++){
-    // expl.add(new Explosion(x, y+32*i));
-    // expl.add(new Explosion(x, y-32*i));
-    // }
+    }    
   }
   
+  /**
+   * @param container
+   * @throws SlickException
+   */
   private void restartGame(GameContainer container) throws SlickException {
     player.clear();
     bomben.clear();
