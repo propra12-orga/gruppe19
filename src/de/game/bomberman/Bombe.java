@@ -6,7 +6,7 @@ public class Bombe extends SpielObjekt {
   
     //Image der Bombe
   private static String imPath = "res/bomb.png";
-    //Radius
+    //Radius der Explosion
   private int ExplodeRadius = 5;                            
   private Image im;
     //regelt die Zeit, wann Bomben explodieren: counter += 1: if counter==200 --> Bombe explodiert
@@ -29,8 +29,8 @@ public class Bombe extends SpielObjekt {
   
   
   /**
-   * @param x
-   * @param y
+   * @param x Koordinate der Bombe
+   * @param y Koordinate der Bombe
    * @throws SlickException
    */
   public Bombe(int x, int y) throws SlickException {
@@ -49,14 +49,14 @@ public class Bombe extends SpielObjekt {
   }
 
   /**
-   * @return
+   * @return explode
    */
   public boolean isExplode() {
     return explode;
   }
   
   /**
-   * @param explode
+   * @param explode to set
    */
   public void setExplode(boolean explode) {
     this.explode = explode;

@@ -21,8 +21,8 @@ public class Block extends SpielObjekt {
   }
   
   /**
-   * @param x
-   * @param y
+   * @param x Koordinate des Blocks
+   * @param y Koordinate des Blocks
    * @throws SlickException
    */
   public Block(int x, int y) throws SlickException {
@@ -30,9 +30,9 @@ public class Block extends SpielObjekt {
   }
   
   /**
-   * @param x
-   * @param y
-   * @param zerstoerbar
+   * @param x Koordinate des Blocks
+   * @param y Koordinate des Blocks
+   * @param zerstoerbar ;prüft ob Block zerstoerbar ist
    * @throws SlickException
    */
   public Block(int x, int y, boolean zerstoerbar) throws SlickException {
