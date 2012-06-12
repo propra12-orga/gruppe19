@@ -203,6 +203,7 @@ public class Bomberman extends BasicGame {
               if(koll instanceof Block){
                 if (((Block) koll).isZerstoerbar()) {
                   explosion.add(expll);
+                  Mauer.remove(koll);
                 }  
               } else if (koll instanceof Bombe){
                 ((Bombe)koll).setExplode(true);
@@ -228,6 +229,7 @@ public class Bomberman extends BasicGame {
               if(koll instanceof Block){
                 if (((Block) koll).isZerstoerbar()) {
                   explosion.add(explr);
+                  Mauer.remove(koll);
                 }  
               } else if (koll instanceof Bombe){
                 ((Bombe)koll).setExplode(true);
