@@ -16,16 +16,18 @@ public class SpielEnde extends SpielObjekt {
   private static final String GAME_OVER = "Try Again?" + "\n" + "       Y/N";
   
   /**
-   * @param height
-   * @param width
+   * @param height Hoehe des Bildschirms
+   * @param width Breite des Bildschrims
    * @throws SlickException
    */
   public SpielEnde(int height, int width) throws SlickException {
     super(height, width);
     this.height = height;
     this.width = width;
+    // Spezifikation wie das Fenster aussehen soll
     transparent = new Color(Color.black);
     transparent.a = 0.8f;
+    //Text Spezizifikation
     textWidth = fontGameOver.getWidth(GAME_OVER);
     textHeight = fontGameOver.getHeight(GAME_OVER);
     
@@ -37,6 +39,7 @@ public class SpielEnde extends SpielObjekt {
    */
   public void draw(Graphics g) {
     if (isGameOver()) {
+      // Zeichnet das Fenster
       g.setColor(transparent);
       g.fillRect(0, 0, width, height);
       g.setColor(Color.white);
@@ -47,14 +50,14 @@ public class SpielEnde extends SpielObjekt {
   }
   
   /**
-   * @param isGameOver
+   * @param isGameOver set isGameOver
    */
   public void setGameOver(boolean isGameOver) {
     this.isGameOver = isGameOver;
   }
   
   /**
-   * @return
+   * @return isGameOver
    */
   public boolean isGameOver() {
     return isGameOver;

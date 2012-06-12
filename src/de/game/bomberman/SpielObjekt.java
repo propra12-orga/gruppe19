@@ -14,7 +14,7 @@ public abstract class SpielObjekt {
   protected Polygon kollisionsFlaeche;
   
   /**
-   * @param g
+   * @param g ist Grafik, wird ueberall verwendet
    * @throws SlickException
    */
   public abstract void draw(Graphics g) throws SlickException;
@@ -27,8 +27,8 @@ public abstract class SpielObjekt {
   };
   
   /**
-   * @param x
-   * @param y
+   * @param x Koordinate des SpielObjekts
+   * @param y Koordinate des SpielObjekts
    * @throws SlickException
    */
   public SpielObjekt(int x, int y) throws SlickException {
@@ -39,58 +39,58 @@ public abstract class SpielObjekt {
   }
   
   /**
-   * @return
+   * @return x
    */
   public int getX() {
     return x;
   }
   
   /**
-   * @param x
+   * @param x setzt x
    */
   public void setX(int x) {
     this.x = x;
   }
   
   /**
-   * @return
+   * @return y
    */
   public int getY() {
     return y;
   }
   
   /**
-   * @param y
+   * @param y set y
    */
   public void setY(int y) {
     this.y = y;
   }
   
   /**
-   * @return
+   * @return kollisionsFlaeche
    */
   public Polygon getkollFlaeche() {
     return kollisionsFlaeche;
   }
   
   /**
-   * @param Poly
+   * @param Poly set Poly
    */
   public void setKollFlaeche(Polygon Poly) {
     kollisionsFlaeche = Poly;
   }
   
   /**
-   * @param spielObjekt
-   * @return
+   * @param spielObjekt preuft Kollision SpielObjekt
+   * @return kollisionsFlaeche
    */
   public boolean pruefeKollsion(SpielObjekt spielObjekt) {
     return kollisionsFlaeche.intersects(spielObjekt.getkollFlaeche());
   }
   
   /**
-   * @param spObj
-   * @return
+   * @param spObj Arrayliste des SpielObjekts
+   * @return objKoll
    */
   public ArrayList<SpielObjekt> pruefeKollsion(ArrayList<SpielObjekt> spObj) {
     ArrayList<SpielObjekt> objKoll = new ArrayList<SpielObjekt>();
@@ -105,8 +105,8 @@ public abstract class SpielObjekt {
   }
   
   /**
-   * @param flaeche
-   * @return
+   * @param flaeche prueft Poly-Kollision
+   * @return kollisionsFlache
    */
   public boolean pruefePolyKollision(Polygon flaeche) {
     return kollisionsFlaeche.intersects(flaeche);
