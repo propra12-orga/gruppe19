@@ -16,23 +16,25 @@ public class Player extends SpielObjekt {
   protected int color = 1;
   
   /**
-   * @param x
-   * @param y
+   * @param x Koordinate des Spielers auf der Karte
+   * @param y Koordinate des Spielers auf der Karte
    * @throws SlickException
    */
+  // Spieler Konstruktor nur fuer die Moeglichkeit einen farblosen Spieler zu gestalten
   public Player(int x, int y) throws SlickException {
     super(x, y);
   }
   
   /**
-   * @param x
-   * @param y
-   * @param color
+   * @param x Koordinate des Spielers auf der Karte
+   * @param y Koordinate des Spielers auf der Karte
+   * @param color Farbe des Spielers
    * @throws SlickException
    */
   public Player(int x, int y, int color) throws SlickException {
     super(x, y);
     this.color = color;
+    // Farbwechsel; die Farben des Spielers werde initialisiert
     switch (color) {
       case 1:
         playerSSheet = new SpriteSheet("res/charsets/player1.png", 32, 32);
@@ -66,18 +68,20 @@ public class Player extends SpielObjekt {
   }
   
   /**
-   * @param delta
-   * @param spObj
+   * @param delta 
+   * @param spObj wird geupdated
    */
   public void update(int delta, ArrayList<SpielObjekt> spObj) {
-    if ((x % 32) != 0) {// Fuer X
+    // fuer X
+    if ((x % 32) != 0) {
       if (Xtendency) {
         move(1, 0, spObj);
       } else {
         move(-1, 0, spObj);
       }
     }
-    if ((y % 32) != 0) {// Fuer Y
+    // fuer Y
+    if ((y % 32) != 0) {
       if (Ytendency) {
         move(0, 1, spObj);
       } else {
@@ -86,10 +90,11 @@ public class Player extends SpielObjekt {
     }
   }
   
+  // Bewegung des Spielers
   /**
-   * @param x
-   * @param y
-   * @param spObj
+   * @param x bewegen auf x-Koordinate
+   * @param y bewegen auf y-Koordinate
+   * @param spObj ist das SpielObjekt = der Spieler
    */
   public void move(int x, int y, ArrayList<SpielObjekt> spObj) {
     int Xtemp = this.x;
@@ -100,6 +105,7 @@ public class Player extends SpielObjekt {
     kollisionsFlaeche.setX(this.x);
     kollisionsFlaeche.setY(this.y);
     
+    // Kollisionspruefung
     if (!pruefeKollsion(spObj).isEmpty()) {
       this.x = Xtemp;
       this.y = Ytemp;
@@ -127,45 +133,54 @@ public class Player extends SpielObjekt {
      * Richtung wir laufen:
      */
     
-    if (y % 32 != 0) { // Wenn Vertikalbewegung
+    // Wenn Vertikalbewegung
+    if (y % 32 != 0) {
     
-      if (Ytendency == true) { // wenn Richtung Norden
+      // wenn Richtung Norden
+      if (Ytendency == true) {
       
         zeile = 0;
         
-        spalte = (y % 64) / 8; // die y achse wird also in 8 Pixel große
+        // die y achse wird also in 8 Pixel groesse
+        spalte = (y % 64) / 8;
         
         System.out.println(spalte);
         
-      } else { // wenn Richtung Süden (quasi wie Norden)
+        // wenn Richtung Sueden (quasi wie Norden)
+      } else {
         zeile = 2;
-        spalte = 7 - ((y % 64) / 8); // die "7-" ist weil die spalten von rechts
-                                     // gewählt werden.
+        spalte = 7 - ((y % 64) / 8); 
+        // die "7-" ist weil die Spalten von rechts
+        // gewaehlt werden
       }
       
     }
     
-    if (x % 32 != 0) { // Wenn Vertikalbewegung (nochmal ähnlich)
+    // Wenn Vertikalbewegung (nochmal Aehnlich)
+    if (x % 32 != 0) {
     
       zeile = 1;
       
-      if (Xtendency == true) { // Westen
+      // Westen
+      if (Xtendency == true) {
       
-        spalte = (x % 64) / 16; // Die ersten 4 Spalten
+        // Die ersten 4 Spalten
+        spalte = (x % 64) / 16;
         
-      } else { // Osten
-      
-        spalte = ((3 - (x % 64) / 16) + 4); // "3-" siehe Süden, "+4": zweite 4
-                                            // Spalten
+      } else {
+        // Osten
+        spalte = ((3 - (x % 64) / 16) + 4); 
+        // "3-" siehe Sueden, "+4": zweite 4
+        // Spalten
         
       }
     }
     
     /*
-     * Hier sollte noch ne Idle-Ani rein (Zeile 3) Dafür müsste ich theoretisch
+     * Hier sollte noch ne Idle-Ani rein (Zeile 3) Dafuer muesste ich theoretisch
      * checken ob der Player auf einem Feldmittelpunkt steht und ob keine
-     * (relevante) Taste gedrückt ist. Falls das der Fall ist starte ich
-     * abhängig von der Richtung in die der Player schaut die entsprechende
+     * (relevante) Taste gedrueckt ist. Falls das der Fall ist starte ich
+     * abhaengig von der Richtung in die der Player schaut die entsprechende
      * Animation. Aber jetzt erstmal Heia! :)
      */
     
@@ -175,109 +190,109 @@ public class Player extends SpielObjekt {
   }
   
   /**
-   * @return
+   * @return Xtendency
    */
   public boolean isXtendency() {
     return Xtendency;
   }
   
   /**
-   * @param xtendency
+   * @param xtendency set xtendency
    */
   public void setXtendency(boolean xtendency) {
     Xtendency = xtendency;
   }
   
   /**
-   * @return
+   * @return Ytendency
    */
   public boolean isYtendency() {
     return Ytendency;
   }
   
   /**
-   * @param ytendency
+   * @param ytendency set ytendency
    */
   public void setYtendency(boolean ytendency) {
     Ytendency = ytendency;
   }
   
   /**
-   * @return
+   * @return up
    */
   public int getUp() {
     return up;
   }
   
   /**
-   * @param up
+   * @param up set up
    */
   public void setUp(int up) {
     this.up = up;
   }
   
   /**
-   * @return
+   * @return left
    */
   public int getLeft() {
     return left;
   }
   
   /**
-   * @param left
+   * @param left set left
    */
   public void setLeft(int left) {
     this.left = left;
   }
   
   /**
-   * @return
+   * @return down
    */
   public int getDown() {
     return down;
   }
   
   /**
-   * @param down
+   * @param down set down
    */
   public void setDown(int down) {
     this.down = down;
   }
   
   /**
-   * @return
+   * @return right
    */
   public int getRight() {
     return right;
   }
   
   /**
-   * @param right
+   * @param right set right
    */
   public void setRight(int right) {
     this.right = right;
   }
   
   /**
-   * @return
+   * @return bomb
    */
   public int getBomb() {
     return bomb;
   }
   
   /**
-   * @param bomb
+   * @param bomb set bomb
    */
   public void setBomb(int bomb) {
     this.bomb = bomb;
   }
   
   /**
-   * @param left
-   * @param right
-   * @param up
-   * @param down
-   * @param bomb
+   * @param left set left
+   * @param right set right
+   * @param up set up
+   * @param down set down
+   * @param bomb set bomb
    */
   public void setKeys(int left, int right, int up, int down, int bomb) {
     this.left = left;
