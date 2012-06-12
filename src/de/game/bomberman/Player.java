@@ -100,7 +100,7 @@ public class Player extends SpielObjekt {
     kollisionsFlaeche.setX(this.x);
     kollisionsFlaeche.setY(this.y);
     
-    if (pruefeKollsion(spObj)) {
+    if (!pruefeKollsion(spObj).isEmpty()) {
       this.x = Xtemp;
       this.y = Ytemp;
       kollisionsFlaeche.setX(this.x);

@@ -1,6 +1,5 @@
 package de.game.bomberman;
 
-import java.util.*;
 import org.newdawn.slick.*;
 
 public class Bombe extends SpielObjekt {
@@ -8,15 +7,11 @@ public class Bombe extends SpielObjekt {
     //Image der Bombe
   private static String imPath = "res/bomb.png";
     //Radius
-  private int ExplodeRadius = 2;                            
+  private int ExplodeRadius = 5;                            
   private Image im;
     //regelt die Zeit, wann Bomben explodieren: counter += 1: if counter==200 --> Bombe explodiert
   private int counter;                                      
   private boolean explode;
-  private boolean BombIsDead;
-    //ArrayListe der Explosion; erstellt ein Array, welches die Weite der Explosion darstellt
-  private List<Explosion> expl = new ArrayList<Explosion>(); 
-  public ArrayList<Object> expb;
   
   /**
    * @return the ExplodeRadius
@@ -50,10 +45,6 @@ public class Bombe extends SpielObjekt {
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
   public void draw(Graphics g) {
-    // TODO Auto-generated method stub
-    for (Explosion bombExpl : expl) {
-      bombExpl.draw(g);
-    }
     if(!explode) im.draw(x, y);
   }
 
@@ -79,59 +70,6 @@ public class Bombe extends SpielObjekt {
     counter+=1;
     if(counter==200){
       setExplode(true);
-      buildExplodeArray(ExplodeRadius);
-    } else if(counter==350){
-      setBombIsDead(true);
     }
   }
-
-  /**
-   * @param explodeRadius2
-   * @throws SlickException
-   */
-  private void buildExplodeArray(int explodeRadius2) throws SlickException {
-    
-    expl.add(new Explosion(x, y));
-    
-    // Explosionen in x-Richtung
-    for(int i=1;i<=ExplodeRadius;i++){
-      expl.add(new Explosion(x+32*i, y));
-      expl.add(new Explosion(x-32*i, y));
-    }
-    
-    // Explosionen in y-Richtung
-    for(int i=1;i<=ExplodeRadius;i++){
-      expl.add(new Explosion(x, y+32*i));
-      expl.add(new Explosion(x, y-32*i));
-    }
-  }
-
-  /**
-   * @return the bombIsDead
-   */
-  public boolean isBombIsDead() {
-    return BombIsDead;
-  }
-
-  /**
-   * @param bombIsDead the bombIsDead to set
-   */
-  public void setBombIsDead(boolean bombIsDead) {
-    BombIsDead = bombIsDead;
-  }
-
-  /**
-   * @return the expl
-   */
-  public List<Explosion> getExpl() {
-    return expl;
-  }
-
-  /**
-   * @param expl the expl to set
-   */
-  public void setExpl(List<Explosion> expl) {
-    this.expl = expl;
-  };
-  
 }

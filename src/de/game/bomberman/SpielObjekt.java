@@ -69,14 +69,14 @@ public abstract class SpielObjekt {
   /**
    * @return
    */
-  public Polygon getkollFlaeche(){
+  public Polygon getkollFlaeche() {
     return kollisionsFlaeche;
   }
   
   /**
    * @param Poly
    */
-  public void setKollFlaeche(Polygon Poly){
+  public void setKollFlaeche(Polygon Poly) {
     kollisionsFlaeche = Poly;
   }
   
@@ -92,13 +92,16 @@ public abstract class SpielObjekt {
    * @param spObj
    * @return
    */
-  public boolean pruefeKollsion(ArrayList<SpielObjekt> spObj) {
-    for (int i = 0; i < spObj.size(); i++) {
-      if (spObj.get(i).pruefeKollsion(this)) {
-        return true;
+  public ArrayList<SpielObjekt> pruefeKollsion(ArrayList<SpielObjekt> spObj) {
+    ArrayList<SpielObjekt> objKoll = new ArrayList<SpielObjekt>();
+    for (SpielObjekt obj : spObj) {
+      if (obj != null) {
+        if (obj.pruefeKollsion(this)) {
+          objKoll.add(obj);
+        }
       }
     }
-    return false;
+    return objKoll;
   }
   
   /**
