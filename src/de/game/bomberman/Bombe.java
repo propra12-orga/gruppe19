@@ -40,8 +40,8 @@ public class Bombe extends SpielObjekt {
   /**
    * @param x Koordinate der Bombe
    * @param y Koordinate der Bombe
-   * ## Mit diesen Koordinaten wird die Bombe im Spiel plaziert. Weiterhin wird hier das Image der Bombe schonmal
-   * im imPath erwaehnt. Der Counter wird gleichzeitig auf 0 gesetzt.
+   * ## Mit diesen Koordinaten wird die Bombe im Spiel plaziert. Weiterhin wird hier das Image der Bombe geladen.
+   * Der Counter wird gleichzeitig auf 0 gesetzt.
    * # In der draw() Methode wird dann das Image auf die Koordinaten x, y gesetzt, falls die Bombe nicht explodiert ist.
    * # in der update() Methode wird dann der Zaehler der Bombe stetig erhoeht, bis 200, welches dann die Bombe mit dem Setter
    * auf true setzt -- Explosion!
