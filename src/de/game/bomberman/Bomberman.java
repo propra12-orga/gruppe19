@@ -1,7 +1,6 @@
 package de.game.bomberman;
 
 import java.util.*;
-
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
@@ -57,7 +56,7 @@ public class Bomberman extends BasicGame {
         / (float) (karte.getHeight() * karte.getTileHeight());
     g.scale(scaleX, scaleY); // bekommt die Werte
     karte.render(0, 0);
-    
+
     // Bomben werden gezeichnet
     for (SpielObjekt bomb : bomben) {
       bomb.draw(g);
@@ -72,8 +71,12 @@ public class Bomberman extends BasicGame {
     for (SpielObjekt exp : explosion) {
       exp.draw(g);
     }
+    // Wand 
+    for (SpielObjekt bl : Mauer) {
+      bl.draw(g);
+    }
     // Menue, Ende wird gezeichnet
-    ende.draw(g);
+      ende.draw(g);
   }
   
   // INIT BLOCK: Initialisierung der Daten

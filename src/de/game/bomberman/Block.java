@@ -10,6 +10,8 @@ import org.newdawn.slick.*;
 public class Block extends SpielObjekt {
   
   private boolean zerstoerbar = false;
+  private static String imPath = "/res/wand.png";
+  private Image im; 
   
   /**
    * @return zerstoerbar
@@ -47,6 +49,7 @@ public class Block extends SpielObjekt {
   public Block(int x, int y, boolean zerstoerbar) throws SlickException {
     super(x,y);
     this.zerstoerbar = zerstoerbar;
+    im = new Image(imPath);
   }
   
   @Override
@@ -54,7 +57,7 @@ public class Block extends SpielObjekt {
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
   public void draw(Graphics g) {
-    
+    im.draw(x,y);
   }
   
 }
