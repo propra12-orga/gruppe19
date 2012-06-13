@@ -3,8 +3,8 @@ package de.game.bomberman;
 import org.newdawn.slick.*;
 
 /**
- * @author Aenderungen durch Ilgar;
- *  ### Die Klasse Block ist fuer die Erstellung der Bloecke in dem Spiel zustaendig. 
+ * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
+ *  ## Die Klasse Block ist fuer die Erstellung der Bloecke in dem Spiel zustaendig. 
  *  Hier stehen die Methoden und Konstruktoren, in denen in anderen Klassen drauf zugegriffen wird.
  */
 public class Block extends SpielObjekt {
@@ -49,10 +49,10 @@ public class Block extends SpielObjekt {
     this.zerstoerbar = zerstoerbar;
   }
   
+  @Override
   /*
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
-  @Override
   public void draw(Graphics g) {
     
   }

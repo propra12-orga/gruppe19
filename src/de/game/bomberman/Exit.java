@@ -6,6 +6,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Polygon;
 import de.game.bomberman.SpielObjekt;
 
+/**
+ * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
+ * ## In der Klasse Exit erstellen wir den Ausgang im Spiel. 
+ */
 public class Exit extends SpielObjekt {
   
   static private String imPath = "res/Exit.png"; 

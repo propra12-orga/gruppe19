@@ -3,7 +3,7 @@ package de.game.bomberman;
 import org.newdawn.slick.*;
 
 /**
- * @author Ilgar (JavaDoc-Kommentare)
+ * @author Aenderung durch Ilgar (JavaDoc-Kommentare);
  * ## Die Klasse Bombe ist fuer das Erstellen der Bombe im Spiel notwendig.
  * Hier steht Image der Bombe, ihr Radius, die Eigenschaft, ob die Bombe explodiert ist oder nicht
  * und der Zaehler der Bombe fuer die Explosion.
