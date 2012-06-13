@@ -5,19 +5,37 @@ import java.util.ArrayList;
 import org.newdawn.slick.*;
 import de.game.bomberman.SpielObjekt;
 
+/**
+ * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
+ * ## Die Klasse Player erstellt den Spieler des Spiels.
+ * Im Konstruktor kann man durch hinzufuegen verschiedener Farben meherer
+ * unterschiedliche Spieler konstruieren, der Image-Pfad bleibt dabei gleich.
+ * Weiterhin wird hier die Steuerung des Spielers implementiert.
+ * Der Spieler kann nicht nur in alle 4 Himmelsrichtungen gehen, sondern auch Bomben legen.
+ * Die X-,Y-Tendency regelt die Bewegung des Spielers: sie laesst den Spieler
+ * solange in eine Richtung gehen bis dieser die Mitte eines Feldes erreicht -- damit wird 
+ * erreicht, dass der Spielers des Spiels den Player nicht pixelhaft steuern muss, er also
+ * auch im heftigen Spiel nicht an Kanten der Mauern festhaengen bleibt.
+ */
+
 public class Player extends SpielObjekt {
   
   private boolean Xtendency, Ytendency;
   
+  //Zur Auswahl der Animationsphasen im Spritesheet
   int zeile = 0;
-  int spalte = 0; // Zur Auswahl der Animationsphasen im Spritesheet
+  int spalte = 0; 
+  // hiermit kann man spaeter die Farbe des Spielers einfach aendern
   protected SpriteSheet playerSSheet;
+  // Steuerungen des Spielers werden als Variablen gesetzt
   private int left, right, up, down, bomb;
   protected int color = 1;
   
   /**
    * @param x Koordinate des Spielers auf der Karte
    * @param y Koordinate des Spielers auf der Karte
+   * Dieser Konstruktor ist nicht mehr wirkich noetig.
+   * Er bietet nur die Moeglichkeit einen "normal-farbenden" Spieler zu gestalten. 
    * @throws SlickException
    */
   // Spieler Konstruktor nur fuer die Moeglichkeit einen farblosen Spieler zu gestalten
@@ -28,7 +46,9 @@ public class Player extends SpielObjekt {
   /**
    * @param x Koordinate des Spielers auf der Karte
    * @param y Koordinate des Spielers auf der Karte
+   * ## Der Spieler wird auf die Koordinaten der Karte gesetzt.
    * @param color Farbe des Spielers
+   * ## Durch color im Konstruktor kann man einfach die verschiedenfarbigen Spieler laden.
    * @throws SlickException
    */
   public Player(int x, int y, int color) throws SlickException {
@@ -58,9 +78,7 @@ public class Player extends SpielObjekt {
   }
   
   @Override
-  /*
-   * (non-Javadoc)
-   * 
+  /* 
    * @see de.game.bomberman.SpielObjekt#update(int)
    */
   public void update(int delta) {
@@ -70,6 +88,9 @@ public class Player extends SpielObjekt {
   /**
    * @param delta 
    * @param spObj wird geupdated
+   * ## hier wird die Arrayliste des SpielObjekts geupdated.
+   * Die Bewegung des Spielers vergleicht die X-,Y-Tendency und entscheidet dann,
+   * ob der Spieler weitergehen kann, oder nicht.
    */
   public void update(int delta, ArrayList<SpielObjekt> spObj) {
     // fuer X
@@ -95,6 +116,9 @@ public class Player extends SpielObjekt {
    * @param x bewegen auf x-Koordinate
    * @param y bewegen auf y-Koordinate
    * @param spObj ist das SpielObjekt = der Spieler
+   * ## Die move() Methode laesst den Spieler durch die Karte spazieren.
+   * Sie entscheidet durch Pruefen, ob ein Feld passierbar ist.
+   * In pruefeKollision() wird die Bewegung entschieden;
    */
   public void move(int x, int y, ArrayList<SpielObjekt> spObj) {
     int Xtemp = this.x;
@@ -119,15 +143,17 @@ public class Player extends SpielObjekt {
     }
   }
   
-  /*
-   * (non-Javadoc)
-   * 
+  /* 
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
+  
   @Override
+  /* 
+   * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
+   */
   public void draw(Graphics g) {
     
-    /*
+    /**
      * Anhand der Playerposition und Tendenz wird entschieden welche
      * Animationsphase gezeichnet wird. Als erstes checken wir in welche
      * Richtung wir laufen:
@@ -141,7 +167,7 @@ public class Player extends SpielObjekt {
       
         zeile = 0;
         
-        // die y achse wird also in 8 Pixel groesse
+        // die Y-Achse wird also in 8 Pixel Groesse
         spalte = (y % 64) / 8;
         
         System.out.println(spalte);
@@ -198,6 +224,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param xtendency set xtendency
+   * ## Das ist der Setter der X-Tendency, also die Tendenz auf der X-Achse.
    */
   public void setXtendency(boolean xtendency) {
     Xtendency = xtendency;
@@ -212,6 +239,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param ytendency set ytendency
+   * ## Das ist der Setter der Y-Tendency, also die Tendenz auf der y-Achse.
    */
   public void setYtendency(boolean ytendency) {
     Ytendency = ytendency;
@@ -226,6 +254,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param up set up
+   * ## Der Setter fuer nach oben.
    */
   public void setUp(int up) {
     this.up = up;
@@ -240,6 +269,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param left set left
+   * ## Der Setter fuer nach unten.
    */
   public void setLeft(int left) {
     this.left = left;
@@ -254,6 +284,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param down set down
+   * ## Der Setter fuer nach unten.
    */
   public void setDown(int down) {
     this.down = down;
@@ -268,6 +299,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param right set right
+   * ## Der Setter fuer nach rechts.
    */
   public void setRight(int right) {
     this.right = right;
@@ -282,6 +314,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param bomb set bomb
+   * ## Der Setter fuer die Bombe.
    */
   public void setBomb(int bomb) {
     this.bomb = bomb;
@@ -293,6 +326,7 @@ public class Player extends SpielObjekt {
    * @param up set up
    * @param down set down
    * @param bomb set bomb
+   * @param ## Die Tastenbelegung wird initialisiert durch setKeys() Methode.
    */
   public void setKeys(int left, int right, int up, int down, int bomb) {
     this.left = left;
