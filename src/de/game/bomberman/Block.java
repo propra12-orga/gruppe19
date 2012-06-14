@@ -11,6 +11,7 @@ public class Block extends SpielObjekt {
   
   private boolean zerstoerbar = false;
   private static String imPath = "/res/wand.png";
+  private static String imPath2 = "/res/wand2.png";
   private Image im; 
   
   /**
@@ -49,8 +50,12 @@ public class Block extends SpielObjekt {
   public Block(int x, int y, boolean zerstoerbar) throws SlickException {
     super(x,y);
     this.zerstoerbar = zerstoerbar;
-    im = new Image(imPath);
-  }
+    if (zerstoerbar == true){
+    im = new Image(imPath);}
+    if (zerstoerbar == false){
+    im = new Image(imPath2);}
+    }
+  
   
   @Override
   /*
