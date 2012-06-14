@@ -10,7 +10,7 @@ import org.newdawn.slick.SlickException;
  * In ihr wird die Explosion geladen und gezeichnet.
  * Der Counter der Explosion, also der Regler, wann die Explosion stattfindet
  * ist auch in dieser Klasse implementiert.
- *
+ * Die Explosion nimmt durch steigende Counter an Explosionsradius zu.
  */
 public class Explosion extends SpielObjekt {
   

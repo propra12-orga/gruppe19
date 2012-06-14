@@ -3,6 +3,11 @@ package de.game.bomberman;
 import org.newdawn.slick.*;
 import de.game.bomberman.SpielObjekt;
 
+/**
+ * @author Aenderung durch Ilgar (JavaDoc-Kommentare);
+ * 
+ *
+ */
 public class SpielEnde extends SpielObjekt {
   
   private int height;
@@ -16,8 +21,12 @@ public class SpielEnde extends SpielObjekt {
   private static final String GAME_OVER = "Try Again?" + "\n" + "       Y/N";
   
   /**
-   * @param height Hoehe des Bildschirms
-   * @param width Breite des Bildschrims
+   * @param height steht fuer die Hoehe des SpielEnde-Fenster
+   * @param width steht fuer die Breite des SpielEnde-Fenster
+   * ## Der Konstruktor SpielEnde erstellt das Fenster am Ende eines jeden Spiels mit dem Schriftzug
+   * "Game Over". Dazu gibt er Parameter vor, die die Hoehe und die Breite des Fenster
+   * anpassen. Die Farbe des Fenster wird mit Color() angepasst.
+   * Transparent steht fuer die Charakteristik, wie das Fenster aussieht. 
    * @throws SlickException
    */
   public SpielEnde(int height, int width) throws SlickException {
@@ -34,7 +43,7 @@ public class SpielEnde extends SpielObjekt {
   }
   
   @Override
-  /* (non-Javadoc)
+  /*
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
   public void draw(Graphics g) {
@@ -51,6 +60,8 @@ public class SpielEnde extends SpielObjekt {
   
   /**
    * @param isGameOver set isGameOver
+   * ## Der Setter isGameOver prueft durch boolean, ob er angezeigt werden soll.
+   * # Bspw. durch ESC oder betreten eines Exit-Felds.
    */
   public void setGameOver(boolean isGameOver) {
     this.isGameOver = isGameOver;
@@ -58,6 +69,7 @@ public class SpielEnde extends SpielObjekt {
   
   /**
    * @return isGameOver
+   * ## Ist der Rueckgabewert dass das Spiel zuende ist und isGameOver() Methode ausgefuehrt werden kann/soll.
    */
   public boolean isGameOver() {
     return isGameOver;
