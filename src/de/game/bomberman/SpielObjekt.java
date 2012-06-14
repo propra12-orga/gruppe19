@@ -5,6 +5,11 @@ import java.util.ArrayList;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Polygon;
 
+/**
+ * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
+ * 
+ *
+ */
 public abstract class SpielObjekt {
   
   private static int sizeX = 31;
@@ -15,6 +20,7 @@ public abstract class SpielObjekt {
   
   /**
    * @param g ist Grafik, wird ueberall verwendet
+   * ## Die Grafik verwenden wir um Images anzuzeigen.
    * @throws SlickException
    */
   public abstract void draw(Graphics g) throws SlickException;
@@ -40,13 +46,15 @@ public abstract class SpielObjekt {
   
   /**
    * @return x
+   * ## Der Getter
    */
   public int getX() {
     return x;
   }
   
   /**
-   * @param x setzt x
+   * @param x set x
+   * ## Der Setter.
    */
   public void setX(int x) {
     this.x = x;
@@ -54,6 +62,7 @@ public abstract class SpielObjekt {
   
   /**
    * @return y
+   * ## Der Getter.
    */
   public int getY() {
     return y;
@@ -61,6 +70,7 @@ public abstract class SpielObjekt {
   
   /**
    * @param y set y
+   * ## Der Setter.
    */
   public void setY(int y) {
     this.y = y;
@@ -68,6 +78,7 @@ public abstract class SpielObjekt {
   
   /**
    * @return kollisionsFlaeche
+   * ## Der Getter von kollisionsFlaeche.
    */
   public Polygon getkollFlaeche() {
     return kollisionsFlaeche;
@@ -75,6 +86,7 @@ public abstract class SpielObjekt {
   
   /**
    * @param Poly set Poly
+   * ## Der Setter von kollisionsFlaeche.
    */
   public void setKollFlaeche(Polygon Poly) {
     kollisionsFlaeche = Poly;
@@ -82,6 +94,7 @@ public abstract class SpielObjekt {
   
   /**
    * @param spielObjekt preuft Kollision SpielObjekt
+   * ## Hier wird geprueft ob eine Kollision mit einem SpielObjekt vorliegt oder nicht.
    * @return kollisionsFlaeche
    */
   public boolean pruefeKollsion(SpielObjekt spielObjekt) {
@@ -90,7 +103,10 @@ public abstract class SpielObjekt {
   
   /**
    * @param spObj Arrayliste des SpielObjekts
+   * ## Hier wird eine Arrayliste von SpielObjekten erstellt. Weiterhin wird hier dann auch kontrolliert, 
+   * ob eine Kollision mit Gegenstaenden vorliegt.
    * @return objKoll
+   * ## falls eine Kollision vorliegt, wird eine neue objKollision erstellt.
    */
   public ArrayList<SpielObjekt> pruefeKollsion(ArrayList<SpielObjekt> spObj) {
     ArrayList<SpielObjekt> objKoll = new ArrayList<SpielObjekt>();
@@ -106,7 +122,9 @@ public abstract class SpielObjekt {
   
   /**
    * @param flaeche prueft Poly-Kollision
-   * @return kollisionsFlache
+   * ## Hier wird in der Methode pruefePolyKollision() geprueft, ob mehrere Kollisionen vorliegen.
+   * @return kollisionsFlaeche
+   * ## Rueckgabewert ist dann die kollisionsFlaeche
    */
   public boolean pruefePolyKollision(Polygon flaeche) {
     return kollisionsFlaeche.intersects(flaeche);
