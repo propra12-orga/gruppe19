@@ -4,6 +4,17 @@ import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
+/**
+ * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
+ * ## Das ist die Schnittstelle aller Klassen. Die Klasse Bomberman ruft hier von allen Klassen Konstruktoren und Methoden auf.
+ * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
+ * Hinzukommt noch Exit und Ende.
+ * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
+ * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die Musik wird hier geladen.
+ * # Hier findet die Abfrage ab, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier gesetzt.
+ * Hier wird staendig Abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
+ * # Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
+ */
 public class Bomberman extends BasicGame {
   
   // Karte
@@ -16,6 +27,7 @@ public class Bomberman extends BasicGame {
   protected ArrayList<SpielObjekt> Mauer = new ArrayList<SpielObjekt>();
   // SpielObjekt: Explosion
   protected ArrayList<SpielObjekt> explosion = new ArrayList<SpielObjekt>();
+  // Variablen: Exit und Ende
   protected Exit exit;
   protected SpielEnde ende;
   
@@ -25,28 +37,30 @@ public class Bomberman extends BasicGame {
   
   /**
    * @param title
+   * ## Der titel ist der Name des Spiels und wird hier deklariert.
    */
   public Bomberman(String title) {
     super(title);
-    // TODO Auto-generated constructor stub
   }
   
+  
+  /**
+   * Hier wird nun schlussendlich unser Projekt/ Spielname geschrieben.
+   */
   public Bomberman() {
-    // TODO Auto-generated constructor stub
+    
     super("BOMBASTISCHER MANN");
   }
   
   // RENDER BLOCK: Grafiken werden gezeichnet
   
+  @Override
   /*
-   * (non-Javadoc)
-   * 
    * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
    * org.newdawn.slick.Graphics)
    */
-  @Override
   public void render(GameContainer container, Graphics g) throws SlickException {
-    // TODO Auto-generated method stub
+    
     
     // Hoehe und Breite der Karte
     container.setVSync(true);
@@ -71,7 +85,7 @@ public class Bomberman extends BasicGame {
     for (SpielObjekt exp : explosion) {
       exp.draw(g);
     }
-    // Wand 
+    // Wand  wird gezeichnet
     for (SpielObjekt bl : Mauer) {
       bl.draw(g);
     }
@@ -81,14 +95,11 @@ public class Bomberman extends BasicGame {
   
   // INIT BLOCK: Initialisierung der Daten
   
+  @Override
   /*
-   * (non-Javadoc)
-   * 
    * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
    */
-  @Override
   public void init(GameContainer container) throws SlickException {
-    // TODO Auto-generated method stub
     
     // Hier wird die Musik
     // geladen...
@@ -114,15 +125,13 @@ public class Bomberman extends BasicGame {
   
   // UPDATE BLOCK: Daten werden hier nachgeguckt und stetig geupdated
   
+  @Override
   /*
-   * (non-Javadoc)
-   * 
    * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
    * int)
    */
-  @Override
   public void update(GameContainer container, int arg1) throws SlickException {
-    // TODO Auto-generated method stub
+    
     
     // falls keine Spieler mehr vorhanden sind: Spielende
     if (player.isEmpty()) {
@@ -228,6 +237,8 @@ public class Bomberman extends BasicGame {
   
   /**
    * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
+   * ## Diese Explosion ist dann spaeter im Spiel unsere Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
+   * und zu entfernen.
    * @throws SlickException
    */
   private void buildExplodeArray(SpielObjekt spObj) throws SlickException {
@@ -247,6 +258,7 @@ public class Bomberman extends BasicGame {
             || (x == 0 && -y < 0 && yl == true)) {
           expll = new Explosion(bomb.getX() - x * 32, bomb.getY() - y * 32);
           
+          // Entfernt das Objekt nach der Explosion
           kollision.clear();
           kollision = expll.pruefeKollsion(Mauer);
           kollision.addAll(expll.pruefeKollsion(bomben));
@@ -257,6 +269,7 @@ public class Bomberman extends BasicGame {
               if (koll instanceof Block) {
                 if (((Block) koll).isZerstoerbar()) {
                   explosion.add(expll);
+                  // entfernt die Mauer nach Kollision
                   Mauer.remove(koll);
                 }
               } else if (koll instanceof Bombe) {
@@ -271,7 +284,7 @@ public class Bomberman extends BasicGame {
             }
           }
         }
-        // Explosions Kollision mit Bombe und Mauer: Kettenreaktion + Zerstoerung
+        // Explosionskollision mit Bombe und Mauer: Kettenreaktion + Zerstoerung
         if ((x > 0 && y == 0 && xr == true) || (x == 0 && y > 0 && yr == true)) {
           explr = new Explosion(bomb.getX() + x * 32, bomb.getY() + y * 32);
           kollision.clear();
@@ -305,6 +318,9 @@ public class Bomberman extends BasicGame {
   
   /**
    * @param container
+   * ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
+   * von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und wieder
+   * in der anderen Methode neu gerendert.
    * @throws SlickException
    */
   private void restartGame(GameContainer container) throws SlickException {

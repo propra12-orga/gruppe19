@@ -7,7 +7,8 @@ import org.newdawn.slick.geom.Polygon;
 
 /**
  * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
- * 
+ * ## In der Klasse SpielObjekt werden die Kollisionen mit SpielObjekten in dem Spiel
+ * erstellt und verglichen. Es werden Arraylisten von Kollisionen erstellt.
  *
  */
 public abstract class SpielObjekt {

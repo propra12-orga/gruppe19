@@ -5,8 +5,9 @@ import de.game.bomberman.SpielObjekt;
 
 /**
  * @author Aenderung durch Ilgar (JavaDoc-Kommentare);
- * 
- *
+ * ## Die Klasse SpielEnde gibt das "Game Over" nach jedem Spiel aus.
+ * Dieses Fenster wird hier erstellt und hier auch veraendert.
+ * In dieser Klasse ist die Methode setGameOver() und sowohl ihr Getter als auch ihr Setter. 
  */
 public class SpielEnde extends SpielObjekt {
   
