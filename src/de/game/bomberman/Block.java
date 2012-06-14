@@ -3,7 +3,6 @@ package de.game.bomberman;
 import org.newdawn.slick.*;
 
 /**
- * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
  *  ## Die Klasse Block ist fuer die Erstellung der Bloecke in dem Spiel zustaendig. 
  *  Hier stehen die Methoden und Konstruktoren, in denen in anderen Klassen drauf zugegriffen wird.
  */

@@ -3,7 +3,6 @@ package de.game.bomberman;
 import org.newdawn.slick.*;
 
 /**
- * @author Aenderung durch Ilgar (JavaDoc-Kommentare);
  * ## Die Klasse Bombe ist fuer das Erstellen der Bombe im Spiel notwendig.
  * Hier steht Image der Bombe, ihr Radius, die Eigenschaft, ob die Bombe explodiert ist oder nicht
  * und der Zaehler der Bombe fuer die Explosion.
@@ -30,7 +29,7 @@ public class Bombe extends SpielObjekt {
 
   /**
    * @param ExplodeRadius the explodeRadius to set
-   * ## Hier wird der Radius mit einem Setter versehen.
+   * ## Der Setter fuer explodeRadius.
    */
   public void setExplodeRadius(int explodeRadius) {
     ExplodeRadius = explodeRadius;

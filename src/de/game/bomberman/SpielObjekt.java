@@ -6,7 +6,6 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Polygon;
 
 /**
- * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
  * ## In der Klasse SpielObjekt werden die Kollisionen mit SpielObjekten in dem Spiel
  * erstellt und verglichen. Es werden Arraylisten von Kollisionen erstellt.
  *
@@ -20,8 +19,9 @@ public abstract class SpielObjekt {
   protected Polygon kollisionsFlaeche;
   
   /**
-   * @param g ist Grafik, wird ueberall verwendet
-   * ## Die Grafik verwenden wir um Images anzuzeigen.
+   * "g" ist die Variable fuer die Grafik.
+   * Die Grafik verwenden wir um Images anzuzeigen.
+   * @param g
    * @throws SlickException
    */
   public abstract void draw(Graphics g) throws SlickException;

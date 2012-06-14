@@ -5,7 +5,6 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
- * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
  * ## Das ist die Schnittstelle aller Klassen. Die Klasse Bomberman ruft hier von allen Klassen Konstruktoren und Methoden auf.
  * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
  * Hinzukommt noch Exit und Ende.
@@ -45,7 +44,7 @@ public class Bomberman extends BasicGame {
   
   
   /**
-   * Hier wird nun schlussendlich unser Projekt/ Spielname geschrieben.
+   * Hier wird der Projekt/ Spielname geschrieben.
    */
   public Bomberman() {
     
@@ -237,7 +236,7 @@ public class Bomberman extends BasicGame {
   
   /**
    * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
-   * ## Diese Explosion ist dann spaeter im Spiel unsere Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
+   * ## Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
    * und zu entfernen.
    * @throws SlickException
    */

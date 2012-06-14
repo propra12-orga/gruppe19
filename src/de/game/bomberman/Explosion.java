@@ -5,7 +5,6 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
  * ## Die Klasse Explosion ist fuer die Explosion im Spiel zustaendig.
  * In ihr wird die Explosion geladen und gezeichnet.
  * Der Counter der Explosion, also der Regler, wann die Explosion stattfindet
@@ -22,7 +21,7 @@ public class Explosion extends SpielObjekt {
    * @param x Koordinate der Explosion
    * @param y Koordinate der Explosion
    * ## Hier wird die Explosion erstellt.
-   * # Das Image der Explosion wird hier geladen. 
+   * Das Image der Explosion wird hier geladen. 
    * Durch die update() Methode wird der Counter,
    * der zu Beginn bei 100 liegt, dekrementiert.
    * @throws SlickException
@@ -62,7 +61,7 @@ public class Explosion extends SpielObjekt {
 
   /**
    * @param counter to set
-   * ## Das ist der Setter des Counters. Er setzt den Counter.
+   * ## Der Setter von counter.
    */
   public void setCounter(int counter) {
     this.counter = counter;

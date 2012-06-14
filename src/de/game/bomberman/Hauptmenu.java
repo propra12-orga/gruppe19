@@ -8,7 +8,6 @@ import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
 /**
- * @author Aenderungen durch Ilgar (JavaDoc-Kommentaren);
  * Die Klasse Hauptmenue ist fuer das Hauptmenue des Spiels verantwortlich.
  * Hier wird unter anderem der Name des Spiels, die Buttons im Fenster
  * und das Layout festgesetzt.

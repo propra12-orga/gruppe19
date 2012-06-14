@@ -6,7 +6,6 @@ import org.newdawn.slick.*;
 import de.game.bomberman.SpielObjekt;
 
 /**
- * @author Aenderungen durch Ilgar (JavaDoc-Kommentare);
  * ## Die Klasse Player erstellt den Spieler des Spiels.
  * Im Konstruktor kann man durch hinzufuegen verschiedener Farben meherer
  * unterschiedliche Spieler konstruieren, der Image-Pfad bleibt dabei gleich.
@@ -34,7 +33,7 @@ public class Player extends SpielObjekt {
   /**
    * @param x Koordinate des Spielers auf der Karte
    * @param y Koordinate des Spielers auf der Karte
-   * Dieser Konstruktor ist nicht mehr wirkich noetig.
+   * Dieser Konstruktor ist nicht mehr wirklich noetig.
    * Er bietet nur die Moeglichkeit einen "normal-farbenden" Spieler zu gestalten. 
    * @throws SlickException
    */
@@ -143,10 +142,6 @@ public class Player extends SpielObjekt {
     }
   }
   
-  /* 
-   * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
-   */
-  
   @Override
   /* 
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
@@ -224,7 +219,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param xtendency set xtendency
-   * ## Das ist der Setter der X-Tendency, also die Tendenz auf der X-Achse.
+   * ## Der Setter der X-Tendency, also die Tendenz auf der X-Achse.
    */
   public void setXtendency(boolean xtendency) {
     Xtendency = xtendency;
@@ -239,7 +234,7 @@ public class Player extends SpielObjekt {
   
   /**
    * @param ytendency set ytendency
-   * ## Das ist der Setter der Y-Tendency, also die Tendenz auf der y-Achse.
+   * ## Der Setter der Y-Tendency, also die Tendenz auf der y-Achse.
    */
   public void setYtendency(boolean ytendency) {
     Ytendency = ytendency;
