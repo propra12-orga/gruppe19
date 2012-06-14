@@ -7,10 +7,21 @@ import javax.swing.*;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.SlickException;
 
+/**
+ * @author Aenderungen durch Ilgar (JavaDoc-Kommentaren);
+ * Die Klasse Hauptmenue ist fuer das Hauptmenue des Spiels verantwortlich.
+ * Hier wird unter anderem der Name des Spiels, die Buttons im Fenster
+ * und das Layout festgesetzt.
+ * Hier werden die Buttons mit Inhalt versehen, so wird die Taste "Beenden" mit dem Befehlt
+ * das Spiel zu beenden verknuepft.
+ * Hier ist die Main-Klasse drinnen, wo der Compiler anfaengt zu kompilieren.
+ * In dieser Klasse wird ein Listener fuer die Buttons hinzugefuegt.
+ */
 public class Hauptmenu {
   
   /**
    * @param args
+   * ## Die Main-Klasse
    */
   public static void main(String[] args) {
     
@@ -28,6 +39,7 @@ public class Hauptmenu {
     Dimension groessebutton = new Dimension(160, 50); 
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     
+    // Die Buttons im Menue-Fenster
     JButton singleb = new JButton("Play! (Windowed)");
     JButton fullb = new JButton("Play! (Fullscreen) ");
     JButton optionenb = new JButton("Optionen (In Arbeit!) ");
@@ -73,15 +85,15 @@ public class Hauptmenu {
     window.setVisible(true);
     cardlayout.show(window.getContentPane(), "hauptmenu");
     
-    // ActionListener, was eigentlich bei einem klick gemacht wird
+    // ActionListener, was eigentlich bei einem Klick gemacht wird
     
     // Singleplayer
     ActionListener splayer = new ActionListener() {
       
-      /* (non-Javadoc)
+      @Override
+      /* 
        * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
        */
-      @Override
       public void actionPerformed(ActionEvent evt) {
         // Anweisungen um Singleplayer zu starten
         AppGameContainer container = null;
@@ -89,13 +101,11 @@ public class Hauptmenu {
           // Fenster des Spiels
           container = new AppGameContainer(new Bomberman(), 640, 480, false);
         } catch (SlickException e1) {
-          // TODO Auto-generated catch block
           e1.printStackTrace();
         }
         try {
           container.start();
         } catch (SlickException e1) {
-          // TODO Auto-generated catch block
           e1.printStackTrace();
         }
       }
@@ -103,6 +113,7 @@ public class Hauptmenu {
     
     // Fullscreen
     ActionListener fscreen = new ActionListener() {
+      
       @Override
       public void actionPerformed(ActionEvent evt) {
         // Fullscreen
@@ -111,7 +122,6 @@ public class Hauptmenu {
           container = new AppGameContainer(new Bomberman(),container.getScreenWidth(), container.getScreenHeight(), true);
           container.start();
         } catch (SlickException e1) {
-          // TODO Auto-generated catch block
           e1.printStackTrace();
         }
       }
