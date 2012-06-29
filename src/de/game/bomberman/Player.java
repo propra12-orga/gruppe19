@@ -6,15 +6,15 @@ import org.newdawn.slick.*;
 import de.game.bomberman.SpielObjekt;
 
 /**
- * ## Die Klasse Player erstellt den Spieler des Spiels.
- * Im Konstruktor kann man durch hinzufuegen verschiedener Farben meherer
+ * Die Klasse "Player" ist fuer die Erstellung des Spielers zustaendig.
+ * Im Konstruktor kann man durch hinzufuegen verschiedener Farben mehrere
  * unterschiedliche Spieler konstruieren, der Image-Pfad bleibt dabei gleich.
- * Weiterhin wird hier die Steuerung des Spielers implementiert.
+ * Hier wird die Steuerung des Spielers implementiert.
  * Der Spieler kann nicht nur in alle 4 Himmelsrichtungen gehen, sondern auch Bomben legen.
  * Die X-,Y-Tendency regelt die Bewegung des Spielers: sie laesst den Spieler
- * solange in eine Richtung gehen bis dieser die Mitte eines Feldes erreicht -- damit wird 
+ * solange in eine Richtung gehen bis dieser die Mitte eines Feldes erreicht --> damit wird 
  * erreicht, dass der Spielers des Spiels den Player nicht pixelhaft steuern muss, er also
- * auch im heftigen Spiel nicht an Kanten der Mauern festhaengen bleibt.
+ * auch im rasanten Spiel nicht an Kanten der Mauern haengen bleiben kann.
  */
 
 public class Player extends SpielObjekt {
@@ -31,10 +31,10 @@ public class Player extends SpielObjekt {
   protected int color = 1;
   
   /**
-   * @param x Koordinate des Spielers auf der Karte
-   * @param y Koordinate des Spielers auf der Karte
    * Dieser Konstruktor ist nicht mehr wirklich noetig.
-   * Er bietet nur die Moeglichkeit einen "normal-farbenden" Spieler zu gestalten. 
+   * Er bietet nur die Moeglichkeit einen "normal-farbenen" Spieler zu gestalten.
+   * @param x Koordinate des Spielers auf der Karte
+   * @param y Koordinate des Spielers auf der Karte 
    * @throws SlickException
    */
   // Spieler Konstruktor nur fuer die Moeglichkeit einen farblosen Spieler zu gestalten
@@ -43,11 +43,11 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Spieler wird auf die Koordinaten der Karte gesetzt.
+   * Durch color im Konstruktor kann man einfach die verschiedenfarbigen Spieler laden.
    * @param x Koordinate des Spielers auf der Karte
    * @param y Koordinate des Spielers auf der Karte
-   * ## Der Spieler wird auf die Koordinaten der Karte gesetzt.
    * @param color Farbe des Spielers
-   * ## Durch color im Konstruktor kann man einfach die verschiedenfarbigen Spieler laden.
    * @throws SlickException
    */
   public Player(int x, int y, int color) throws SlickException {
@@ -85,11 +85,11 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Hier wird die Arrayliste des SpielObjekts geupdated.
+   * Die Bewegung des Spielers vergleicht die X-,Y-Tendency und entscheidet dann,
+   * ob der Spieler weitergehen kann oder nicht.
    * @param delta 
    * @param spObj wird geupdated
-   * ## hier wird die Arrayliste des SpielObjekts geupdated.
-   * Die Bewegung des Spielers vergleicht die X-,Y-Tendency und entscheidet dann,
-   * ob der Spieler weitergehen kann, oder nicht.
    */
   public void update(int delta, ArrayList<SpielObjekt> spObj) {
     // fuer X
@@ -112,12 +112,12 @@ public class Player extends SpielObjekt {
   
   // Bewegung des Spielers
   /**
+   * Die move() Methode laesst den Spieler durch die Karte gehen.
+   * Sie entscheidet durch Pruefen, ob ein Feld passierbar ist.
+   * In pruefeKollision() wird die Bewegung entschieden.
    * @param x bewegen auf x-Koordinate
    * @param y bewegen auf y-Koordinate
    * @param spObj ist das SpielObjekt = der Spieler
-   * ## Die move() Methode laesst den Spieler durch die Karte spazieren.
-   * Sie entscheidet durch Pruefen, ob ein Feld passierbar ist.
-   * In pruefeKollision() wird die Bewegung entschieden;
    */
   public void move(int x, int y, ArrayList<SpielObjekt> spObj) {
     int Xtemp = this.x;
@@ -197,14 +197,6 @@ public class Player extends SpielObjekt {
       }
     }
     
-    /*
-     * Hier sollte noch ne Idle-Ani rein (Zeile 3) Dafuer muesste ich theoretisch
-     * checken ob der Player auf einem Feldmittelpunkt steht und ob keine
-     * (relevante) Taste gedrueckt ist. Falls das der Fall ist starte ich
-     * abhaengig von der Richtung in die der Player schaut die entsprechende
-     * Animation. Aber jetzt erstmal Heia! :)
-     */
-    
     g.drawImage(playerSSheet.getSprite(spalte, zeile), x, y);
     g.draw(kollisionsFlaeche);
     g.drawString("X:" + getX() + " Y:" + getY(), 32 + (color - 1) * 128, 460);
@@ -218,8 +210,8 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Setter der X-Tendency, also die Tendenz auf der X-Achse.
    * @param xtendency set xtendency
-   * ## Der Setter der X-Tendency, also die Tendenz auf der X-Achse.
    */
   public void setXtendency(boolean xtendency) {
     Xtendency = xtendency;
@@ -233,8 +225,8 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Setter der Y-Tendency, also die Tendenz auf der y-Achse.
    * @param ytendency set ytendency
-   * ## Der Setter der Y-Tendency, also die Tendenz auf der y-Achse.
    */
   public void setYtendency(boolean ytendency) {
     Ytendency = ytendency;
@@ -248,8 +240,8 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Setter fuer nach oben.
    * @param up set up
-   * ## Der Setter fuer nach oben.
    */
   public void setUp(int up) {
     this.up = up;
@@ -263,8 +255,8 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Setter fuer nach unten.
    * @param left set left
-   * ## Der Setter fuer nach unten.
    */
   public void setLeft(int left) {
     this.left = left;
@@ -278,8 +270,8 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Setter fuer nach unten.
    * @param down set down
-   * ## Der Setter fuer nach unten.
    */
   public void setDown(int down) {
     this.down = down;
@@ -293,8 +285,8 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Setter fuer nach rechts.
    * @param right set right
-   * ## Der Setter fuer nach rechts.
    */
   public void setRight(int right) {
     this.right = right;
@@ -308,20 +300,20 @@ public class Player extends SpielObjekt {
   }
   
   /**
+   * Der Setter fuer die Bombe.
    * @param bomb set bomb
-   * ## Der Setter fuer die Bombe.
    */
   public void setBomb(int bomb) {
     this.bomb = bomb;
   }
   
   /**
+   * Die Tastenbelegung wird initialisiert durch setKeys() Methode.
    * @param left set left
    * @param right set right
    * @param up set up
    * @param down set down
    * @param bomb set bomb
-   * @param ## Die Tastenbelegung wird initialisiert durch setKeys() Methode.
    */
   public void setKeys(int left, int right, int up, int down, int bomb) {
     this.left = left;
