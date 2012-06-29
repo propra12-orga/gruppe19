@@ -5,10 +5,10 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
 /**
- * ## Die Klasse Explosion ist fuer die Explosion im Spiel zustaendig.
- * In ihr wird die Explosion geladen und gezeichnet.
- * Der Counter der Explosion, also der Regler, wann die Explosion stattfindet
- * ist auch in dieser Klasse implementiert.
+ * Die Klasse "Explosion" ist fuer die Explosion im Spiel zustaendig.
+ * Hier wird die Explosion geladen und gezeichnet.
+ * Der Counter der Explosion - zustaendig fuer den Moment der Explosion - 
+ * ist ebenfalls in dieser Klasse implementiert.
  * Die Explosion nimmt durch steigende Counter an Explosionsradius zu.
  */
 public class Explosion extends SpielObjekt {
@@ -18,12 +18,12 @@ public class Explosion extends SpielObjekt {
   private int counter=100;
   
   /**
-   * @param x Koordinate der Explosion
-   * @param y Koordinate der Explosion
-   * ## Hier wird die Explosion erstellt.
+   * Hier wird die Explosion erstellt.
    * Das Image der Explosion wird hier geladen. 
    * Durch die update() Methode wird der Counter,
    * der zu Beginn bei 100 liegt, dekrementiert.
+   * @param x Koordinate der Explosion
+   * @param y Koordinate der Explosion
    * @throws SlickException
    */
   public Explosion(int x, int y) throws SlickException {
@@ -36,9 +36,8 @@ public class Explosion extends SpielObjekt {
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
   public void draw(Graphics g) {
-    /*
-     * Hier wird das Image der Explosion gezeichnet
-     */
+   
+    // Hier wird das Image der Explosion gezeichnet
     im.draw(x,y);
   }
   
@@ -52,16 +51,16 @@ public class Explosion extends SpielObjekt {
   
   //Zaehler
   /**
+   * Das ist der Getter. Er bekommt den Counter.
    * @return counter
-   * ## Das ist der Getter. Er bekommt den Counter.
    */
   public int getCounter() {
     return counter;
   }
 
   /**
+   * Der Setter von Counter.
    * @param counter to set
-   * ## Der Setter von counter.
    */
   public void setCounter(int counter) {
     this.counter = counter;
