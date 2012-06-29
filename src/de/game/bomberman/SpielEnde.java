@@ -4,9 +4,9 @@ import org.newdawn.slick.*;
 import de.game.bomberman.SpielObjekt;
 
 /**
- * ## Die Klasse SpielEnde gibt das "Game Over" nach jedem Spiel aus.
- * Dieses Fenster wird hier erstellt und hier auch veraendert.
- * In dieser Klasse ist die Methode setGameOver() und sowohl ihr Getter als auch ihr Setter. 
+ * Die Klasse "SpielEnde" ist fuer die Einblendung des "Game Over" nach jedem Spiel zustaendig.
+ * Dieses Game Over Fenster wird hier erstellt, dh in dieser Klasse ist die Methode setGameOver() 
+ * und sowohl ihr Getter als auch ihr Setter. 
  */
 public class SpielEnde extends SpielObjekt {
   
@@ -16,17 +16,17 @@ public class SpielEnde extends SpielObjekt {
   private int textHeight;
   private Color transparent;
   private Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
-      new Image("res/fonts/game_over_font.png"));
+                              new Image("res/fonts/game_over_font.png"));
   private boolean isGameOver;
   private static final String GAME_OVER = "Try Again?" + "\n" + "       Y/N";
   
   /**
-   * @param height steht fuer die Hoehe des SpielEnde-Fenster
-   * @param width steht fuer die Breite des SpielEnde-Fenster
-   * ## Der Konstruktor SpielEnde erstellt das Fenster am Ende eines jeden Spiels mit dem Schriftzug
-   * "Game Over". Dazu gibt er Parameter vor, die die Hoehe und die Breite des Fenster
-   * anpassen. Die Farbe des Fenster wird mit Color() angepasst.
-   * Transparent steht fuer die Charakteristik, wie das Fenster aussieht. 
+   * Der Konstruktor SpielEnde erstellt das Fenster am Ende eines jeden Spiels mit dem Schriftzug
+   * "Game Over". Dazu gibt er Parameter vor, die die Hoehe und die Breite des Fensters
+   * anpassen. Die Farbe des Fensters wird mit Color() angepasst.
+   * Transparent steht fuer die Transparenz-charakteristik des Fensters.
+   * @param height steht fuer die Hoehe des SpielEnde-Fensters
+   * @param width steht fuer die Breite des SpielEnde-Fensters
    * @throws SlickException
    */
   public SpielEnde(int height, int width) throws SlickException {
@@ -59,17 +59,17 @@ public class SpielEnde extends SpielObjekt {
   }
   
   /**
+   * Der Setter isGameOver prueft durch den Booleantyp, ob er angezeigt werden soll.
+   * Bspw. wird das Fenster durch ESC oder betreten eines Exit-Felds auf true gesetzt und angezeigt.
    * @param isGameOver set isGameOver
-   * ## Der Setter isGameOver prueft durch boolean, ob er angezeigt werden soll.
-   * # Bspw. durch ESC oder betreten eines Exit-Felds.
    */
   public void setGameOver(boolean isGameOver) {
     this.isGameOver = isGameOver;
   }
   
   /**
+   * Ist der Rueckgabewert, dass das Spiel zuende ist und isGameOver() Methode ausgefuehrt werden kann/soll.
    * @return isGameOver
-   * ## Ist der Rueckgabewert, dass das Spiel zuende ist und isGameOver() Methode ausgefuehrt werden kann/soll.
    */
   public boolean isGameOver() {
     return isGameOver;
