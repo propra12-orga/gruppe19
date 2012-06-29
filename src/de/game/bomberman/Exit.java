@@ -7,7 +7,7 @@ import org.newdawn.slick.geom.Polygon;
 import de.game.bomberman.SpielObjekt;
 
 /**
- * ## In der Klasse Exit erstellen wir den Ausgang im Spiel. 
+ * In der Klasse "Exit" wird die optische Beendigung des Hauptspiels erstellt. In diesem Sinne der Ausgang des Hauptspiels. 
  */
 public class Exit extends SpielObjekt {
   
@@ -15,10 +15,9 @@ public class Exit extends SpielObjekt {
   private Image im;
   
   /**
-   * @param x Koordinate des Exits
-   * @param y Koordinate des Exits
-   * ## Auf diese Koordinaten wird Exit im Spiel geladen.
-   * # Das Image von Exit wird geladen.
+   * Auf diese Koordinaten wird der Ausgang im Spiel geladen.
+   * @param x Koordinate des Ausgangs
+   * @param y Koordinate des Ausgangs
    * @throws SlickException
    */
   public Exit(int x, int y) throws SlickException {
@@ -35,9 +34,7 @@ public class Exit extends SpielObjekt {
    */
   public void draw(Graphics g) {
     
-    /*
-     * Hier wird das Image von exit gezeichnet, indem es die Koordinaten uebernimmt.
-     */
+    // Hier wird das Image vom Ausgang gezeichnet, indem es die zuvor eingegebenen Koordinaten x, y uebernimmt
     im.draw(x, y);
     
   }
