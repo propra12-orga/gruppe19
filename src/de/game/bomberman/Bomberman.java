@@ -3,6 +3,12 @@ package de.game.bomberman;
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+
 
 /**
  * ## Das ist die Schnittstelle aller Klassen. Die Klasse Bomberman ruft hier von allen Klassen Konstruktoren und Methoden auf.
@@ -14,7 +20,7 @@ import org.newdawn.slick.tiled.TiledMap;
  * Hier wird staendig Abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
  * # Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
  */
-public class Bomberman extends BasicGame {
+public class Bomberman extends BasicGameState {
   
   // Karte
   protected TiledMap karte;
@@ -30,26 +36,19 @@ public class Bomberman extends BasicGame {
   protected Exit exit;
   protected SpielEnde ende;
   
+  int stateID = 1;
+  
   protected boolean debug = false;
   
-  // KONSTRUKTOREN:
+//KONSTRUKTOR:
   
-  /**
-   * @param title
-   * ## Der titel ist der Name des Spiels und wird hier deklariert.
-   */
-  public Bomberman(String title) {
-    super(title);
-  }
-  
-  
-  /**
-   * Hier wird der Projekt/ Spielname geschrieben.
-   */
-  public Bomberman() {
-    
-    super("BOMBASTISCHER MANN");
-  }
+ public Bomberman(int stateID) {
+   this.stateID = stateID;
+ }
+ 
+ public int getID() {
+     return stateID;
+ }
   
   // RENDER BLOCK: Grafiken werden gezeichnet
   
@@ -58,7 +57,7 @@ public class Bomberman extends BasicGame {
    * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
    * org.newdawn.slick.Graphics)
    */
-  public void render(GameContainer container, Graphics g) throws SlickException {
+  public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
     
     
     // Hoehe und Breite der Karte
@@ -98,7 +97,7 @@ public class Bomberman extends BasicGame {
   /*
    * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
    */
-  public void init(GameContainer container) throws SlickException {
+  public void init(GameContainer container, StateBasedGame sb) throws SlickException {
     
     // Hier wird die Musik
     // geladen...
@@ -129,7 +128,7 @@ public class Bomberman extends BasicGame {
    * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
    * int)
    */
-  public void update(GameContainer container, int arg1) throws SlickException {
+  public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
     
     
     // falls keine Spieler mehr vorhanden sind: Spielende
@@ -144,7 +143,7 @@ public class Bomberman extends BasicGame {
       }
       // weiterspielen
       if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        restartGame(container);
+        restartGame(container,sb);
       }
     } else {
       for (int i = 0; i < bomben.size(); i++) {
@@ -322,14 +321,14 @@ public class Bomberman extends BasicGame {
    * in der anderen Methode neu gerendert.
    * @throws SlickException
    */
-  private void restartGame(GameContainer container) throws SlickException {
+  private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {
     player.clear();
     bomben.clear();
     Mauer.clear();
     ende = null;
     exit = null;
     karte = null;
-    init(container);
+    init(container,sb);
   }
   
   /**
@@ -339,13 +338,16 @@ public class Bomberman extends BasicGame {
   public void initMap(String ref) throws SlickException {
     
     karte = new TiledMap(ref, "res");
-    
+    int wallcounter = 0;
     for (int x = 0; x < karte.getWidth(); x++) {
       for (int y = 0; y < karte.getHeight(); y++) {
         final int tileID = karte.getTileId(x, y, 0);
         switch (tileID) {
           case 2:
+            double R = Math.random();
+            if(R<0.5 && wallcounter<30){ // hier z.B. ist 15 = Maximale Anzahl an Zerstoerbaren Mauern. Math.random macht die Zufaelligkeit
             Mauer.add(new Block(x * 32, y * 32, true));
+            wallcounter++;}
             break;
           case 17:
             Mauer.add(new Block(x * 32, y * 32, false));

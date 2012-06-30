@@ -1,4 +1,4 @@
-package stateBasedGame;
+package de.game.bomberman;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
  
 public class MainMenuState extends BasicGameState {
  
-    int stateID = 0; // Das is später die State ID, die das StateBasedGame benötigt
+    int stateID = 0; // Die stateID fuer das Menu
     
     Image background = null;
     Image startGameOption = null;
@@ -33,7 +33,7 @@ public class MainMenuState extends BasicGameState {
         return stateID;
     }
  
-    public void init(GameContainer gc, StateBasedGame sbg) throws SlickException {
+    public void init(GameContainer container, StateBasedGame sb) throws SlickException {
         
         // Menu-Bild laden und Auswahlbild deklarieren + laden
         
@@ -45,7 +45,7 @@ public class MainMenuState extends BasicGameState {
         exitOption = menuOptions.getSubImage(0, 71, 377, 71); // Ende-Option aus Auswahbild laden
     }
  
-    public void render(GameContainer gc, StateBasedGame sbg, Graphics gc1) throws SlickException {
+    public void render(GameContainer container, StateBasedGame sb, Graphics gc1) throws SlickException {
         // Hintergrund rendern und Variablen für die Auswahl deklarieren
         background.draw(0, 0);
         // Auswahl-Bilder in die richtigen Positionen legen
@@ -54,10 +54,10 @@ public class MainMenuState extends BasicGameState {
         // Auswahl wird vergrößert, wenn Maus raufzeigt
     }
  
-    public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+    public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
  
 
-Input input = gc.getInput();
+Input input = container.getInput();
  
 int mouseX = input.getMouseX();
 int mouseY = input.getMouseY();
@@ -80,29 +80,29 @@ if( ( mouseX >= menuX && mouseX <= menuX + startGameOption.getWidth()) &&
 
 if(insideStartGame){
   if(startGameScale < 1.05f)
-    startGameScale += scaleStep * delta;
+    startGameScale += scaleStep * arg1;
  
   if ( input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) ){
-/* 
- *    Hier fehlt ne enterState Methode aus nem StateBasedGame
- *    ??.enterState(Game.GAMEPLAYSTATE);
- */ 
+    
+//bei Mausklick wird in den State 1 gewechselt, das eigentliche Spiel startet
+    
+    sb.enterState(1);              
   }
 }else{
   if(startGameScale > 1.0f)
-    startGameScale -= scaleStep * delta;
+    startGameScale -= scaleStep * arg1;
  
   if ( input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) )
-    gc.exit();
+    container.exit();
 }
  
 if(insideExit)
 {
    if(exitScale < 1.05f)
-     exitScale +=  scaleStep * delta;
+     exitScale +=  scaleStep * arg1;
 }else{
   if(exitScale > 1.0f)
-    exitScale -= scaleStep * delta;
+    exitScale -= scaleStep * arg1;
 }
         
     }

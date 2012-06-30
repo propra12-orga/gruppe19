@@ -1,4 +1,3 @@
 eclipse.preferences.version=1
-encoding//src/stateBasedGame/Bomberman.java=UTF-8
-encoding//src/stateBasedGame/GameplayState.java=UTF-8
-encoding//src/stateBasedGame/MainMenuState.java=UTF-8
+encoding//src/de/game/bomberman/MainGame.java=UTF-8
+encoding//src/de/game/bomberman/MainMenuState.java=UTF-8

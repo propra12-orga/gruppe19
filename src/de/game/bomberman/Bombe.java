@@ -12,7 +12,7 @@ public class Bombe extends SpielObjekt {
     //Image der Bombe; wird aus "res" geladen
   private static String imPath = "res/bomb.png";
     //Radius der Explosion
-  private int ExplodeRadius = 5;                            
+  private int ExplodeRadius = 3;                            
   private Image im;
     //regelt die Zeit wann Bomben explodieren
   private int counter;                                      
@@ -87,8 +87,8 @@ public class Bombe extends SpielObjekt {
    */
   public void update(int delta) throws SlickException {
     counter+=1;
-    // counter += 1: if counter==200 --> Bombe explodiert
-    if(counter==200){
+    // counter += 1: if counter==130 --> Bombe explodiert
+    if(counter==150){
       setExplode(true);
     }
   }
