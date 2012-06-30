@@ -339,15 +339,16 @@ public class RandomMap extends BasicGame {
   public void initMap(String ref) throws SlickException {
     
     karte = new TiledMap(ref, "res");
-    
+    int wallcounter = 0;
     for (int x = 0; x < karte.getWidth(); x++) {
       for (int y = 0; y < karte.getHeight(); y++) {
         final int tileID = karte.getTileId(x, y, 0);
         switch (tileID) {
           case 2:
             double R = Math.random();
-            if(R<0.5){
-            Mauer.add(new Block(x * 32, y * 32, true));}
+            if(R<0.5 && wallcounter<15){ // hier z.B. ist 15 = Maximale Anzahl an Zerstoerbaren Mauern. Math.random macht die Zufaelligkeit
+            Mauer.add(new Block(x * 32, y * 32, true));
+            wallcounter++;}
             break;
           case 17:
             Mauer.add(new Block(x * 32, y * 32, false));
