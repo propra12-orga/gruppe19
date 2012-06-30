@@ -41,7 +41,7 @@ public class Hauptmenu {
     // Die Buttons im Menue-Fenster
     JButton singleb = new JButton("Play! (Windowed)");
     JButton fullb = new JButton("Play! (Fullscreen) ");
-    JButton optionenb = new JButton("Optionen (In Arbeit!) ");
+    JButton randomb = new JButton("Play! (RandomMap) ");
     JButton exitb = new JButton("Beenden");
     
     window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,13 +63,13 @@ public class Hauptmenu {
     // die Groesse der Buttons
     singleb.setPreferredSize(groessebutton);
     fullb.setPreferredSize(groessebutton);
-    optionenb.setPreferredSize(groessebutton);
+    randomb.setPreferredSize(groessebutton);
     exitb.setPreferredSize(groessebutton);
     
     // buttons zu den panels hinzufuegen
     buttons.add(singleb);
     buttons.add(fullb);
-    buttons.add(optionenb);
+    buttons.add(randomb);
     buttons.add(exitb);
     
     // die Art des Fensters
@@ -126,6 +126,21 @@ public class Hauptmenu {
       }
     };
     
+    // RandomMap
+    ActionListener random = new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent evt) {
+ 
+        try {
+          AppGameContainer container = new AppGameContainer(null);
+          container = new AppGameContainer(new RandomMap(), 640, 480, false);
+          container.start();
+        } catch (SlickException e1) {
+          e1.printStackTrace();
+        }
+      }
+    };
+    
     // Beenden
     ActionListener beenden = new ActionListener() {
       @Override
@@ -137,6 +152,7 @@ public class Hauptmenu {
     // listener hinzufuegen
     singleb.addActionListener(splayer);
     fullb.addActionListener(fscreen);
+    randomb.addActionListener(random);
     exitb.addActionListener(beenden);
   }
   
