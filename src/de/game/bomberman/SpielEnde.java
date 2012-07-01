@@ -18,7 +18,7 @@ public class SpielEnde extends SpielObjekt {
   private Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
                               new Image("res/fonts/game_over_font.png"));
   private boolean isGameOver;
-  private static final String GAME_OVER = "Try Again?" + "\n" + "       Y/N";
+  private static final String GAME_OVER = "Try Again?" + "\n" + "     Y/N";
   
   /**
    * Der Konstruktor SpielEnde erstellt das Fenster am Ende eines jeden Spiels mit dem Schriftzug

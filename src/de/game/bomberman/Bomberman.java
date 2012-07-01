@@ -11,14 +11,14 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 /**
- * ## Das ist die Schnittstelle aller Klassen. Die Klasse Bomberman ruft hier von allen Klassen Konstruktoren und Methoden auf.
- * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
- * Hinzukommt noch Exit und Ende.
+ * Die Klasse "Bomberman" ist die Schnittstelle aller Klassen. Die Klasse ruft von allen Klassen Konstruktoren und Methoden auf.
+ * Hier wird das Spiel "zusammengesetzt". Hier werden Spieler, Mauern, Bomben, Explosionen, Exit und Ende erstellt.
  * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
- * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die Musik wird hier geladen.
- * # Hier findet die Abfrage ab, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier gesetzt.
- * Hier wird staendig Abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
- * # Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
+ * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird ebenfalls hier erstellt. Die Musik wird hier geladen.
+ * Hier findet die Abfrage statt, wenn keine Spieler mehr vorhanden sind --> SpielEnde.
+ * Die Explosionsgroesse und -zeit wird hier gesetzt.
+ * Hier wird staendig abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
+ * Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
  */
 public class Bomberman extends BasicGameState {
   
@@ -234,9 +234,9 @@ public class Bomberman extends BasicGameState {
   }
   
   /**
-   * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
-   * ## Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
+   * Diese Explosion ist im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner zu vernichten.
    * und zu entfernen.
+   * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
    * @throws SlickException
    */
   private void buildExplodeArray(SpielObjekt spObj) throws SlickException {
@@ -315,10 +315,10 @@ public class Bomberman extends BasicGameState {
   }
   
   /**
-   * @param container
-   * ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
+   * In dieser Methode wird die Moeglichkeit geschrieben das Spiel
    * von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und wieder
    * in der anderen Methode neu gerendert.
+   * @param container
    * @throws SlickException
    */
   private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {
