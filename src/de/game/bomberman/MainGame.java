@@ -12,13 +12,21 @@ import org.newdawn.slick.state.*;
 public class MainGame extends StateBasedGame {
  
     public static final int MAINMENUSTATE          = 0;  
-    public static final int GAMEPLAYSTATE          = 1;  
+    public static final int TUTORIALSTATE          = 1;
+    public static final int GAMEPLAYSTATICSTATE    = 2; 
+    public static final int GAMEPLAYRANDOMSTATE    = 3;  
+    public static final int NETWORKSTATE           = 4;  
+    public static final int OPTIONSTATE            = 5;  
     public MainGame()
     {
         super("BOMBERMAN");
  
-        this.addState(new MainMenuState(MAINMENUSTATE));   // State fuer das Menu hinzugefuegt
-        this.addState(new Bomberman(GAMEPLAYSTATE));       // State fuer das eigentliche Spiel hinzugefuegt
+        this.addState(new MainMenu(MAINMENUSTATE));   // State fuer das Menu hinzugefuegt
+        this.addState(new TutorialDummy(TUTORIALSTATE));       // State fuer Tutorial hinzugefuegt
+        this.addState(new StaticMap(GAMEPLAYSTATICSTATE));       // State fuer das eigentliche Spiel mit statischen Maps hinzugefuegt
+        this.addState(new RandomMap(GAMEPLAYRANDOMSTATE));       // State fuer das eigentliche Spiel mit zufaelligen Maps hinzugefuegt
+        this.addState(new NetworkDummy(NETWORKSTATE));       // State fuer den Netzwerkmodus hinzugefuegt
+        this.addState(new Options(OPTIONSTATE));       // State fuer das Optionsmenue hinzugefuegt
         this.enterState(MAINMENUSTATE);                    // Das Menu wird als erstes aufgerufen
     }
  
@@ -34,6 +42,10 @@ public class MainGame extends StateBasedGame {
     public void initStatesList(GameContainer gameContainer) throws SlickException {
  
         this.getState(MAINMENUSTATE).init(gameContainer, this);
-        this.getState(GAMEPLAYSTATE).init(gameContainer, this);
+        this.getState(TUTORIALSTATE).init(gameContainer, this);
+        this.getState(GAMEPLAYSTATICSTATE).init(gameContainer, this);
+        this.getState(GAMEPLAYRANDOMSTATE).init(gameContainer, this);
+        this.getState(NETWORKSTATE).init(gameContainer, this);
+        this.getState(OPTIONSTATE).init(gameContainer, this);
     }
 }
