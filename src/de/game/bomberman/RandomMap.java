@@ -146,6 +146,7 @@ public class RandomMap extends BasicGameState {
       if (container.getInput().isKeyPressed(Input.KEY_Y)) {
         restartGame(container,sb);
       }
+
     } else {
       for (int i = 0; i < bomben.size(); i++) {
         Bombe bomb = (Bombe) bomben.get(i);
