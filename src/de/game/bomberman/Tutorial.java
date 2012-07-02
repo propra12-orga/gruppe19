@@ -338,8 +338,10 @@ public class Tutorial extends BasicGameState {
     ende = null;
     exit = null;
     karte = null;
-    if(MapCounter<2){MapCounter++;};
+    if(MapCounter<2){MapCounter++;}
+    else if(MapCounter==2){MapCounter=0;}
     init(container,sb);
+
   }
   
   /**
