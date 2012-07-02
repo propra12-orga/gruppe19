@@ -341,8 +341,8 @@ public class RandomMap extends BasicGameState {
     
     karte = new TiledMap(ref, "res");
     int wallcounter = 0;
-    for (int x = 0; x < karte.getWidth()/4; x++) {
-      for (int y = 0; y < karte.getHeight()/4; y++) {
+    for (int x = 0; x < karte.getWidth(); x++) {
+      for (int y = 0; y < karte.getHeight(); y++) {
         final int tileID = karte.getTileId(x, y, 0);
         switch (tileID) {
           case 2:
