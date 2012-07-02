@@ -23,24 +23,26 @@ public class Options extends BasicGameState {
  }
 
   @Override
-  public void init(GameContainer container, StateBasedGame game)
+  public void init(GameContainer container, StateBasedGame sb)
       throws SlickException {
     // TODO Auto-generated method stub
     
   }
 
   @Override
-  public void render(GameContainer container, StateBasedGame game, Graphics g)
+  public void render(GameContainer container, StateBasedGame sb, Graphics g)
       throws SlickException {
-    g.drawString("Optionsmenu ist in Arbeit", 300, 300);
+    g.drawString("Optionsmenu ist in Arbeit, ESC um ins Menü zurückzukehren", 150, 300);
     
   }
 
   @Override
-  public void update(GameContainer container, StateBasedGame game, int delta)
+  public void update(GameContainer container, StateBasedGame sb, int delta)
       throws SlickException {
     // TODO Auto-generated method stub
-    
+    if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+      sb.enterState(0);  
+    }    
   }
 
   
