@@ -139,7 +139,7 @@ public class StaticMap extends BasicGameState {
     if (ende.isGameOver()) {
       // beenden
       if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        container.exit();
+        sb.enterState(0);  
       }
       // weiterspielen
       if (container.getInput().isKeyPressed(Input.KEY_Y)) {
