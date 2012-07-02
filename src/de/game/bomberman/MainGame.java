@@ -24,7 +24,7 @@ public class MainGame extends StateBasedGame {
  
 
         this.addState(new MainMenu(MAINMENUSTATE));   // State fuer das Menu hinzugefuegt
-        this.addState(new TutorialDummy(TUTORIALSTATE));       // State fuer Tutorial hinzugefuegt
+        this.addState(new Tutorial(TUTORIALSTATE));       // State fuer Tutorial hinzugefuegt
         this.addState(new StaticMap(GAMEPLAYSTATICSTATE));       // State fuer das eigentliche Spiel mit statischen Maps hinzugefuegt
         this.addState(new RandomMap(GAMEPLAYRANDOMSTATE));       // State fuer das eigentliche Spiel mit zufaelligen Maps hinzugefuegt
         this.addState(new NetworkDummy(NETWORKSTATE));       // State fuer den Netzwerkmodus hinzugefuegt
