@@ -149,6 +149,7 @@ public class Tutorial extends BasicGameState {
     if (ende.isGameOver()) {
       // beenden
       if (container.getInput().isKeyPressed(Input.KEY_N)) {
+        MapCounter=0;
         sb.enterState(0); 
       }
       // weiterspielen
@@ -234,9 +235,13 @@ public class Tutorial extends BasicGameState {
           }
         }
         // Ende des Spiels durch: Esc druecken
-        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
-            // ..oder durch Spieler auf Exit-Feld
-            || exit.pruefeKollsion(pl)) {
+        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
+          ende.setGameOver(true);
+        }
+        if (exit.pruefeKollsion(pl) && MapCounter<2) {
+          restartGame(container,sb);
+        }
+        if (exit.pruefeKollsion(pl) && MapCounter==2) { 
           ende.setGameOver(true);
         }
       }
