@@ -38,7 +38,7 @@ public class MainMenu extends BasicGameState {
         // Menu-Bild laden und Auswahlbild deklarieren + laden
         
         background = new Image("res/menubackground.jpg");
-        Image menuOptions = new Image("res/menuoptions.png"); // Ein Bild fuer sechs Auswahlmoeglichkeiten
+        Image menuOptions = new Image("res/ButtonImage.png"); // Ein Bild fuer sechs Auswahlmoeglichkeiten
                          //  menuOptions.getSubImage(x, y, width, height)
         tutorial           = menuOptions.getSubImage(0, 5, 200, 300);  //Tutorial Option aus Auswahlbild laden
         
@@ -101,8 +101,6 @@ else if( ( mouseX >= menuX && mouseX <= menuX+ 88) &&
     ( mouseY >= menuY+250 && mouseY <= menuY+290 ) )
     {insideExit = true;}
 
-// Mausklick führt zur Ausführung von Start bzw. Ende
-// !!! Zur Zeit schließt das Fenster auch dann, wenn man auf keine der beiden Optionen klickt !!!
 
 
 if(insideTutorial){

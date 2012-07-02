@@ -4,8 +4,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.GameState;
+import org.newdawn.slick.state.*;
 import org.newdawn.slick.state.StateBasedGame;
 
 public class NetworkDummy extends BasicGameState {
@@ -32,7 +31,7 @@ public class NetworkDummy extends BasicGameState {
   @Override
   public void render(GameContainer container, StateBasedGame sb, Graphics g)
       throws SlickException {
-    g.drawString("Networkmode ist in Arbeit, ESC um ins Menü zurückzukehren", 150, 300);
+    g.drawString("Networkmode ist in Arbeit, ESC um ins Menu zurueckzukehren", 150, 300);
     
   }
 
