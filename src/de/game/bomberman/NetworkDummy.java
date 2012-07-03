@@ -9,7 +9,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class NetworkDummy extends BasicGameState {
   
-  int stateID = 4;
+  int stateID = 5;
 
 //KONSTRUKTOR:
   
@@ -31,7 +31,7 @@ public class NetworkDummy extends BasicGameState {
   @Override
   public void render(GameContainer container, StateBasedGame sb, Graphics g)
       throws SlickException {
-    g.drawString("Networkmode ist in Arbeit, ESC um ins Menu zurueckzukehren", 150, 300);
+    g.drawString("Netzwerkmodus ist in Arbeit, ESC um ins Menu zurueckzukehren", 150, 300);
     
   }
 

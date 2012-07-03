@@ -14,14 +14,15 @@ public class MainMenu extends BasicGameState {
     
     Image background = null;
     Image tutorial = null;
+    Image Singleplayer = null;
     Image startGamestaticMap = null;
     Image startGamerandomMap = null;
     Image startGameNetwork = null;
     Image options = null;
     Image exitOption = null;
     
-    float menuX = 320; // Position der Auswahlmöglichkeiten (Start und Ende) im Menü - X Pixel nach rechts...
-    float menuY = 290; // und Y Pixel nach unten
+    float menuX = 310; // Position der Auswahlmöglichkeiten (Start und Ende) im Menü - X Pixel nach rechts...
+    float menuY = 250; // und Y Pixel nach unten
  
     MainMenu( int stateID ) 
     {
@@ -38,19 +39,21 @@ public class MainMenu extends BasicGameState {
         // Menu-Bild laden und Auswahlbild deklarieren + laden
         
         background = new Image("res/menubackground.jpg");
-        Image menuOptions = new Image("res/ButtonImage.png"); // Ein Bild fuer sechs Auswahlmoeglichkeiten
+        Image menuOptions = new Image("res/ButtonImage2.png"); // Ein Bild fuer sechs Auswahlmoeglichkeiten
                          //  menuOptions.getSubImage(x, y, width, height)
-        tutorial           = menuOptions.getSubImage(0, 5, 200, 300);  //Tutorial Option aus Auswahlbild laden
+        tutorial           = menuOptions.getSubImage(0, 5, 275, 350);  //Tutorial Option aus Auswahlbild laden
         
-        startGamestaticMap = menuOptions.getSubImage(0, 55, 200, 300);  // Start-Static Option aus Auswahlbild laden
+        Singleplayer       = menuOptions.getSubImage(0, 55, 275, 350);  //Singleplayer Option aus Auswahlbild laden
         
-        startGamerandomMap = menuOptions.getSubImage(0, 95, 200, 300); // Start-Random Option aus Auswahlbild laden
+        startGamestaticMap = menuOptions.getSubImage(0, 102, 275, 350);  // Start-Static Option aus Auswahlbild laden
         
-        startGameNetwork   = menuOptions.getSubImage(0, 145, 200, 300); // Netzwerk Option aus Auswahlbild laden
+        startGamerandomMap = menuOptions.getSubImage(0, 151, 275, 350); // Start-Random Option aus Auswahlbild laden
         
-        options            = menuOptions.getSubImage(0, 195, 200, 300); // Option aus Auswahlbild laden 
+        startGameNetwork   = menuOptions.getSubImage(0, 198, 275, 350); // Netzwerk Option aus Auswahlbild laden
+        
+        options            = menuOptions.getSubImage(0, 245, 275, 350); // Option aus Auswahlbild laden 
          
-        exitOption         = menuOptions.getSubImage(0, 245, 200, 300); // Ende-Option aus Auswahbild laden
+        exitOption         = menuOptions.getSubImage(0, 295, 275, 350); // Ende-Option aus Auswahbild laden
     }
  
     public void render(GameContainer container, StateBasedGame sb, Graphics gc1) throws SlickException {
@@ -58,11 +61,12 @@ public class MainMenu extends BasicGameState {
         background.draw(0, 0);
         // Auswahl-Bilder in die richtigen Positionen legen
         tutorial.draw(menuX, menuY+5);
-        startGamestaticMap.draw(menuX, menuY+55); 
-        startGamerandomMap.draw(menuX, menuY+95);
-        startGameNetwork.draw(menuX, menuY+145);
-        options.draw(menuX, menuY+195);
-        exitOption.draw(menuX, menuY+245);
+        Singleplayer.draw(menuX, menuY+55);
+        startGamestaticMap.draw(menuX, menuY+102); 
+        startGamerandomMap.draw(menuX, menuY+151);
+        startGameNetwork.draw(menuX, menuY+198);
+        options.draw(menuX, menuY+245);
+        exitOption.draw(menuX, menuY+295);
     }
  
     public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
@@ -74,6 +78,7 @@ int mouseX = input.getMouseX();
 int mouseY = input.getMouseY();
  
 boolean insideTutorial = false;
+boolean insideSingleplayer = false;
 boolean insideStartStaticGame = false;
 boolean insideStartRandomGame = false;
 boolean insideStartNetwork = false;
@@ -82,23 +87,26 @@ boolean insideExit = false;
  
 // Zeige der Maus, wo Start bzw. Ende Auswahl liegen
 
-if( ( mouseX >= menuX && mouseX <= menuX + 153) &&
+if( ( mouseX >= menuX && mouseX <= menuX + 143) &&
     ( mouseY >= menuY+5 && mouseY <= menuY+40 ) )
     {insideTutorial = true; }
-else if( ( mouseX >= menuX && mouseX <= menuX+ 120) &&
-    ( mouseY >= menuY+60 && mouseY <= menuY+90 ) )
+else if( ( mouseX >= menuX && mouseX <= menuX+ 250) &&
+    ( mouseY >= menuY+55 && mouseY <= menuY+95 ) )
+    {insideSingleplayer = true;}
+else if( ( mouseX >= menuX && mouseX <= menuX+ 113) &&
+    ( mouseY >= menuY+101 && mouseY <= menuY+135 ) )
     {insideStartStaticGame = true;}
-else if( ( mouseX >= menuX && mouseX <= menuX+ 170) &&
-    ( mouseY >= menuY+115 && mouseY <= menuY+140 ) )
+else if( ( mouseX >= menuX && mouseX <= menuX+ 163) &&
+    ( mouseY >= menuY+150 && mouseY <= menuY+183 ) )
     {insideStartRandomGame = true;}
-else if( ( mouseX >= menuX && mouseX <= menuX+ 170) &&
-    ( mouseY >= menuY+160 && mouseY <= menuY+190 ) )
+else if( ( mouseX >= menuX && mouseX <= menuX+ 168) &&
+    ( mouseY >= menuY+198 && mouseY <= menuY+231 ) )
     {insideStartNetwork = true;}
-else if( ( mouseX >= menuX && mouseX <= menuX+ 160) &&
-    ( mouseY >= menuY+205 && mouseY <= menuY+240 ) )
+else if( ( mouseX >= menuX && mouseX <= menuX+ 151) &&
+    ( mouseY >= menuY+245 && mouseY <= menuY+287 ) )
     {insideOption = true;}
-else if( ( mouseX >= menuX && mouseX <= menuX+ 88) &&
-    ( mouseY >= menuY+250 && mouseY <= menuY+290 ) )
+else if( ( mouseX >= menuX && mouseX <= menuX+ 76) &&
+    ( mouseY >= menuY+293 && mouseY <= menuY+326 ) )
     {insideExit = true;}
 
 
@@ -113,13 +121,23 @@ if(insideTutorial){
   }
 }
 
+if(insideSingleplayer){
+  
+  if ( input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) ){
+    
+//bei Mausklick wird in den State 2 gewechselt, das eigentliche Spiel startet im Singleplayer
+    
+    sb.enterState(2);              
+  }
+}
+
 if(insideStartStaticGame){
  
   if ( input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) ){
     
-//bei Mausklick wird in den State 2 gewechselt, das eigentliche Spiel startet mit statischer Map
+//bei Mausklick wird in den State 3 gewechselt, das eigentliche Spiel startet mit statischer Map
     
-    sb.enterState(2);              
+    sb.enterState(3);              
   }
 }
 
@@ -128,9 +146,9 @@ if(insideStartRandomGame){
  
   if ( input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) ){
     
-//bei Mausklick wird in den State 3 gewechselt, das eigentliche Spiel startet mit zufaelliger Map
+//bei Mausklick wird in den State 4 gewechselt, das eigentliche Spiel startet mit zufaelliger Map
     
-    sb.enterState(3);  
+    sb.enterState(4);  
   }
 }
 
@@ -139,9 +157,9 @@ if(insideStartNetwork){
   
   if ( input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) ){
     
-//bei Mausklick wird in den State 4 gewechselt, der Netzwerkmodus startet
+//bei Mausklick wird in den State 5 gewechselt, der Netzwerkmodus startet
     
-    sb.enterState(4);              
+    sb.enterState(5);              
   }
 }
 
@@ -150,9 +168,9 @@ if(insideOption){
   
   if ( input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) ){
     
-//bei Mausklick wird in den State 5 gewechselt, das Optionsmenue wird aufgerufen
+//bei Mausklick wird in den State 6 gewechselt, das Optionsmenue wird aufgerufen
     
-    sb.enterState(5);              
+    sb.enterState(6);              
   }
 }
  
