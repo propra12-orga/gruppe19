@@ -9,16 +9,19 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-
 /**
- * Die Klasse "Bomberman" ist die Schnittstelle aller Klassen. Die Klasse ruft von allen Klassen Konstruktoren und Methoden auf.
- * Hier wird das Spiel "zusammengesetzt". Hier werden Spieler, Mauern, Bomben, Explosionen, Exit und Ende erstellt.
- * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
- * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird ebenfalls hier erstellt. Die Musik wird hier geladen.
- * Hier findet die Abfrage statt, wenn keine Spieler mehr vorhanden sind --> SpielEnde.
- * Die Explosionsgroesse und -zeit wird hier gesetzt.
- * Hier wird staendig abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
- * Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
+ * Die Klasse "Bomberman" ist die Schnittstelle aller Klassen. Die Klasse ruft
+ * von allen Klassen Konstruktoren und Methoden auf. Hier wird das Spiel
+ * "zusammengesetzt". Hier werden Spieler, Mauern, Bomben, Explosionen, Exit und
+ * Ende erstellt. Unser Spielname wird hier geschrieben. Grafiken werden
+ * gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
+ * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird
+ * ebenfalls hier erstellt. Die Musik wird hier geladen. Hier findet die Abfrage
+ * statt, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die
+ * Explosionsgroesse und -zeit wird hier gesetzt. Hier wird staendig abgefragt,
+ * wo der Spieler sich nach Tastatureingaben befindet. Die Kettenreaktion und
+ * Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse
+ * fuer den Neustart verantwortlich.
  */
 public class Bomberman extends BasicGameState {
   
@@ -40,15 +43,15 @@ public class Bomberman extends BasicGameState {
   
   protected boolean debug = false;
   
-//KONSTRUKTOR:
+  // KONSTRUKTOR:
   
- public Bomberman(int stateID) {
-   this.stateID = stateID;
- }
- 
- public int getID() {
-     return stateID;
- }
+  public Bomberman(int stateID) {
+    this.stateID = stateID;
+  }
+  
+  public int getID() {
+    return stateID;
+  }
   
   // RENDER BLOCK: Grafiken werden gezeichnet
   
@@ -57,8 +60,8 @@ public class Bomberman extends BasicGameState {
    * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
    * org.newdawn.slick.Graphics)
    */
-  public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
-    
+  public void render(GameContainer container, StateBasedGame sb, Graphics g)
+      throws SlickException {
     
     // Hoehe und Breite der Karte
     container.setVSync(true);
@@ -68,7 +71,7 @@ public class Bomberman extends BasicGameState {
         / (float) (karte.getHeight() * karte.getTileHeight());
     g.scale(scaleX, scaleY); // bekommt die Werte
     karte.render(0, 0);
-
+    
     // Bomben werden gezeichnet
     for (SpielObjekt bomb : bomben) {
       bomb.draw(g);
@@ -83,12 +86,12 @@ public class Bomberman extends BasicGameState {
     for (SpielObjekt exp : explosion) {
       exp.draw(g);
     }
-    // Wand  wird gezeichnet
+    // Wand wird gezeichnet
     for (SpielObjekt bl : Mauer) {
       bl.draw(g);
     }
     // Menue, Ende wird gezeichnet
-      ende.draw(g);
+    ende.draw(g);
   }
   
   // INIT BLOCK: Initialisierung der Daten
@@ -97,7 +100,8 @@ public class Bomberman extends BasicGameState {
   /*
    * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
    */
-  public void init(GameContainer container, StateBasedGame sb) throws SlickException {
+  public void init(GameContainer container, StateBasedGame sb)
+      throws SlickException {
     
     // Hier wird die Musik
     // geladen...
@@ -128,8 +132,8 @@ public class Bomberman extends BasicGameState {
    * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
    * int)
    */
-  public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
-    
+  public void update(GameContainer container, StateBasedGame sb, int arg1)
+      throws SlickException {
     
     // falls keine Spieler mehr vorhanden sind: Spielende
     if (player.isEmpty()) {
@@ -143,7 +147,7 @@ public class Bomberman extends BasicGameState {
       }
       // weiterspielen
       if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        restartGame(container,sb);
+        restartGame(container, sb);
       }
     } else {
       for (int i = 0; i < bomben.size(); i++) {
@@ -155,7 +159,7 @@ public class Bomberman extends BasicGameState {
           bomben.remove(bomb);
         }
       }
-      // Groeße der Explosion + Update 
+      // Groeße der Explosion + Update
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -168,7 +172,7 @@ public class Bomberman extends BasicGameState {
           explosion.remove(i);
         }
       }
-      //Update der Explosion
+      // Update der Explosion
       for (SpielObjekt expl : explosion) {
         expl.update(arg1);
       }
@@ -225,7 +229,7 @@ public class Bomberman extends BasicGameState {
         }
         // Ende des Spiels durch: Esc druecken
         if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
-            // ..oder durch Spieler auf Exit-Feld
+        // ..oder durch Spieler auf Exit-Feld
             || exit.pruefeKollsion(pl)) {
           ende.setGameOver(true);
         }
@@ -234,9 +238,11 @@ public class Bomberman extends BasicGameState {
   }
   
   /**
-   * Diese Explosion ist im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner zu vernichten.
-   * und zu entfernen.
-   * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
+   * Diese Explosion ist im Spiel die Moeglichkeit die zerstoerbaren Bloecke und
+   * den Gegner zu vernichten. und zu entfernen.
+   * 
+   * @param spObj
+   *          Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
    * @throws SlickException
    */
   private void buildExplodeArray(SpielObjekt spObj) throws SlickException {
@@ -311,28 +317,31 @@ public class Bomberman extends BasicGameState {
           
         }
       }
-    }    
+    }
   }
   
   /**
-   * In dieser Methode wird die Moeglichkeit geschrieben das Spiel
-   * von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und wieder
-   * in der anderen Methode neu gerendert.
+   * In dieser Methode wird die Moeglichkeit geschrieben das Spiel von neu zu
+   * starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und
+   * wieder in der anderen Methode neu gerendert.
+   * 
    * @param container
    * @throws SlickException
    */
-  private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {
+  private void restartGame(GameContainer container, StateBasedGame sb)
+      throws SlickException {
     player.clear();
     bomben.clear();
     Mauer.clear();
     ende = null;
     exit = null;
     karte = null;
-    init(container,sb);
+    init(container, sb);
   }
   
   /**
-   * @param ref Referenz 
+   * @param ref
+   *          Referenz
    * @throws SlickException
    */
   public void initMap(String ref) throws SlickException {
@@ -345,9 +354,13 @@ public class Bomberman extends BasicGameState {
         switch (tileID) {
           case 2:
             double R = Math.random();
-            if(R<0.5 && wallcounter<30){ // hier z.B. ist 15 = Maximale Anzahl an Zerstoerbaren Mauern. Math.random macht die Zufaelligkeit
-            Mauer.add(new Block(x * 32, y * 32, true));
-            wallcounter++;}
+            if (R < 0.5 && wallcounter < 30) { // hier z.B. ist 15 = Maximale
+                                               // Anzahl an Zerstoerbaren
+                                               // Mauern. Math.random macht die
+                                               // Zufaelligkeit
+              Mauer.add(new Block(x * 32, y * 32, true));
+              wallcounter++;
+            }
             break;
           case 17:
             Mauer.add(new Block(x * 32, y * 32, false));
