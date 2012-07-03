@@ -241,7 +241,7 @@ public class Tutorial extends BasicGameState {
         if (exit.pruefeKollsion(pl) && MapCounter<2) {
           restartGame(container,sb);
         }
-        if (exit.pruefeKollsion(pl) && MapCounter==2) { 
+        if (exit.pruefeKollsion(pl) && MapCounter==3) { 
           ende.setGameOver(true);
         }
       }
