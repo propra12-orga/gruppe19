@@ -14,7 +14,7 @@ public class BomberServer {
           serverSocket = new ServerSocket(2343);
       } catch (IOException e) {
           System.err.println("Could not listen on port: 2343");
-      }
+      } 
 
       while(listeningSocket){
           Socket clientSocket = serverSocket.accept();

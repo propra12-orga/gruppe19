@@ -20,7 +20,7 @@ public class BomberClient {
         out.writeBytes(sentence + '\n');
         modifiedSentence = in.readLine();
         System.out.println(modifiedSentence);
-        
+         
         clientSocket.close();
        }
       

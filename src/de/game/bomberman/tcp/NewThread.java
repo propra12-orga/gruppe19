@@ -12,7 +12,7 @@ public class NewThread extends Thread{
 
       super("NewThread");
       this.socket = socket;
-
+ 
   }
 
   public void run(){
