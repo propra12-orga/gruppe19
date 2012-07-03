@@ -10,33 +10,52 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * ??????????????????????????????????????????????????????????????????????????????????????????
+ *
+ */
 public class SingleplayerDummy extends BasicGameState {
   
   int stateID = 2;
   
 //KONSTRUKTOR:
   
- public SingleplayerDummy(int stateID) {
+ /**
+ * @param stateID
+ */
+public SingleplayerDummy(int stateID) {
    this.stateID = stateID;
  }
  
- public int getID() {
+ /* 
+ * @see org.newdawn.slick.state.BasicGameState#getID()
+ */
+public int getID() {
      return stateID;
  }
 
 
- public void init(GameContainer container, StateBasedGame sb) throws SlickException {
-    // TODO Auto-generated method stub    
+ /* 
+ * @see org.newdawn.slick.state.GameState#init(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+ */
+public void init(GameContainer container, StateBasedGame sb) throws SlickException {
+       
   }
 
 
- public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
+ /* 
+ * @see org.newdawn.slick.state.GameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+ */
+public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
     g.drawString("Hier kommt der Singleplayermodus gegen die KI hin", 150, 300);    
   }
 
 
- public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
-    // TODO Auto-generated method stub
+ /* 
+ * @see org.newdawn.slick.state.GameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+ */
+public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
+    
     if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
       sb.enterState(0);     
   }

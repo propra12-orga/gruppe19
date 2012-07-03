@@ -8,6 +8,10 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
  
+/**
+ * ???????????????????????????????????????????????????????????????????????????
+ *
+ */
 public class MainMenuState extends BasicGameState {
  
     int stateID = 0; // Die stateID fuer das Menu
@@ -19,19 +23,28 @@ public class MainMenuState extends BasicGameState {
     Image options = null;
     Image exitOption = null;
     
-    float menuX = 320; // Position der Auswahlmöglichkeiten (Start und Ende) im Menü - X Pixel nach rechts...
+    float menuX = 320; // Position der Auswahlmoeglichkeiten (Start und Ende) im Menue - X Pixel nach rechts
     float menuY = 340; // und Y Pixel nach unten
  
+    /**
+     * @param stateID
+     */
     MainMenuState( int stateID ) 
     {
        this.stateID = stateID;
     }
  
     @Override
+    /* 
+     * @see org.newdawn.slick.state.BasicGameState#getID()
+     */
     public int getID() {
         return stateID;
     }
  
+    /* 
+     * @see org.newdawn.slick.state.GameState#init(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+     */
     public void init(GameContainer container, StateBasedGame sb) throws SlickException {
         
         // Menu-Bild laden und Auswahlbild deklarieren + laden
@@ -50,6 +63,9 @@ public class MainMenuState extends BasicGameState {
         exitOption         = menuOptions.getSubImage(0, 210, 200, 250); // Ende-Option aus Auswahbild laden
     }
  
+    /* 
+     * @see org.newdawn.slick.state.GameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+     */
     public void render(GameContainer container, StateBasedGame sb, Graphics gc1) throws SlickException {
         // Hintergrund rendern und Variablen fuer die Auswahl deklarieren
         background.draw(0, 0);
@@ -62,6 +78,9 @@ public class MainMenuState extends BasicGameState {
         // Auswahl wird vergroessert, wenn Maus raufzeigt
     }
  
+    /* 
+     * @see org.newdawn.slick.state.GameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+     */
     public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
  
 
@@ -96,7 +115,7 @@ else if( ( mouseX >= menuX && mouseX <= menuX+ 88) &&
 }
 
 // Mausklick fuehrt zur Ausfuehrung von Start bzw. Ende
-// !!! Zur Zeit schließt das Fenster auch dann, wenn man auf keine der beiden Optionen klickt !!!
+// !!! Zur Zeit schlie�t das Fenster auch dann, wenn man auf keine der beiden Optionen klickt !!!
 
 if(insideStartStaticGame){
  

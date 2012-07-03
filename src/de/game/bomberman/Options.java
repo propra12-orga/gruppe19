@@ -6,6 +6,10 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 
+/**
+ * Die Klasse "Options" enthaelt das Optionsmenu. ??????????????????????????????????????ßß
+ *
+ */
 public class Options extends BasicGameState {
   
   int stateID = 6;
@@ -21,21 +25,30 @@ public class Options extends BasicGameState {
   Image Credits = null;
   Image Back = null;
   
-  float menuX = 310; // Position der Auswahlmöglichkeiten (Start und Ende) im Menü - X Pixel nach rechts...
+  float menuX = 310; // Position der Auswahlmoeglichkeiten (Start und Ende) im Menue - X Pixel nach recht
   float menuY = 250; // und Y Pixel nach unten
 
 //KONSTRUKTOR:
   
- public Options(int stateID) {
+ /**
+ * @param stateID
+ */
+public Options(int stateID) {
    this.stateID = stateID;
  }
  
- public int getID() {
+ /* 
+ * @see org.newdawn.slick.state.BasicGameState#getID()
+ */
+public int getID() {
      return stateID;
  }
  
 
 
+  /* 
+   * @see org.newdawn.slick.state.GameState#init(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+   */
   public void init(GameContainer container, StateBasedGame sb) throws SlickException {
     
     // Menu-Bild laden und Auswahlbild deklarieren + laden
@@ -63,6 +76,9 @@ public class Options extends BasicGameState {
 }
     
 
+  /* 
+   * @see org.newdawn.slick.state.GameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+   */
   public void render(GameContainer container, StateBasedGame sb, Graphics gc1) throws SlickException {
     // Hintergrund rendern und Variablen für die Auswahl deklarieren
     background.draw(0, 0);
@@ -79,6 +95,9 @@ public class Options extends BasicGameState {
 }
 
   
+  /* 
+   * @see org.newdawn.slick.state.GameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+   */
   public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
     
     Input input = container.getInput();

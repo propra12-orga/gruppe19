@@ -11,15 +11,15 @@ import org.newdawn.slick.state.StateBasedGame;
 
 
 /**
- * ## Das ist die Schnittstelle aller Klassen. Die Klasse RandomMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
+ * ????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????????
+ * Das ist die Schnittstelle aller Klassen. Die Klasse RandomMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
  * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
  * Hinzukommt noch Exit und Ende. Anders als bei der StaticMap wird hier bei jedem Start eine zufaellig erstellte Map generiert.
- * 
  * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
  * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die Musik wird hier geladen.
- * # Hier findet die Abfrage ab, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier gesetzt.
+ * Hier findet die Abfrage ab, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und -zeit wird hier gesetzt.
  * Hier wird staendig Abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
- * # Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
+ * Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
  */
 public class RandomMap extends BasicGameState {
   
@@ -345,8 +345,8 @@ public class RandomMap extends BasicGameState {
   public void initMap(String ref) throws SlickException {
     
     /* 
-     * Hier ist wird f� jedes Feld mit der TileID 2 (unsere zerst. Mauer ID) zuf舁lig bestimmt,
-     * ob eine Mauer hinzugef�t wird, oder auch nicht.
+     * Hier ist wird fuer jedes Feld mit der TileID 2 (unsere zerst. Mauer ID) zufaellig bestimmt,
+     * ob eine Mauer hinzugefuegt wird, oder auch nicht.
      */
         
     karte = new TiledMap(ref, "res");

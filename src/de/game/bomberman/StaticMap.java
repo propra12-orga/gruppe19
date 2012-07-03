@@ -10,7 +10,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 /**
- * ## Das ist die Schnittstelle aller Klassen. Die Klasse StaticMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
+ * ??????????????????????????????????????????????????????????????????????????????????????ßßß
+ * Das ist die Schnittstelle aller Klassen. Die Klasse StaticMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
  * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
  * Hinzukommt noch Exit und Ende.
  * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
@@ -341,8 +342,8 @@ public class StaticMap extends BasicGameState {
    */
   
   /*
-   *  Diese Methode initialisiert die Map mit sichtbaren Blöcken. Bei der TileID 2 werden zerstörbare Mauern gesetzt,
-   *  bei 17 unzerstörbare. (Angegeben durch die Boolean Werte.
+   *  Diese Methode initialisiert die Map mit sichtbaren Blöcken. Bei der TileID 2 werden zerstoerbare Mauern gesetzt,
+   *  bei 17 unzerstoerbare. (Angegeben durch die Boolean Werte)
    */
   
   public void initMap(String ref) throws SlickException {

@@ -8,9 +8,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
  
+/**
+ * ??????????????????????????????????????????????????????????????????????????????????????
+ *
+ */
 public class MainMenu extends BasicGameState {
  
-    int stateID = 0; // Die stateID fuer das Menu
+   //Die stateID fuer das Menu
+    int stateID = 0; 
     
     Image background = null;
     Image tutorial = null;
@@ -21,29 +26,44 @@ public class MainMenu extends BasicGameState {
     Image options = null;
     Image exitOption = null;
     
-    float menuX = 310; // Position der Auswahlmöglichkeiten (Start und Ende) im Menü - X Pixel nach rechts...
-    float menuY = 250; // und Y Pixel nach unten
+   // Position der Auswahlmoeglichkeiten (Start und Ende) im Menü - X Pixel nach rechts
+    float menuX = 310;
+   // und Y Pixel nach unten 
+    float menuY = 250; 
  
+    
+    /**
+     * @param stateID
+     */
     MainMenu( int stateID ) 
     {
        this.stateID = stateID;
     }
  
+    
+    /* 
+     * @see org.newdawn.slick.state.BasicGameState#getID()
+     */
     @Override
     public int getID() {
         return stateID;
     }
  
+    /* 
+     * @see org.newdawn.slick.state.GameState#init(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame)
+     */
     public void init(GameContainer container, StateBasedGame sb) throws SlickException {
         
         // Menu-Bild laden und Auswahlbild deklarieren + laden
         
         background = new Image("res/menubackground.jpg");
-        Image menuOptions = new Image("res/ButtonImage2.png"); // Ein Bild fuer sechs Auswahlmoeglichkeiten
-                         //  menuOptions.getSubImage(x, y, width, height)
-        tutorial           = menuOptions.getSubImage(0, 5, 275, 350);  //Tutorial Option aus Auswahlbild laden
+     // Ein Bild fuer sechs Auswahlmoeglichkeiten
+        Image menuOptions = new Image("res/ButtonImage2.png");
+     
+     // menuOptions.getSubImage(x, y, width, height)
+        tutorial           = menuOptions.getSubImage(0, 5, 275, 350);  // Tutorial Option aus Auswahlbild laden
         
-        Singleplayer       = menuOptions.getSubImage(0, 55, 275, 350);  //Singleplayer Option aus Auswahlbild laden
+        Singleplayer       = menuOptions.getSubImage(0, 55, 275, 350);  // Singleplayer Option aus Auswahlbild laden
         
         startGamestaticMap = menuOptions.getSubImage(0, 102, 275, 350);  // Start-Static Option aus Auswahlbild laden
         
@@ -56,9 +76,13 @@ public class MainMenu extends BasicGameState {
         exitOption         = menuOptions.getSubImage(0, 295, 275, 350); // Ende-Option aus Auswahbild laden
     }
  
+    /* 
+     * @see org.newdawn.slick.state.GameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
+     */
     public void render(GameContainer container, StateBasedGame sb, Graphics gc1) throws SlickException {
         // Hintergrund rendern und Variablen für die Auswahl deklarieren
         background.draw(0, 0);
+        
         // Auswahl-Bilder in die richtigen Positionen legen
         tutorial.draw(menuX, menuY+5);
         Singleplayer.draw(menuX, menuY+55);
@@ -69,6 +93,9 @@ public class MainMenu extends BasicGameState {
         exitOption.draw(menuX, menuY+295);
     }
  
+    /* 
+     * @see org.newdawn.slick.state.GameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+     */
     public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
  
 
