@@ -24,7 +24,7 @@ public class NetworkDummy extends BasicGameState {
   @Override
   public void init(GameContainer container, StateBasedGame sb)
       throws SlickException {
-    // TODO Auto-generated method stub
+    
     
   }
 
@@ -38,7 +38,7 @@ public class NetworkDummy extends BasicGameState {
   @Override
   public void update(GameContainer container, StateBasedGame sb, int delta)
       throws SlickException {
-    // TODO Auto-generated method stub
+    
     if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
       sb.enterState(0);  
     }

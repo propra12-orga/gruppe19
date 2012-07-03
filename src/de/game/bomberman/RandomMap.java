@@ -241,9 +241,9 @@ public class RandomMap extends BasicGameState {
   }
   
   /**
-   * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
-   * ## Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
+   * Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
    * und zu entfernen.
+   * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
    * @throws SlickException
    */
   private void buildExplodeArray(SpielObjekt spObj) throws SlickException {
@@ -322,10 +322,10 @@ public class RandomMap extends BasicGameState {
   }
   
   /**
-   * @param container
-   * ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
+   * In dieser Methode wird die Moeglichkeit geschrieben das Spiel
    * von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und wieder
    * in der anderen Methode neu gerendert.
+   * @param container
    * @throws SlickException
    */
   private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {

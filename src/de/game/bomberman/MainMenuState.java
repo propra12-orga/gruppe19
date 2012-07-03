@@ -51,7 +51,7 @@ public class MainMenuState extends BasicGameState {
     }
  
     public void render(GameContainer container, StateBasedGame sb, Graphics gc1) throws SlickException {
-        // Hintergrund rendern und Variablen für die Auswahl deklarieren
+        // Hintergrund rendern und Variablen fuer die Auswahl deklarieren
         background.draw(0, 0);
         // Auswahl-Bilder in die richtigen Positionen legen
         startGamestaticMap.draw(menuX, menuY+10); 
@@ -59,7 +59,7 @@ public class MainMenuState extends BasicGameState {
         startGameNetwork.draw(menuX, menuY+110);
         options.draw(menuX, menuY+160);
         exitOption.draw(menuX, menuY+210);
-        // Auswahl wird vergrößert, wenn Maus raufzeigt
+        // Auswahl wird vergroessert, wenn Maus raufzeigt
     }
  
     public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
@@ -95,7 +95,7 @@ else if( ( mouseX >= menuX && mouseX <= menuX+ 88) &&
     insideExit = true;
 }
 
-// Mausklick führt zur Ausführung von Start bzw. Ende
+// Mausklick fuehrt zur Ausfuehrung von Start bzw. Ende
 // !!! Zur Zeit schließt das Fenster auch dann, wenn man auf keine der beiden Optionen klickt !!!
 
 if(insideStartStaticGame){
