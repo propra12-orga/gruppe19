@@ -5,6 +5,7 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -33,11 +34,11 @@ public class StaticMap extends BasicGameState {
   // Variablen: Exit und Ende
   protected Exit exit;
   protected SpielEnde ende;
-  
+
+
   int stateID = 2;
   
   protected boolean debug = false;
-  
   
   
 //KONSTRUKTOR:
@@ -58,7 +59,6 @@ public class StaticMap extends BasicGameState {
    * org.newdawn.slick.Graphics)
    */
   public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
-    
     
     // Hoehe und Breite der Karte
     container.setVSync(true);
@@ -109,12 +109,16 @@ public class StaticMap extends BasicGameState {
     initMap("res/testmap2.tmx");
     // Spieler 1
     player.add(0, new Player(32, 32, 1));
-    // Spieler 2
-    player.add(1, new Player(544, 32, 2));
+    // Tastenbelegung Spieler 1
     ((Player) player.get(0)).setKeys(Input.KEY_LEFT, Input.KEY_RIGHT,
-        Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE);
+        Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE); 
+    
+    // Spieler 2 
+    player.add(1, new Player(544, 32, 2));
+    // Tastenbelegung Spieler 2
     ((Player) player.get(1)).setKeys(Input.KEY_A, Input.KEY_D, Input.KEY_W,
         Input.KEY_S, Input.KEY_LCONTROL);
+    
     // Exit wird erstellt und positioniert bei (x, y)
     exit = new Exit(544, 416);
     // Ende
@@ -332,9 +336,15 @@ public class StaticMap extends BasicGameState {
   }
   
   /**
-   * @param ref Referenz 
+   * @param ref Map-Name
    * @throws SlickException
    */
+  
+  /*
+   *  Diese Methode initialisiert die Map mit sichtbaren Blöcken. Bei der TileID 2 werden zerstörbare Mauern gesetzt,
+   *  bei 17 unzerstörbare. (Angegeben durch die Boolean Werte.
+   */
+  
   public void initMap(String ref) throws SlickException {
     
     karte = new TiledMap(ref, "res");

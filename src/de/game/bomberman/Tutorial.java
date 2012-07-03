@@ -107,6 +107,7 @@ public class Tutorial extends BasicGameState {
     music.loop();
     
     // Initialisierung der Karte
+    // Nach Neuladen des Spiels, wird der Map-Counter erhöht, sodass die nächste Map geladen wird
     switch (MapCounter) {
       case 0:      
         initMap("res/tutmap1.tmx");
@@ -350,7 +351,7 @@ public class Tutorial extends BasicGameState {
   }
   
   /**
-   * @param ref Referenz 
+   * @param ref Map-Name 
    * @throws SlickException
    */
   public void initMap(String ref) throws SlickException {

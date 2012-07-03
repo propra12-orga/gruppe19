@@ -108,14 +108,19 @@ public class RandomMap extends BasicGameState {
     
     // Initialisierung der Karte
     initMap("res/testmap2.tmx");
+    
     // Spieler 1
     player.add(0, new Player(32, 32, 1));
-    // Spieler 2
-    player.add(1, new Player(544, 32, 2));
+    // Tastenbelegung Spieler 1
     ((Player) player.get(0)).setKeys(Input.KEY_LEFT, Input.KEY_RIGHT,
-        Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE);
+        Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE); 
+    
+    // Spieler 2 
+    player.add(1, new Player(544, 32, 2));
+    // Tastenbelegung Spieler 2
     ((Player) player.get(1)).setKeys(Input.KEY_A, Input.KEY_D, Input.KEY_W,
         Input.KEY_S, Input.KEY_LCONTROL);
+    
     // Exit wird erstellt und positioniert bei (x, y)
     exit = new Exit(544, 416);
     // Ende
@@ -334,11 +339,16 @@ public class RandomMap extends BasicGameState {
   }
   
   /**
-   * @param ref Referenz 
+   * @param ref Map-Name 
    * @throws SlickException
    */
   public void initMap(String ref) throws SlickException {
     
+    /* 
+     * Hier ist wird für jedes Feld mit der TileID 2 (unsere zerst. Mauer ID) zufällig bestimmt,
+     * ob eine Mauer hinzugefügt wird, oder auch nicht.
+     */
+        
     karte = new TiledMap(ref, "res");
     int wallcounter = 0;
     for (int x = 0; x < karte.getWidth(); x++) {
