@@ -36,7 +36,7 @@ public class StaticMap extends BasicGameState {
   protected SpielEnde ende;
 
 
-  int stateID = 2;
+  int stateID = 3;
   
   protected boolean debug = false;
   

@@ -14,10 +14,11 @@ public class MainGame extends StateBasedGame {
  
     public static final int MAINMENUSTATE          = 0;  
     public static final int TUTORIALSTATE          = 1;
-    public static final int GAMEPLAYSTATICSTATE    = 2; 
-    public static final int GAMEPLAYRANDOMSTATE    = 3;  
-    public static final int NETWORKSTATE           = 4;  
-    public static final int OPTIONSTATE            = 5;  
+    public static final int SINGLEPLAYERSTATE      = 2;
+    public static final int GAMEPLAYSTATICSTATE    = 3; 
+    public static final int GAMEPLAYRANDOMSTATE    = 4;  
+    public static final int NETWORKSTATE           = 5;  
+    public static final int OPTIONSTATE            = 6;  
     public MainGame()
     {
         super("BOMBERMAN");
@@ -25,6 +26,7 @@ public class MainGame extends StateBasedGame {
 
         this.addState(new MainMenu(MAINMENUSTATE));   // State fuer das Menu hinzugefuegt
         this.addState(new Tutorial(TUTORIALSTATE));       // State fuer Tutorial hinzugefuegt
+        this.addState(new SingleplayerDummy(SINGLEPLAYERSTATE));       // State fuer Tutorial hinzugefuegt
         this.addState(new StaticMap(GAMEPLAYSTATICSTATE));       // State fuer das eigentliche Spiel mit statischen Maps hinzugefuegt
         this.addState(new RandomMap(GAMEPLAYRANDOMSTATE));       // State fuer das eigentliche Spiel mit zufaelligen Maps hinzugefuegt
         this.addState(new NetworkDummy(NETWORKSTATE));       // State fuer den Netzwerkmodus hinzugefuegt
@@ -55,6 +57,7 @@ public class MainGame extends StateBasedGame {
  
         this.getState(MAINMENUSTATE).init(gameContainer, this);
         this.getState(TUTORIALSTATE).init(gameContainer, this);
+        this.getState(SINGLEPLAYERSTATE).init(gameContainer, this);
         this.getState(GAMEPLAYSTATICSTATE).init(gameContainer, this);
         this.getState(GAMEPLAYRANDOMSTATE).init(gameContainer, this);
         this.getState(NETWORKSTATE).init(gameContainer, this);

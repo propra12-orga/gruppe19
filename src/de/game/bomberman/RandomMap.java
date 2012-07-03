@@ -37,7 +37,7 @@ public class RandomMap extends BasicGameState {
   protected Exit exit;
   protected SpielEnde ende;
   
-  int stateID = 3;
+  int stateID = 4;
   
   protected boolean debug = false;
   
@@ -162,7 +162,7 @@ public class RandomMap extends BasicGameState {
           bomben.remove(bomb);
         }
       }
-      // Groeße der Explosion + Update 
+      // Groeï¾Ÿe der Explosion + Update 
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -345,8 +345,8 @@ public class RandomMap extends BasicGameState {
   public void initMap(String ref) throws SlickException {
     
     /* 
-     * Hier ist wird für jedes Feld mit der TileID 2 (unsere zerst. Mauer ID) zufällig bestimmt,
-     * ob eine Mauer hinzugefügt wird, oder auch nicht.
+     * Hier ist wird fï¿½ jedes Feld mit der TileID 2 (unsere zerst. Mauer ID) zufèˆlig bestimmt,
+     * ob eine Mauer hinzugefï¿½t wird, oder auch nicht.
      */
         
     karte = new TiledMap(ref, "res");
