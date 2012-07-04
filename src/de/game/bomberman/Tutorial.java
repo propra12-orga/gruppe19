@@ -165,7 +165,7 @@ public class Tutorial extends BasicGameState {
           bomben.remove(bomb);
         }
       }
-      // Groeße der Explosion + Update 
+      // Groeï¿½e der Explosion + Update 
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -279,7 +279,7 @@ public class Tutorial extends BasicGameState {
           } else {
             for (SpielObjekt koll : kollision) {
               if (koll instanceof Block) {
-                if (((Block) koll).isZerstoerbar()) {
+                if (((Block) koll).isDestroyable()) {
                   explosion.add(expll);
                   // entfernt die Mauer nach Kollision
                   Mauer.remove(koll);
@@ -307,7 +307,7 @@ public class Tutorial extends BasicGameState {
           } else {
             for (SpielObjekt koll : kollision) {
               if (koll instanceof Block) {
-                if (((Block) koll).isZerstoerbar()) {
+                if (((Block) koll).isDestroyable()) {
                   explosion.add(explr);
                   Mauer.remove(koll);
                 }

@@ -8,26 +8,9 @@ import org.newdawn.slick.*;
  */
 public class Block extends SpielObjekt {
   
-  private boolean zerstoerbar = false;
   private static String imPath = "/res/wand.png";
   private static String imPath2 = "/res/wand2.png";
   private Image im; 
-  
-  /**
-   * Methode untersucht ob ein Block zerstoerbar ist oder nicht.
-   * @return zerstoerbar
-   */
-  public boolean isZerstoerbar() {
-    return zerstoerbar;
-  }
-  
-  /**
-   * Setzt Bloecke auf zerstoerbar.
-   * @param zerstoerbar zerstoerbar to set 
-   */
-  public void setZerstoerbar(boolean zerstoerbar) {
-    this.zerstoerbar = zerstoerbar;
-  }
   
   /**
    * Mit diesen Koordinaten wird die Grundmauer um das ganze Spiel gebaut.
@@ -43,15 +26,15 @@ public class Block extends SpielObjekt {
    * Mit diesen Koordinaten werden die zerstoerbaren Bloecke gebaut. Der Boolean-typ markiert die zerstoerbaren Bloecke.
    * @param x Koordinate des Blocks
    * @param y Koordinate des Blocks
-   * @param zerstoerbar ;prüft ob Block zerstoerbar ist
+   * @param zerstoerbar ;prï¿½ft ob Block zerstoerbar ist
    * @throws SlickException
    */
-  public Block(int x, int y, boolean zerstoerbar) throws SlickException {
+  public Block(int x, int y, boolean destroyable) throws SlickException {
     super(x,y);
-    this.zerstoerbar = zerstoerbar;
-    if (zerstoerbar == true){
+    setDestroyable(destroyable);
+    if (isDestroyable() == true){
     im = new Image(imPath);}
-    if (zerstoerbar == false){
+    if (isDestroyable() == false){
     im = new Image(imPath2);}
     }
   
