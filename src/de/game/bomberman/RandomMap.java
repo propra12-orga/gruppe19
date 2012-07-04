@@ -119,7 +119,7 @@ public class RandomMap extends BasicGameState {
         Input.KEY_S, Input.KEY_LCONTROL);
     
     // Exit wird erstellt und positioniert bei (x, y)
-    exit = new Exit(544, 416);
+    exit = new Exit(288, 256);
     // Ende
     ende = new SpielEnde(container.getHeight(), container.getWidth());
   }
@@ -348,7 +348,7 @@ public class RandomMap extends BasicGameState {
         
     karte = new TiledMap(ref, "res");
     int wallcounter = 0;
-    for (int x = 0; x < karte.getWidth(); x++) {
+    for (int x = 0; x < karte.getWidth()/2; x++) {
       for (int y = 0; y < karte.getHeight(); y++) {
         final int tileID = karte.getTileId(x, y, 0);
         switch (tileID) {
@@ -356,10 +356,12 @@ public class RandomMap extends BasicGameState {
             double R = Math.random();
             if(R<0.5 && wallcounter<30){ // hier z.B. ist 15 = Maximale Anzahl an Zerstoerbaren Mauern. Math.random macht die Zufaelligkeit
             Mauer.add(new Block(x * 32, y * 32, true));
+            Mauer.add(new Block((karte.getWidth()-x-2)*32, y*32, true));
             wallcounter++;}
             break;
           case 17:
             Mauer.add(new Block(x * 32, y * 32, false));
+            Mauer.add(new Block((karte.getWidth()-x-2)*32, y*32, false));
             break;
           default:
             break;

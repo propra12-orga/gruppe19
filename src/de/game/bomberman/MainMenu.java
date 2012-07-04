@@ -20,7 +20,7 @@ public class MainMenu extends BasicGameState {
     public static final int stateID = 0;
     private Font font;
     // Die Auswahlmoeglichkeiten
-    private String[] options = new String[] {"Tutorial","Singleplayer","Multiplayer","Network","Options","Exit"};
+    private String[] options = new String[] {"Tutorial","Singleplayer","Multiplayer", "Network","Options","Exit", "Random"};
     // Der Index der ausgewaehlten Option
     private int selected;
     private StateBasedGame game;
@@ -104,6 +104,10 @@ public class MainMenu extends BasicGameState {
             break;
           case 5:
             game.getContainer().exit();
+            break;
+          case 6:
+            game.enterState(RandomMap.stateID, new FadeOutTransition(Color.black),
+                new FadeInTransition(Color.black));
             break;
           default:
             System.out.println("FEHLER - Return to MAIN MENU");
