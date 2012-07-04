@@ -7,7 +7,7 @@ import org.newdawn.slick.geom.Polygon;
 
 /**
  * Die Klasse "SpielObjekt" ist fuer das Erstellen und Vergleichen von Kollisionen
- * mit Spielobjekten im Spiel zuständig.
+ * mit Spielobjekten im Spiel zustï¿½ndig.
  * Kollisionen werden durch Arraylisten erstellt.
  */
 public abstract class SpielObjekt {
@@ -18,6 +18,52 @@ public abstract class SpielObjekt {
   protected int y;
   protected Polygon kollisionsFlaeche;
   
+  private boolean visible = false;
+  private boolean walkable = false;
+  private boolean destroyable = false;
+  
+  /**
+   * @return the visible
+   */
+  public boolean isVisible() {
+    return visible;
+  }
+
+  /**
+   * @param visible the visible to set
+   */
+  public void setVisible(boolean visible) {
+    this.visible = visible;
+  }
+
+  /**
+   * @return the walkable
+   */
+  public boolean isWalkable() {
+    return walkable;
+  }
+
+  /**
+   * @param walkable the walkable to set
+   */
+  public void setWalkable(boolean walkable) {
+    this.walkable = walkable;
+  }
+
+  /**
+   * @return the destroyable
+   */
+  public boolean isDestroyable() {
+    return destroyable;
+  }
+
+  /**
+   * @param destroyable the destroyable to set
+   */
+  public void setDestroyable(boolean destroyable) {
+    this.destroyable = destroyable;
+  }
+
   /**
    * "g" ist die Variable fuer die Grafik.
    * Die Grafik verwenden wir um Images anzuzeigen.
