@@ -272,7 +272,7 @@ public class RandomMap extends BasicGameState {
           } else {
             for (SpielObjekt koll : kollision) {
               if (koll instanceof Block) {
-                if (((Block) koll).isZerstoerbar()) {
+                if (((Block) koll).isDestroyable()) {
                   explosion.add(expll);
                   // entfernt die Mauer nach Kollision
                   Mauer.remove(koll);
@@ -300,7 +300,7 @@ public class RandomMap extends BasicGameState {
           } else {
             for (SpielObjekt koll : kollision) {
               if (koll instanceof Block) {
-                if (((Block) koll).isZerstoerbar()) {
+                if (((Block) koll).isDestroyable()) {
                   explosion.add(explr);
                   Mauer.remove(koll);
                 }

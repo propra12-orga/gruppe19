@@ -10,7 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 /**
- * ??????????????????????????????????????????????????????????????????????????????????????ßßß
+ * ??????????????????????????????????????????????????????????????????????????????????????ï¿½ï¿½ï¿½
  * Das ist die Schnittstelle aller Klassen. Die Klasse StaticMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
  * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
  * Hinzukommt noch Exit und Ende.
@@ -160,7 +160,7 @@ public class StaticMap extends BasicGameState {
           bomben.remove(bomb);
         }
       }
-      // Groeße der Explosion + Update 
+      // Groeï¿½e der Explosion + Update 
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -270,7 +270,7 @@ public class StaticMap extends BasicGameState {
           } else {
             for (SpielObjekt koll : kollision) {
               if (koll instanceof Block) {
-                if (((Block) koll).isZerstoerbar()) {
+                if (((Block) koll).isDestroyable()) {
                   explosion.add(expll);
                   // entfernt die Mauer nach Kollision
                   Mauer.remove(koll);
@@ -298,7 +298,7 @@ public class StaticMap extends BasicGameState {
           } else {
             for (SpielObjekt koll : kollision) {
               if (koll instanceof Block) {
-                if (((Block) koll).isZerstoerbar()) {
+                if (((Block) koll).isDestroyable()) {
                   explosion.add(explr);
                   Mauer.remove(koll);
                 }
@@ -342,7 +342,7 @@ public class StaticMap extends BasicGameState {
    */
   
   /*
-   *  Diese Methode initialisiert die Map mit sichtbaren Blöcken. Bei der TileID 2 werden zerstoerbare Mauern gesetzt,
+   *  Diese Methode initialisiert die Map mit sichtbaren Blï¿½cken. Bei der TileID 2 werden zerstoerbare Mauern gesetzt,
    *  bei 17 unzerstoerbare. (Angegeben durch die Boolean Werte)
    */
   
