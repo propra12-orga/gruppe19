@@ -11,9 +11,13 @@ public class Bombe extends SpielObjekt {
   
     //Image der Bombe; wird aus "res" geladen
   private static String imPath = "res/bomb.png";
+  
     //Radius der Explosion
   private int ExplodeRadius = 3;                            
   private Image im;
+  
+  SpriteSheet eggSheet = new SpriteSheet("res/egg.png", 32, 32);
+  
     //regelt die Zeit wann Bomben explodieren
   private int counter;                                      
   private boolean explode;
@@ -86,8 +90,10 @@ public class Bombe extends SpielObjekt {
    * @see de.game.bomberman.SpielObjekt#update(int)
    */
   public void update(int delta) throws SlickException {
-    counter+=1;
-    // counter += 1: if counter==130 --> Bombe explodiert
+    counter+=1;    // counter += 1: if counter==130 --> Bombe explodiert
+    
+    im = eggSheet.getSprite((counter /16),0);
+    
     if(counter==150){
       setExplode(true);
     }
