@@ -123,8 +123,8 @@ public class Options extends BasicGameState {
                } 
             break;
           case 5:
-            game.enterState(Credits.stateID, new FadeOutTransition(Color.black),
-                new FadeInTransition(Color.black)); 
+//            game.enterState(Credits.stateID, new FadeOutTransition(Color.black),
+//                new FadeInTransition(Color.black)); 
             break;
           case 6:
             game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
