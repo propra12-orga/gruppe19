@@ -37,19 +37,16 @@ public class RandomMap extends BasicGameState {
   protected Exit exit;
   protected SpielEnde ende;
   
-  int stateID = 4;
+  public static final int stateID = 4;
   
   protected boolean debug = false;
   
 //KONSTRUKTOR:
   
- public RandomMap(int stateID) {
-   this.stateID = stateID;
- }
- 
- public int getID() {
-     return stateID;
- }
+  
+  public int getID() {
+      return stateID;
+  }
   
   // RENDER BLOCK: Grafiken werden gezeichnet
   

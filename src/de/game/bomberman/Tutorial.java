@@ -38,15 +38,12 @@ public class Tutorial extends BasicGameState {
   protected Exit exit;
   protected SpielEnde ende;
   protected int MapCounter=0;  
-  int stateID = 1;
+  public static final int stateID = 1;
   
   protected boolean debug = false;
   
 //KONSTRUKTOR:
   
- public Tutorial(int stateID) {
-   this.stateID = stateID;
- }
  
  public int getID() {
      return stateID;

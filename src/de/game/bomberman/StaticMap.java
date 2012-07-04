@@ -37,20 +37,17 @@ public class StaticMap extends BasicGameState {
   protected SpielEnde ende;
 
 
-  int stateID = 3;
+  public static final int stateID = 3;
   
   protected boolean debug = false;
   
   
 //KONSTRUKTOR:
   
- public StaticMap(int stateID) {
-   this.stateID = stateID;
- }
- 
- public int getID() {
-     return stateID;
- }
+  
+  public int getID() {
+      return stateID;
+  }
   
   // RENDER BLOCK: Grafiken werden gezeichnet
   

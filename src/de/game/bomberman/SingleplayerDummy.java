@@ -1,10 +1,7 @@
 package de.game.bomberman;
 
-import java.util.*;
 import org.newdawn.slick.*;
-import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
@@ -16,23 +13,17 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class SingleplayerDummy extends BasicGameState {
   
-  int stateID = 2;
+  public static final int stateID = 2;
   
 //KONSTRUKTOR:
   
- /**
- * @param stateID
- */
-public SingleplayerDummy(int stateID) {
-   this.stateID = stateID;
- }
  
  /* 
  * @see org.newdawn.slick.state.BasicGameState#getID()
  */
-public int getID() {
-     return stateID;
- }
+  public int getID() {
+    return stateID;
+  }
 
 
  /* 

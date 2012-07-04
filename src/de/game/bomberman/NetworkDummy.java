@@ -13,20 +13,11 @@ import org.newdawn.slick.state.StateBasedGame;
  */
 public class NetworkDummy extends BasicGameState {
   
-  int stateID = 5;
+  public static final int stateID = 5;
 
 //KONSTRUKTOR:
   
- /**
- * @param stateID
- */
-public NetworkDummy(int stateID) {
-   this.stateID = stateID;
- }
  
- /* 
- * @see org.newdawn.slick.state.BasicGameState#getID()
- */
 public int getID() {
      return stateID;
  }
