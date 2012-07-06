@@ -360,6 +360,8 @@ public class Tutorial extends BasicGameState {
   }
   
   private void retry(GameContainer container, StateBasedGame sb) throws SlickException {
+    
+    explosion.clear();
     player.clear();
     bomben.clear();
     Mauer.clear();

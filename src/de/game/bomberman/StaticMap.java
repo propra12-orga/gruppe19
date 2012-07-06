@@ -325,6 +325,8 @@ public class StaticMap extends BasicGameState {
    * @throws SlickException
    */
   private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {
+    
+    explosion.clear();
     player.clear();
     bomben.clear();
     Mauer.clear();
