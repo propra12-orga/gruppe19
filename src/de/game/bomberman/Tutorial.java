@@ -128,6 +128,10 @@ public class Tutorial extends BasicGameState {
     // naechste Map geladen wird
     switch (MapCounter) {
       case 0:
+        // Beispiel PowerUP +1 Bombe
+        powerup.add(new PowerUP(64, 64, 0));
+        // Beispiel PowerUP +1 Bombenradius
+        powerup.add(new PowerUP(256, 256, 1));
         initMap("res/tutmap1.tmx");
         break;
       case 1:

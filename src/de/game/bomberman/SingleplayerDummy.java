@@ -127,9 +127,6 @@ public class SingleplayerDummy extends BasicGameState {
     karte = null;
     this.game = sb;
     
-    powerup.add(new PowerUP(64, 64, 0, 0, 1, 0));
-    powerup.add(new PowerUP(256, 256, 1, 0, 0, 1));
-    
     // Initialisierung der Karte
     // Nach Neuladen des Spiels, wird der Map-Counter erhoeht, sodass die
     // naechste Map geladen wird
