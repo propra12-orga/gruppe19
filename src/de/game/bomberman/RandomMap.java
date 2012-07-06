@@ -15,23 +15,14 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
 
 /**
- * ?????????????????????????????????????????????????????????????????????????????
- * ??????????????????????????? ## Das ist die Schnittstelle aller Klassen. Die
- * Klasse RandomMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
- * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die
- * Mauern, als auch die Explosionen werden hier erstellt. Hinzukommt noch Exit
- * und Ende. Anders als bei der StaticMap wird hier bei jedem Start eine
- * zufaellig erstellte Map generiert.
- * 
- * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die
- * Karte in einem Fenster mit den Spielern, den Mauern, den Explosionen, des
- * Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die
- * Musik wird hier geladen. # Hier findet die Abfrage ab, wenn keine Spieler
- * mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier
- * gesetzt. Hier wird staendig Abgefragt, wo der Spieler sich nach
- * Tastatureingaben befindet. # Die Kettenreaktion und Zerstoerung durch die
- * Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart
- * verantwortlich.
+ * Das ist die Schnittstelle aller Klassen. Die Klasse RandomMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
+ * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben, die Mauern, der Exit, und das Ende, als auch die Explosionen werden hier erstellt.
+ * Anders als bei der StaticMap wird hier bei jedem Start eine zufaellig erstellte Map generiert.
+ * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
+ * den Explosionen und des Ausgangs "Exit" gezeichnet wird. Das Menue wird ebenso hier erstellt. Auch die Musik wird hier geladen.
+ * Hier findet die Abfrage statt, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und -zeit wird hier gesetzt.
+ * Hier findet ein staendiges Update der Spielerposition statt.  
+ * Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
  */
 public class RandomMap extends BasicGameState {
   
@@ -264,7 +255,6 @@ public class RandomMap extends BasicGameState {
   }
   
   /*
-   * (non-Javadoc)
    * 
    * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
    */
@@ -277,7 +267,7 @@ public class RandomMap extends BasicGameState {
       return;
     }
     
-    // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
+    // Wenn Key ESC oder P gedrückt werden, soll das Menue aufgerufen werden
     switch (key) {
       case Input.KEY_ESCAPE:
       case Input.KEY_P:
@@ -297,13 +287,11 @@ public class RandomMap extends BasicGameState {
   }
   
   /**
-   * @param spObj
-   *          Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe ##
-   *          Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die
-   *          zerstoerbaren Bloecke und den Gegner auszuschaltern und zu
-   *          entfernen.
-   * @throws SlickException
-   */
+  * Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
+  * und zu entfernen.
+  * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
+  * @throws SlickException
+  */
   private void buildExplodeArray(SpielObjekt spObj) throws SlickException {
     Bombe bomb = (Bombe) spObj;
     Explosion expll, explr;
@@ -380,10 +368,10 @@ public class RandomMap extends BasicGameState {
   }
   
   /**
+   * In dieser Methode wird die Moeglichkeit geschrieben das Spiel
+   * von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und wieder
+   * in der anderen Methode neu gerendert.
    * @param container
-   *          ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
-   *          von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt,
-   *          dh geloescht und wieder in der anderen Methode neu gerendert.
    * @throws SlickException
    */
   private void restartGame(GameContainer container, StateBasedGame sb)
@@ -399,8 +387,10 @@ public class RandomMap extends BasicGameState {
   }
   
   /**
-   * @param ref
-   *          Map-Name
+   * Ist die Initialisierung der Ebene/ Map.
+   * Aus dem Ordner "res" werden vorhandene Maps geladen.
+   * Desweiteren wird hier durch Math.random ausgehend von der max Anzahl der Mauern zufaellig welche eingebaut.
+   * @param ref Map-Name 
    * @throws SlickException
    */
   public void initMap(String ref) throws SlickException {
