@@ -69,12 +69,12 @@ public class Credits extends BasicGameState {
         }
       g.scale(1.10f, 1.10f);
       g.setColor(Color.white);
-      g.drawString("Matthias Engelhardt.......PowerUPs/Spiellogik", 80, 180);
-      g.drawString("Hiep Dinh.................Tutorial/Singleplayer/Spiellogik", 80, 220);
-      g.drawString("Benjamin Schlueter.........Grafik/Sound/Spiellogik", 80, 260);
-      g.drawString("Ilgar Bosatov................JavaDoc/Handbuch", 80, 300);
-      g.drawString("Dennis-Marco Fanty.........Netzwerk", 80, 340);
-      g.drawString("Viktor Hellwig............Menu", 80, 380);
+      g.drawString("Matthias Engelhardt", 80, 180);
+      g.drawString("Hiep Dinh", 80, 220);
+      g.drawString("Benjamin Schlueter", 80, 260);
+      g.drawString("Ilgar Bosatov", 80, 300);
+      g.drawString("Dennis-Marco Fanty", 80, 340);
+      g.drawString("Viktor Hellwig", 80, 380);
     }
 
 

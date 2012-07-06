@@ -7,8 +7,8 @@ import org.newdawn.slick.geom.Polygon;
 import de.game.bomberman.SpielObjekt;
 
 /**
- * In der Klasse "Exit" wird die optische Beendigung des Hauptspiels erstellt.
- * In diesem Sinne der Ausgang des Hauptspiels.
+ * In der Klasse "PowerUp" werden die PowerUps im Spiel erstellt.
+ * Diese PowerUps haben Auswirkungen auf Schnelligkeit, Bombenradius und Bombenanzahl.
  */
 public class PowerUP extends SpielObjekt {
   
@@ -56,7 +56,7 @@ public class PowerUP extends SpielObjekt {
    */
   public void draw(Graphics g) {
     
-    // Hier wird das Image vom Ausgang gezeichnet, indem es die zuvor
+    // Hier wird das Image von den PowerUps gezeichnet, indem es die zuvor
     // eingegebenen Koordinaten x, y uebernimmt
     im.draw(x, y);
     
