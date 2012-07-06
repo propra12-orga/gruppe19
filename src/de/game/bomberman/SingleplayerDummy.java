@@ -9,6 +9,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 /**
@@ -42,6 +44,7 @@ public class SingleplayerDummy extends BasicGameState {
   public static final int stateID = 2;
   
   protected boolean debug = false;
+  private StateBasedGame game;
   
 //KONSTRUKTOR:
   
@@ -98,12 +101,21 @@ public class SingleplayerDummy extends BasicGameState {
    * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
    */
   public void init(GameContainer container, StateBasedGame sb) throws SlickException {
+    // reset objects
+    explosion.clear();
+    player.clear();
+    bomben.clear();
+    Mauer.clear();
+    ende = null;
+    exit = null;
+    karte = null;
     
     // Hier wird die Musik
     // geladen...
     Music music = new Music("res/Music/test.ogg");
     // ... und im Loop abgespielt
     music.loop();
+    this.game = sb; 
     
     // Initialisierung der Karte
     // Nach Neuladen des Spiels, wird der Map-Counter erhoeht, sodass die naechste Map geladen wird
@@ -244,10 +256,6 @@ public class SingleplayerDummy extends BasicGameState {
             
           }
         }
-        // Ende des Spiels durch: Esc druecken
-        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
-          ende.setGameOver(true);
-        }
         if (exit.pruefeKollsion(pl) && MapCounter<2) {
           restartGame(container,sb);
         }
@@ -255,6 +263,26 @@ public class SingleplayerDummy extends BasicGameState {
           ende.setGameOver(true);
         }
       }
+    }
+  }
+  
+  public void keyPressed(int key, char c) {
+    switch (key) {
+      case Input.KEY_ESCAPE:
+      case Input.KEY_P:
+        try {
+          game.addState(new GamePaused(game.getCurrentStateID()));
+          game.getState(GamePaused.stateID).init(game.getContainer(), game);
+          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black),
+              new FadeInTransition(Color.black));
+        } catch (SlickException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        break;
+      
+      default:
+        break;
     }
   }
   
