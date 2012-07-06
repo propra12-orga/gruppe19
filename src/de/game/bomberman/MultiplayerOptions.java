@@ -7,7 +7,7 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
  * Die Klasse "MultiplayerOptions" ertellt das Menu des Multiplayers.
- * In dieser Klasse werden die Menuepunkte geschrieben und ins Fenster gezeichnet.
+ * In dieser Klasse werden die Menuepunkte "Random Map, Classic Map und Network" geschrieben und ins Fenster gezeichnet.
  * Musik und das Hintergrundbild werden geladen und es wird eine neue StateID zugeteilt.
  * Außerdem steht hier die Erkennung des Druecken der Tasten durch den Spieler.
  */

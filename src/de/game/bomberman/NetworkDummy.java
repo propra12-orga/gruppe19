@@ -15,6 +15,12 @@ import org.newdawn.slick.state.transition.FadeOutTransition;
 
 import de.game.bomberman.MainMenu;
 
+/**
+ * Die Klasse "NetworkDummy" ist fuer das Netzwerk im Spiel verantwortlich.
+ * In dieser Klasse werden die Menuepunkte "Host, Join, Back" geschrieben und ins Fenster gezeichnet.
+ * In NetworkDummy wird der Hintergrund fuer NetworkDummy geladen und ein neuer State zugeordnet.
+ * Außerdem steht hier die Erkennung des Druecken der Tasten durch den Spieler.
+ */
 public class NetworkDummy extends BasicGameState {
   
   Image background = null;
@@ -73,7 +79,6 @@ public class NetworkDummy extends BasicGameState {
    * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
    *      org.newdawn.slick.state.StateBasedGame, int)
    */
-  
   public void update(GameContainer container, StateBasedGame game, int delta) {
   }
   
@@ -120,6 +125,14 @@ public class NetworkDummy extends BasicGameState {
     
   }
   
+  /**
+   * Hier wird die Tastenerkennung von 0 bis 9 und zusaetzlich die Taste "Back" und der "." erkannt und auch als solche aufgeschrieben.
+   * Damit wird erreicht, dass nur die Zahlen und der Punkt aufgeschrieben werden koennen - da ja eine IP Adresse lediglich Zahlen und Punkte 
+   * aufweist. Durch "Back" wird ein Loeschen durch unbeabsichtigte Tastendruecke moeglich.
+   * @param input
+   * @param c
+   * @return
+   */
   public String parseIP(String input, int c) {
     
     if (Input.KEY_0 == c) {
