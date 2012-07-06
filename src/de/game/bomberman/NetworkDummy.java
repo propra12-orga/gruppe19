@@ -13,8 +13,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
-import de.game.bomberman.MainMenu;
-
 /**
  * Die Klasse "NetworkDummy" ist fuer das Netzwerk im Spiel verantwortlich.
  * In dieser Klasse werden die Menuepunkte "Host, Join, Back" geschrieben und ins Fenster gezeichnet.
@@ -32,7 +30,6 @@ public class NetworkDummy extends BasicGameState {
   // Der Index der ausgewaehlten Option
   private int selected;
   private StateBasedGame game;
-  private GameContainer container;
   private String ip;
   private String prompt;
   
@@ -48,7 +45,6 @@ public class NetworkDummy extends BasicGameState {
       throws SlickException {
     background = new Image("res/menubackground.jpg");
     this.game = game;
-    this.container = container;
     ip = "";
     prompt = "Enter target IP adress to join:";
     font = new AngelCodeFont("res/fonts/demo2.fnt", "res/fonts/demo2_00.tga");

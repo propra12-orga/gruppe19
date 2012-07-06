@@ -1,8 +1,7 @@
 package de.game.bomberman;
 
-import java.util.*;
-import org.newdawn.slick.*;
-import org.newdawn.slick.tiled.TiledMap;
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,6 +12,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.tiled.TiledMap;
 
 
 /**
@@ -248,22 +248,30 @@ public class RandomMap extends BasicGameState {
     }
   }
   
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
+   */
+  @Override
   public void keyPressed(int key, char c) {
-    if(ende.isGameOver()){
+    // Verlasse GameState sobald Taste gedrueckt wurde
+    if (ende.isGameOver()) {
       game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
-              new FadeInTransition(Color.black));
+          new FadeInTransition(Color.black));
       return;
     }
+    
+    // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
     switch (key) {
       case Input.KEY_ESCAPE:
       case Input.KEY_P:
         try {
           game.addState(new GamePaused(game.getCurrentStateID()));
           game.getState(GamePaused.stateID).init(game.getContainer(), game);
-          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black,100),
-              new FadeInTransition(Color.black,100));
+          game.enterState(GamePaused.stateID, new FadeOutTransition(
+              Color.black, 100), new FadeInTransition(Color.black, 100));
         } catch (SlickException e) {
-          // TODO Auto-generated catch block
           e.printStackTrace();
         }
         break;

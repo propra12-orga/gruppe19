@@ -1,8 +1,7 @@
 package de.game.bomberman;
 
-import java.util.*;
-import org.newdawn.slick.*;
-import org.newdawn.slick.tiled.TiledMap;
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -13,6 +12,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.tiled.TiledMap;
 
 
 /**
@@ -120,7 +120,7 @@ public class StaticMap extends BasicGameState {
 
     // Spieler 1
     player.add(0, new Player(32, 32, 1));
-    // Tastenbelegung Spieler 2
+    // Tastenbelegung Spieler 1
     ((Player) player.get(0)).setKeys(Input.KEY_LEFT, Input.KEY_RIGHT,
         Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE);
   
@@ -144,15 +144,23 @@ public class StaticMap extends BasicGameState {
    * int)
    */
   public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
-    
-    
+
     // falls keine Spieler mehr vorhanden sind: Spielende
     if (player.isEmpty()) {
       ende.setGameOver(true);
     }
-    else {
-
-      // Groesse der Explosion + Update 
+    // Abfrage: weiterspielen oder beenden
+    if (!ende.isGameOver()) {
+      for (int i = 0; i < bomben.size(); i++) {
+        Bombe bomb = (Bombe) bomben.get(i);
+        bomb.update(arg1); // Bomben-Update
+        // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
+        if (bomb.isExplode()) {
+          buildExplodeArray(bomb);
+          bomben.remove(bomb);
+        }
+      }
+      // Groesse der Explosion + Update
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -165,7 +173,7 @@ public class StaticMap extends BasicGameState {
           explosion.remove(i);
         }
       }
-      //Update der Explosion
+      // Update der Explosion
       for (SpielObjekt expl : explosion) {
         expl.update(arg1);
       }
@@ -203,13 +211,10 @@ public class StaticMap extends BasicGameState {
           if ((pl.getY() % 32) == 0) {
             pl.move(0, +1, Mauer);
           }
-        }      
+        }
+        
         // Eingabe der Steuerung: Bombe legen
-
-        int tmpCounter = pl.getBombCounter();
-        int tmpMax = pl.getMaxCounter();
-        // Eingabe der Steuerung: Bombe legen
-        if (container.getInput().isKeyPressed(pl.getBomb()) && tmpCounter < tmpMax) {
+        if (container.getInput().isKeyPressed(pl.getBomb())) {
           float BombX;
           float BombY;
           // Koordinaten runden der Bombe
@@ -217,25 +222,10 @@ public class StaticMap extends BasicGameState {
           BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
           Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
           if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
-            tmpCounter++;
-            pl.setBombCounter(tmpCounter);
             bomben.add(tmpBomb);
             // Sound der Bombe laden
             Sound fx = new Sound("res/sfx/sfxtest.wav");
             fx.play();
-          }
-        }
-        
-        for (int i1 = 0; i1 < bomben.size(); i1++) {
-          Bombe bomb = (Bombe) bomben.get(i1);
-          bomb.update(arg1); // Bomben-Update
-          // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
-          if (bomb.isExplode()) {
-            buildExplodeArray(bomb);
-            bomben.remove(bomb);
-            tmpCounter--;
-            pl.setBombCounter(tmpCounter);  
-            
           }
         }
         if (exit.pruefeKollsion(pl) && MapCounter<2) {
@@ -248,22 +238,30 @@ public class StaticMap extends BasicGameState {
     }
   }
   
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
+   */
+  @Override
   public void keyPressed(int key, char c) {
-    if(ende.isGameOver()){
+    // Verlasse GameState sobald Taste gedrueckt wurde
+    if (ende.isGameOver()) {
       game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
-              new FadeInTransition(Color.black));
+          new FadeInTransition(Color.black));
       return;
     }
+    
+    // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
     switch (key) {
       case Input.KEY_ESCAPE:
       case Input.KEY_P:
         try {
           game.addState(new GamePaused(game.getCurrentStateID()));
           game.getState(GamePaused.stateID).init(game.getContainer(), game);
-          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black,100),
-              new FadeInTransition(Color.black,100));
+          game.enterState(GamePaused.stateID, new FadeOutTransition(
+              Color.black, 100), new FadeInTransition(Color.black, 100));
         } catch (SlickException e) {
-          // TODO Auto-generated catch block
           e.printStackTrace();
         }
         break;
