@@ -14,6 +14,14 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+/**
+ * Die Klasse "Options" ist fuer die Optionen im Spiel zustaendig.
+ * In dieser Klasse werden die Menuepunkte "Fullscreen, Music ON, Sound Effects ON, Hide FPS, Credits und Back" 
+ * geschrieben und ins Fenster gezeichnet.
+ * Musik bei Auswahl der einzelnen Menupunkte erklingt und das Hintergrundbild wird geladen.
+ * Fuer Options wird hier eine neue StateID zugeteilt.
+ * Außerdem steht die Erkennung des Druecken der Tasten durch den Spieler auch fuer diesen Menuepunkt hier.
+ */
 public class Options extends BasicGameState {
   
   Image background = null;
@@ -29,6 +37,9 @@ public class Options extends BasicGameState {
   private GameContainer container;
   private Sound fx = null;
   
+  /* 
+   * @see org.newdawn.slick.state.BasicGameState#getID()
+   */
   public int getID() {
     return stateID;
   }
@@ -71,10 +82,10 @@ public class Options extends BasicGameState {
    * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
    *      org.newdawn.slick.state.StateBasedGame, int)
    */
-  
   public void update(GameContainer container, StateBasedGame game, int delta) {
   }
   
+  // Tastendruck Erkennung
   /**
    * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
    */
@@ -108,6 +119,7 @@ public class Options extends BasicGameState {
             e.printStackTrace();
           }
           break;
+          // das Aus und Anmachen von Musik
         case 1:
           if (container.isMusicOn()) {
             container.setMusicOn(false);
@@ -117,6 +129,7 @@ public class Options extends BasicGameState {
             options[selected]="Music ON";
           }
           break;
+          // ...von Sound
         case 2:
           if (container.isSoundOn()) {
             container.setSoundOn(false);
@@ -126,6 +139,7 @@ public class Options extends BasicGameState {
             options[selected]="Sound Effects ON";
           }
           break;
+          // ...und von FPS wird hier moeglich
         case 3:
           if (container.isShowingFPS()) {
             container.setShowFPS(false);
@@ -136,6 +150,8 @@ public class Options extends BasicGameState {
           }
           
           break;
+          
+          // FadeOutTransition ist fuer einen fluessigen Ueberlauf zustaendig
           
         case 4:
           game.enterState(Credits.stateID, new FadeOutTransition(Color.black),
