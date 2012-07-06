@@ -6,8 +6,10 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
- * ?????????????????????????????????????????????????????????????????????????????
- * 
+ * Die Klasse "MultiplayerOptions" ertellt das Menu des Multiplayers.
+ * In dieser Klasse werden die Menuepunkte geschrieben und ins Fenster gezeichnet.
+ * Musik und das Hintergrundbild werden geladen und es wird eine neue StateID zugeteilt.
+ * Auﬂerdem steht hier die Erkennung des Druecken der Tasten durch den Spieler.
  */
 public class MultiplayerOptions extends BasicGameState {
   
@@ -27,6 +29,9 @@ public class MultiplayerOptions extends BasicGameState {
   
   // KONSTRUKTOR:
   
+  /* 
+   * @see org.newdawn.slick.state.BasicGameState#getID()
+   */
   public int getID() {
     return stateID;
   }
@@ -62,12 +67,11 @@ public class MultiplayerOptions extends BasicGameState {
           230 + (i * 50));
     }
   }
-  
+      // die Erkennung des Tastendrucks
   /**
    * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
    *      org.newdawn.slick.state.StateBasedGame, int)
    */
-  
   public void update(GameContainer container, StateBasedGame game, int delta) {
   }
   
@@ -105,11 +109,17 @@ public class MultiplayerOptions extends BasicGameState {
     }
   }
   
+  /**
+   * Durch die Auswahl im MultiplayerOptions wird der Spieler - je nachdem was er ausgewaehlt hat - 
+   * in einen anderen State des Spiels gebracht.
+   * FadeOutTransition ist fuer ein fluessiges Uebergehen der States zustaendig.
+   * @param stateID
+   */
   private void enterStateAndreinit(int stateID) {
     try {
       game.getState(stateID).init(game.getContainer(), game);
     } catch (SlickException e) {
-      // TODO Auto-generated catch block
+      
       e.printStackTrace();
     }
     game.enterState(stateID, new FadeOutTransition(Color.black),
