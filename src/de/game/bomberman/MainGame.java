@@ -6,7 +6,7 @@ import org.newdawn.slick.state.*;
 public class MainGame extends StateBasedGame {
   
   public MainGame() {
-    super("State Based Test");
+    super("Bomberman");
   }
   
   public void initStatesList(GameContainer container) {

@@ -50,9 +50,9 @@ public class MainMenu extends BasicGameState {
         g.setColor(Color.white);
         
         for (int i=0;i<options.length;i++) {
-            g.drawString(options[i], 400 - (font.getWidth(options[i])/2), 350+(i*50));
+            g.drawString(options[i], 400 - (font.getWidth(options[i])/2), 230+(i*50));
             if (selected == i) {
-                g.drawRect(200,340+(i*50),400,50);
+                g.drawRect(200,220+(i*50),400,50);
             }
         }
     }
