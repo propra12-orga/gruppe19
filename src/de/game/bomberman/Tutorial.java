@@ -3,11 +3,15 @@ package de.game.bomberman;
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 /**
@@ -41,6 +45,7 @@ public class Tutorial extends BasicGameState {
   public static final int stateID = 1;
   
   protected boolean debug = false;
+  private StateBasedGame game;
   
 //KONSTRUKTOR:
   
@@ -98,11 +103,20 @@ public class Tutorial extends BasicGameState {
    */
   public void init(GameContainer container, StateBasedGame sb) throws SlickException {
     
+    // reset
+    player.clear();
+    bomben.clear();
+    Mauer.clear();
+    ende = null;
+    exit = null;
+    karte = null;
+    
     // Hier wird die Musik
     // geladen...
     Music music = new Music("res/Music/test.ogg");
     // ... und im Loop abgespielt
     music.loop();
+    this.game = sb;
     
     // Initialisierung der Karte
     // Nach Neuladen des Spiels, wird der Map-Counter erhoeht, sodass die naechste Map geladen wird
@@ -233,10 +247,6 @@ public class Tutorial extends BasicGameState {
             fx.play();
           }
         }
-        // Ende des Spiels durch: Esc druecken
-        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)) {
-          ende.setGameOver(true);
-        }
         if (exit.pruefeKollsion(pl) && MapCounter<2) {
           restartGame(container,sb);
         }
@@ -326,6 +336,27 @@ public class Tutorial extends BasicGameState {
         }
       }
     }    
+  }
+  
+  public void keyPressed(int key, char c) {
+    // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
+    switch (key) {
+      case Input.KEY_ESCAPE:
+      case Input.KEY_P:
+        try {
+          game.addState(new GamePaused(game.getCurrentStateID()));
+          game.getState(GamePaused.stateID).init(game.getContainer(), game);
+          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black,100),
+              new FadeInTransition(Color.black,100));
+        } catch (SlickException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        break;
+      
+      default:
+        break;
+    }
   }
   
   /**

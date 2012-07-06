@@ -273,8 +273,8 @@ public class SingleplayerDummy extends BasicGameState {
         try {
           game.addState(new GamePaused(game.getCurrentStateID()));
           game.getState(GamePaused.stateID).init(game.getContainer(), game);
-          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black),
-              new FadeInTransition(Color.black));
+          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black,100),
+              new FadeInTransition(Color.black,100));
         } catch (SlickException e) {
           // TODO Auto-generated catch block
           e.printStackTrace();
