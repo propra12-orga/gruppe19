@@ -33,11 +33,8 @@ public class SpielEnde extends SpielObjekt {
    * und die Breite des Fensters anpassen. Die Farbe des Fensters wird mit
    * Color() angepasst. Transparent steht fuer die Transparenz-charakteristik
    * des Fensters.
-   * 
-   * @param height
-   *          steht fuer die Hoehe des SpielEnde-Fensters
-   * @param width
-   *          steht fuer die Breite des SpielEnde-Fensters
+   * @param height steht fuer die Hoehe des SpielEnde-Fensters
+   * @param width steht fuer die Breite des SpielEnde-Fensters
    * @throws SlickException
    */
   public SpielEnde(int height, int width) throws SlickException {
@@ -74,9 +71,7 @@ public class SpielEnde extends SpielObjekt {
    * Der Setter isGameOver prueft durch den Booleantyp, ob er angezeigt werden
    * soll. Bspw. wird das Fenster durch ESC oder betreten eines Exit-Felds auf
    * true gesetzt und angezeigt.
-   * 
-   * @param isGameOver
-   *          set isGameOver
+   * @param isGameOver set isGameOver
    */
   public void setGameOver(boolean isGameOver) {
     this.isGameOver = isGameOver;
