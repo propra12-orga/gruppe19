@@ -16,8 +16,16 @@ public class SpielEnde extends SpielObjekt {
   private Font font = new AngelCodeFont("res/fonts/game_over_font.fnt",
                               new Image("res/fonts/game_over_font.png"));
   private boolean isGameOver;
-  private static final String GAME_OVER = "GAME OVER";
+  private String Text = "GAME OVER";
   
+  public String getText() {
+    return Text;
+  }
+
+  public void setText(String text) {
+    Text = text;
+  }
+
   /**
    * Der Konstruktor SpielEnde erstellt das Fenster am Ende eines jeden Spiels mit dem Schriftzug
    * "Game Over". Dazu gibt er Parameter vor, die die Hoehe und die Breite des Fensters
@@ -48,9 +56,9 @@ public class SpielEnde extends SpielObjekt {
       g.fillRect(0, 0, width, height);
       g.setColor(Color.white);
       g.setFont(font);
-      g.drawString(GAME_OVER, (width-font.getWidth(GAME_OVER)) / 2, (height-font.getHeight(GAME_OVER)) / 2);
+      g.drawString(Text, (width-font.getWidth(Text)) / 2, (height-font.getHeight(Text)) / 2);
       g.resetFont();
-      g.drawString("Press any key to return to main menu.", (width-g.getFont().getWidth("Press any key to return to main menu."))/2, (height-font.getHeight(GAME_OVER))/2+font.getHeight(GAME_OVER));
+      g.drawString("Press any key to return to main menu.", (width-g.getFont().getWidth("Press any key to return to main menu."))/2, (height-font.getHeight(Text))/2+font.getHeight(Text));
     }
   }
   

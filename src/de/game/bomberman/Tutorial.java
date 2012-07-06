@@ -154,17 +154,7 @@ public class Tutorial extends BasicGameState {
       ende.setGameOver(true);
     }
     // Abfrage: weiterspielen oder beenden
-    if (ende.isGameOver()) {
-      // beenden
-      if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        resetGame(container,sb);
-        sb.enterState(0); 
-      }
-      // weiterspielen
-      if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        retry(container,sb);
-      }
-    } else {
+    if (!ende.isGameOver()) {
       for (int i = 0; i < bomben.size(); i++) {
         Bombe bomb = (Bombe) bomben.get(i);
         bomb.update(arg1); // Bomben-Update
@@ -251,7 +241,7 @@ public class Tutorial extends BasicGameState {
       }
     }
   }
-  
+
   /**
    * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
    * ## Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
@@ -333,7 +323,11 @@ public class Tutorial extends BasicGameState {
     }    
   }
   
+  /* (non-Javadoc)
+   * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
+   */
   public void keyPressed(int key, char c) {
+    // Verlasse GameState sobald Taste gedrückt wurde
     if(ende.isGameOver()){
       game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
               new FadeInTransition(Color.black));

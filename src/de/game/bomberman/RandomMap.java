@@ -3,11 +3,15 @@ package de.game.bomberman;
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
 
 
 /**
@@ -139,23 +143,13 @@ public class RandomMap extends BasicGameState {
   public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
     
     
-    // falls keine Spieler mehr vorhanden sind: Spielende
-    if (player.isEmpty()) {
+    // falls nur noch ein Spieler mehr vorhanden sind: Spielende
+    if (player.size()==1) {
+      ende.setText("Player " + ((Player)player.get(0)).getColor() + "\n win!");
       ende.setGameOver(true);
     }
     // Abfrage: weiterspielen oder beenden
-    if (ende.isGameOver()) {
-      // beenden
-      if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        restartGame(container,sb);
-        sb.enterState(0);  
-      }
-      // weiterspielen
-      if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        restartGame(container,sb);
-      }
-
-    } else {
+    if (!ende.isGameOver()) {
       for (int i = 0; i < bomben.size(); i++) {
         Bombe bomb = (Bombe) bomben.get(i);
         bomb.update(arg1); // Bomben-Update
@@ -234,12 +228,39 @@ public class RandomMap extends BasicGameState {
           }
         }
         // Ende des Spiels durch: Esc druecken
-        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
-            // ..oder durch Spieler auf Exit-Feld
-            || exit.pruefeKollsion(pl)) {
+        if (exit.pruefeKollsion(pl)) {
+          ende.setText("Player " + pl.getColor() + "\n win!");
           ende.setGameOver(true);
         }
       }
+    }
+  }
+  
+  public void keyPressed(int key, char c) {
+    // Verlasse GameState sobald Taste gedrückt wurde
+    if(ende.isGameOver()){
+      game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
+              new FadeInTransition(Color.black));
+      return;
+    }
+    
+    // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
+    switch (key) {
+      case Input.KEY_ESCAPE:
+      case Input.KEY_P:
+        try {
+          game.addState(new GamePaused(game.getCurrentStateID()));
+          game.getState(GamePaused.stateID).init(game.getContainer(), game);
+          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black,100),
+              new FadeInTransition(Color.black,100));
+        } catch (SlickException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        break;
+      
+      default:
+        break;
     }
   }
   

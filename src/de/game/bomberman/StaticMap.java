@@ -3,22 +3,31 @@ package de.game.bomberman;
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.state.transition.FadeInTransition;
+import org.newdawn.slick.state.transition.FadeOutTransition;
+
 /**
- * ??????????????????????????????????????????????????????????????????????????????????????�ｽ�ｽ�ｽ
- * Das ist die Schnittstelle aller Klassen. Die Klasse StaticMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
- * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
- * Hinzukommt noch Exit und Ende.
- * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
- * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die Musik wird hier geladen.
- * # Hier findet die Abfrage ab, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier gesetzt.
- * Hier wird staendig Abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
- * # Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
+ * ?????????????????????????????????????????????????????????????????????????????
+ * ?????????�ｽ�ｽ�ｽ Das ist die Schnittstelle aller Klassen. Die Klasse StaticMap
+ * ruft hier von allen Klassen Konstruktoren und Methoden auf. Hier wird das
+ * Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als
+ * auch die Explosionen werden hier erstellt. Hinzukommt noch Exit und Ende.
+ * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die
+ * Karte in einem Fenster mit den Spielern, den Mauern, den Explosionen, des
+ * Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die
+ * Musik wird hier geladen. # Hier findet die Abfrage ab, wenn keine Spieler
+ * mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier
+ * gesetzt. Hier wird staendig Abgefragt, wo der Spieler sich nach
+ * Tastatureingaben befindet. # Die Kettenreaktion und Zerstoerung durch die
+ * Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart
+ * verantwortlich.
  */
 public class StaticMap extends BasicGameState {
   
@@ -35,19 +44,16 @@ public class StaticMap extends BasicGameState {
   // Variablen: Exit und Ende
   protected Exit exit;
   protected SpielEnde ende;
-
-
+  
   public static final int stateID = 3;
   
   protected boolean debug = false;
   private StateBasedGame game;
   
-  
-//KONSTRUKTOR:
-  
+  // KONSTRUKTOR:
   
   public int getID() {
-      return stateID;
+    return stateID;
   }
   
   // RENDER BLOCK: Grafiken werden gezeichnet
@@ -57,7 +63,8 @@ public class StaticMap extends BasicGameState {
    * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
    * org.newdawn.slick.Graphics)
    */
-  public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
+  public void render(GameContainer container, StateBasedGame sb, Graphics g)
+      throws SlickException {
     
     // Hoehe und Breite der Karte
     container.setVSync(true);
@@ -67,7 +74,7 @@ public class StaticMap extends BasicGameState {
         / (float) (karte.getHeight() * karte.getTileHeight());
     g.scale(scaleX, scaleY); // bekommt die Werte
     karte.render(0, 0);
-
+    
     // Bomben werden gezeichnet
     for (SpielObjekt bomb : bomben) {
       bomb.draw(g);
@@ -82,12 +89,12 @@ public class StaticMap extends BasicGameState {
     for (SpielObjekt exp : explosion) {
       exp.draw(g);
     }
-    // Wand  wird gezeichnet
+    // Wand wird gezeichnet
     for (SpielObjekt bl : Mauer) {
       bl.draw(g);
     }
     // Menue, Ende wird gezeichnet
-      ende.draw(g);
+    ende.draw(g);
   }
   
   // INIT BLOCK: Initialisierung der Daten
@@ -96,7 +103,8 @@ public class StaticMap extends BasicGameState {
   /*
    * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
    */
-  public void init(GameContainer container, StateBasedGame sb) throws SlickException {
+  public void init(GameContainer container, StateBasedGame sb)
+      throws SlickException {
     
     // reset
     player.clear();
@@ -114,9 +122,9 @@ public class StaticMap extends BasicGameState {
     player.add(0, new Player(32, 32, 1));
     // Tastenbelegung Spieler 1
     ((Player) player.get(0)).setKeys(Input.KEY_LEFT, Input.KEY_RIGHT,
-        Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE); 
+        Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE);
     
-    // Spieler 2 
+    // Spieler 2
     player.add(1, new Player(544, 32, 2));
     // Tastenbelegung Spieler 2
     ((Player) player.get(1)).setKeys(Input.KEY_A, Input.KEY_D, Input.KEY_W,
@@ -125,7 +133,8 @@ public class StaticMap extends BasicGameState {
     // Exit wird erstellt und positioniert bei (x, y)
     exit = new Exit(288, 222);
     // Ende
-    ende = new SpielEnde(karte.getHeight()*karte.getTileHeight(), karte.getWidth()*karte.getTileWidth());
+    ende = new SpielEnde(karte.getHeight() * karte.getTileHeight(),
+        karte.getWidth() * karte.getTileWidth());
   }
   
   // UPDATE BLOCK: Daten werden hier nachgeguckt und stetig geupdated
@@ -135,23 +144,24 @@ public class StaticMap extends BasicGameState {
    * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
    * int)
    */
-  public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
+  public void update(GameContainer container, StateBasedGame sb, int arg1)
+      throws SlickException {
     
-    
-    // falls keine Spieler mehr vorhanden sind: Spielende
-    if (player.isEmpty()) {
+    // falls nur noch ein Spieler mehr vorhanden sind: Spielende
+    if (player.size()==1) {
+      ende.setText("Player " + ((Player)player.get(0)).getColor() + "\n win!");
       ende.setGameOver(true);
     }
     // Abfrage: weiterspielen oder beenden
     if (ende.isGameOver()) {
       // beenden
       if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        restartGame(container,sb);
-        sb.enterState(0);  
+        restartGame(container, sb);
+        sb.enterState(0);
       }
       // weiterspielen
       if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        restartGame(container,sb);
+        restartGame(container, sb);
       }
     } else {
       for (int i = 0; i < bomben.size(); i++) {
@@ -163,7 +173,7 @@ public class StaticMap extends BasicGameState {
           bomben.remove(bomb);
         }
       }
-      // Groesse der Explosion + Update 
+      // Groesse der Explosion + Update
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -176,7 +186,7 @@ public class StaticMap extends BasicGameState {
           explosion.remove(i);
         }
       }
-      //Update der Explosion
+      // Update der Explosion
       for (SpielObjekt expl : explosion) {
         expl.update(arg1);
       }
@@ -232,19 +242,52 @@ public class StaticMap extends BasicGameState {
           }
         }
         // Ende des Spiels durch: Esc druecken
-        if (container.getInput().isKeyPressed(Input.KEY_ESCAPE)
-            // ..oder durch Spieler auf Exit-Feld
-            || exit.pruefeKollsion(pl)) {
+        // ..oder durch Spieler auf Exit-Feld
+        if (exit.pruefeKollsion(pl)) {
+          ende.setText("Player " + pl.getColor() + "\n win!");
           ende.setGameOver(true);
         }
       }
     }
   }
   
+  /* (non-Javadoc)
+   * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
+   */
+  public void keyPressed(int key, char c) {
+    // Verlasse GameState sobald Taste gedrückt wurde
+    if(ende.isGameOver()){
+      game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
+              new FadeInTransition(Color.black));
+      return;
+    }
+    
+    // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
+    switch (key) {
+      case Input.KEY_ESCAPE:
+      case Input.KEY_P:
+        try {
+          game.addState(new GamePaused(game.getCurrentStateID()));
+          game.getState(GamePaused.stateID).init(game.getContainer(), game);
+          game.enterState(GamePaused.stateID, new FadeOutTransition(Color.black,100),
+              new FadeInTransition(Color.black,100));
+        } catch (SlickException e) {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+        break;
+      
+      default:
+        break;
+    }
+  }
+  
   /**
-   * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
-   * ## Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
-   * und zu entfernen.
+   * @param spObj
+   *          Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe ##
+   *          Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die
+   *          zerstoerbaren Bloecke und den Gegner auszuschaltern und zu
+   *          entfernen.
    * @throws SlickException
    */
   private void buildExplodeArray(SpielObjekt spObj) throws SlickException {
@@ -319,17 +362,18 @@ public class StaticMap extends BasicGameState {
           
         }
       }
-    }    
+    }
   }
   
   /**
    * @param container
-   * ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
-   * von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und wieder
-   * in der anderen Methode neu gerendert.
+   *          ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
+   *          von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt,
+   *          dh geloescht und wieder in der anderen Methode neu gerendert.
    * @throws SlickException
    */
-  private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {
+  private void restartGame(GameContainer container, StateBasedGame sb)
+      throws SlickException {
     
     explosion.clear();
     player.clear();
@@ -338,17 +382,19 @@ public class StaticMap extends BasicGameState {
     ende = null;
     exit = null;
     karte = null;
-    init(container,sb);
+    init(container, sb);
   }
   
   /**
-   * @param ref Map-Name
+   * @param ref
+   *          Map-Name
    * @throws SlickException
    */
   
   /*
-   *  Diese Methode initialisiert die Map mit sichtbaren Bl�ｽcken. Bei der TileID 2 werden zerstoerbare Mauern gesetzt,
-   *  bei 17 unzerstoerbare. (Angegeben durch die Boolean Werte)
+   * Diese Methode initialisiert die Map mit sichtbaren Bl�ｽcken. Bei der TileID
+   * 2 werden zerstoerbare Mauern gesetzt, bei 17 unzerstoerbare. (Angegeben
+   * durch die Boolean Werte)
    */
   
   public void initMap(String ref) throws SlickException {

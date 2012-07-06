@@ -3,8 +3,10 @@ package de.game.bomberman;
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
@@ -149,6 +151,7 @@ public class SingleplayerDummy extends BasicGameState {
     
     // falls keine Spieler mehr vorhanden sind: Spielende
     if (player.isEmpty()) {
+      ende.setText("Game over");
       ende.setGameOver(true);
     }
     // Abfrage: weiterspielen oder beenden
@@ -253,14 +256,26 @@ public class SingleplayerDummy extends BasicGameState {
         if (exit.pruefeKollsion(pl) && MapCounter<2) {
           restartGame(container,sb);
         }
-        if (exit.pruefeKollsion(pl) && MapCounter==2) { 
+        if (exit.pruefeKollsion(pl) && MapCounter==2) {
+          ende.setText("You win!");
           ende.setGameOver(true);
         }
       }
     }
   }
   
+  /* (non-Javadoc)
+   * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
+   */
   public void keyPressed(int key, char c) {
+    // Verlasse GameState sobald Taste gedrückt wurde
+    if(ende.isGameOver()){
+      game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
+              new FadeInTransition(Color.black));
+      return;
+    }
+    
+    // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
     switch (key) {
       case Input.KEY_ESCAPE:
       case Input.KEY_P:
