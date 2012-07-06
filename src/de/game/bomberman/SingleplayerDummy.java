@@ -45,6 +45,8 @@ public class SingleplayerDummy extends BasicGameState {
   protected ArrayList<SpielObjekt> Mauer = new ArrayList<SpielObjekt>();
   // SpielObjekt: Explosion
   protected ArrayList<SpielObjekt> explosion = new ArrayList<SpielObjekt>();
+  // SpielObjekt: PowerUp
+  protected ArrayList<SpielObjekt> powerup = new ArrayList<SpielObjekt>();
   // Variablen: Exit und Ende
   protected Exit exit;
   protected SpielEnde ende;
@@ -97,6 +99,11 @@ public class SingleplayerDummy extends BasicGameState {
     for (SpielObjekt bl : Mauer) {
       bl.draw(g);
     }
+    // Zeichne PowerUps
+    for (SpielObjekt pup : powerup) {
+      pup.draw(g);
+    }
+    
     // Menue, Ende wird gezeichnet
     ende.draw(g);
   }
@@ -118,6 +125,9 @@ public class SingleplayerDummy extends BasicGameState {
     exit = null;
     karte = null;
     this.game = sb;
+    
+    powerup.add(new PowerUP(64, 64, 0, 0, 1, 0));
+    powerup.add(new PowerUP(256, 256, 1, 0, 0, 1));
     
     // Initialisierung der Karte
     // Nach Neuladen des Spiels, wird der Map-Counter erhoeht, sodass die
@@ -188,14 +198,19 @@ public class SingleplayerDummy extends BasicGameState {
           explosion.remove(i);
         }
       }
-      // Update der Explosion
-      for (SpielObjekt expl : explosion) {
-        expl.update(arg1);
-      }
+      
       // Update des Spielers
       for (int i = 0; i < player.size(); i++) {
         Player pl = (Player) player.get(i);
         pl.update(arg1, Mauer);
+        
+        // überprüfe Kollision mit PowerUPs
+        ArrayList<SpielObjekt> PUpsKoll = pl.pruefeKollsion(powerup);
+        for (SpielObjekt pup : PUpsKoll) {
+          pl.setMaxCounter(pl.getMaxCounter()+((PowerUP)pup).getBombcount());
+          pl.setBombRadius(pl.getBombRadius()+((PowerUP)pup).getBombradius());
+          powerup.remove(pup);
+        }
         
         // Steuerung des Spielers
         // Eingabe der Steuerung: Links gehen

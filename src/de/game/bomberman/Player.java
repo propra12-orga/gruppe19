@@ -27,7 +27,8 @@ public class Player extends SpielObjekt {
   private int left, right, up, down, bomb;
   protected int color = 1;
   private int BombCounter = 0;
-  private int MaxCounter = 2;
+  private int MaxCounter = 1;
+  private int BombRadius=2;
   
   /**
    * Dieser Konstruktor ist nicht mehr wirklich noetig.
@@ -200,7 +201,7 @@ public class Player extends SpielObjekt {
     }
     
     g.drawImage(playerSSheet.getSprite(spalte, zeile), x, y);
-    g.draw(kollisionsFlaeche);
+    //g.draw(kollisionsFlaeche);
     g.drawString("X:" + getX() + " Y:" + getY(), 32 + (color - 1) * 128, 460);
   }
   
@@ -355,5 +356,19 @@ public class Player extends SpielObjekt {
     this.up = up;
     this.down = down;
     this.bomb = bomb;
+  }
+
+  /**
+   * @return the bombRadius
+   */
+  public int getBombRadius() {
+    return BombRadius;
+  }
+
+  /**
+   * @param bombRadius the bombRadius to set
+   */
+  public void setBombRadius(int bombRadius) {
+    BombRadius = bombRadius;
   }
 }

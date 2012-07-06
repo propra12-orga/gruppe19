@@ -11,9 +11,9 @@ import de.game.bomberman.SpielObjekt;
  */
 public class PowerUP extends SpielObjekt {
   
-  static private String imPath; 
   private Image im;
   private int type=0;
+  private int speed, bombcount, bombradius;
   
   /**
    * Auf diese Koordinaten wird der Ausgang im Spiel geladen.
@@ -21,23 +21,27 @@ public class PowerUP extends SpielObjekt {
    * @param y Koordinate des Ausgangs
    * @throws SlickException
    */
-  public PowerUP(int x, int y, int type) throws SlickException {
+  public PowerUP(int x, int y, int type, int speed, int bombcount, int bombradius) throws SlickException {
     super(x, y);
     this.setType(type);
     
     switch (type) {
       case 0:
-        im = new Image(imPath);
+        im = new Image("res/pup_bomb.png");
         break;
       case 1:
-        im = new Image(imPath);
+        im = new Image("res/pup_bombradius.png");
         break;
       case 2:
-        im = new Image(imPath);
+        im = new Image("res/pup_speed.png");
         break;
       default:
         break;
     }
+    
+    this.speed = speed;
+    this.bombcount = bombcount;
+    this.bombradius = bombradius;
       
     kollisionsFlaeche = new Polygon(new float[] { x, y, x + 31, y, x + 31,
         y + 31, x, y + 31 });
@@ -73,6 +77,48 @@ public class PowerUP extends SpielObjekt {
    */
   public void setType(int type) {
     this.type = type;
+  }
+
+  /**
+   * @return the bombradius
+   */
+  public int getBombradius() {
+    return bombradius;
+  }
+
+  /**
+   * @param bombradius the bombradius to set
+   */
+  public void setBombradius(int bombradius) {
+    this.bombradius = bombradius;
+  }
+
+  /**
+   * @return the speed
+   */
+  public int getSpeed() {
+    return speed;
+  }
+
+  /**
+   * @param speed the speed to set
+   */
+  public void setSpeed(int speed) {
+    this.speed = speed;
+  }
+
+  /**
+   * @return the bombcount
+   */
+  public int getBombcount() {
+    return bombcount;
+  }
+
+  /**
+   * @param bombcount the bombcount to set
+   */
+  public void setBombcount(int bombcount) {
+    this.bombcount = bombcount;
   }
   
 }
