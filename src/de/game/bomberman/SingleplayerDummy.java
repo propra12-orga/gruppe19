@@ -109,12 +109,6 @@ public class SingleplayerDummy extends BasicGameState {
     ende = null;
     exit = null;
     karte = null;
-    
-    // Hier wird die Musik
-    // geladen...
-    Music music = new Music("res/Music/test.ogg");
-    // ... und im Loop abgespielt
-    music.loop();
     this.game = sb; 
     
     // Initialisierung der Karte
@@ -140,7 +134,7 @@ public class SingleplayerDummy extends BasicGameState {
     // Exit wird erstellt und positioniert bei (x, y)
     exit = new Exit(544, 416);
     // Ende
-    ende = new SpielEnde(container.getHeight(), container.getWidth());
+    ende = new SpielEnde(karte.getHeight()*karte.getTileHeight(), karte.getWidth()*karte.getTileWidth());
   }
   
   // UPDATE BLOCK: Daten werden hier nachgeguckt und stetig geupdated

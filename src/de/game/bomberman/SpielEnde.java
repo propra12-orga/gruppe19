@@ -12,13 +12,11 @@ public class SpielEnde extends SpielObjekt {
   
   private int height;
   private int width;
-  private int textWidth;
-  private int textHeight;
   private Color transparent;
-  private Font fontGameOver = new AngelCodeFont("res/fonts/game_over_font.fnt",
+  private Font font = new AngelCodeFont("res/fonts/game_over_font.fnt",
                               new Image("res/fonts/game_over_font.png"));
   private boolean isGameOver;
-  private static final String GAME_OVER = "Try Again?" + "\n" + "     Y/N";
+  private static final String GAME_OVER = "GAME OVER";
   
   /**
    * Der Konstruktor SpielEnde erstellt das Fenster am Ende eines jeden Spiels mit dem Schriftzug
@@ -33,13 +31,8 @@ public class SpielEnde extends SpielObjekt {
     super(height, width);
     this.height = height;
     this.width = width;
-    // Spezifikation wie das Fenster aussehen soll
     transparent = new Color(Color.black);
-    transparent.a = 0.8f;
-    //Text Spezizifikation
-    textWidth = fontGameOver.getWidth(GAME_OVER);
-    textHeight = fontGameOver.getHeight(GAME_OVER);
-    
+    transparent.a = 0.8f;    
   }
   
   @Override
@@ -48,13 +41,16 @@ public class SpielEnde extends SpielObjekt {
    */
   public void draw(Graphics g) {
     if (isGameOver()) {
+      width = 640;
+      height = 480;
       // Zeichnet das Fenster
       g.setColor(transparent);
       g.fillRect(0, 0, width, height);
       g.setColor(Color.white);
-      g.setFont(fontGameOver);
-      g.drawString(GAME_OVER, (width / 2) - (textWidth / 2), ((height / 2))
-          + 100 - textHeight);
+      g.setFont(font);
+      g.drawString(GAME_OVER, (width-font.getWidth(GAME_OVER)) / 2, (height-font.getHeight(GAME_OVER)) / 2);
+      g.resetFont();
+      g.drawString("Press any key to return to main menu.", (width-g.getFont().getWidth("Press any key to return to main menu."))/2, (height-font.getHeight(GAME_OVER))/2+font.getHeight(GAME_OVER));
     }
   }
   

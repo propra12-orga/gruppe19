@@ -7,6 +7,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
@@ -42,6 +43,13 @@ public class MainMenu extends BasicGameState {
     this.game = game;
     fx = new Sound("res/sfx/SelectSound.wav");
     font = new AngelCodeFont("res/fonts/demo2.fnt", "res/fonts/demo2_00.tga");
+    
+    // Hier wird die Musik
+    // geladen...
+    Music music = new Music("res/Music/test.ogg");
+    // ... und im Loop abgespielt
+    music.loop();
+
   }
   
   /**

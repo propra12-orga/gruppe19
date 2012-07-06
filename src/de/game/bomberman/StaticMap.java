@@ -40,6 +40,7 @@ public class StaticMap extends BasicGameState {
   public static final int stateID = 3;
   
   protected boolean debug = false;
+  private StateBasedGame game;
   
   
 //KONSTRUKTOR:
@@ -97,11 +98,15 @@ public class StaticMap extends BasicGameState {
    */
   public void init(GameContainer container, StateBasedGame sb) throws SlickException {
     
-    // Hier wird die Musik
-    // geladen...
-    Music music = new Music("res/Music/test.ogg");
-    // ... und im Loop abgespielt
-    music.loop();
+    // reset
+    player.clear();
+    bomben.clear();
+    Mauer.clear();
+    explosion.clear();
+    ende = null;
+    exit = null;
+    karte = null;
+    this.game = sb;
     
     // Initialisierung der Karte
     initMap("res/testmap2.tmx");
@@ -120,7 +125,7 @@ public class StaticMap extends BasicGameState {
     // Exit wird erstellt und positioniert bei (x, y)
     exit = new Exit(288, 222);
     // Ende
-    ende = new SpielEnde(container.getHeight(), container.getWidth());
+    ende = new SpielEnde(karte.getHeight()*karte.getTileHeight(), karte.getWidth()*karte.getTileWidth());
   }
   
   // UPDATE BLOCK: Daten werden hier nachgeguckt und stetig geupdated

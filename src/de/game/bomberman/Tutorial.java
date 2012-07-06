@@ -107,15 +107,10 @@ public class Tutorial extends BasicGameState {
     player.clear();
     bomben.clear();
     Mauer.clear();
+    explosion.clear();
     ende = null;
     exit = null;
     karte = null;
-    
-    // Hier wird die Musik
-    // geladen...
-    Music music = new Music("res/Music/test.ogg");
-    // ... und im Loop abgespielt
-    music.loop();
     this.game = sb;
     
     // Initialisierung der Karte
@@ -141,7 +136,7 @@ public class Tutorial extends BasicGameState {
     // Exit wird erstellt und positioniert bei (x, y)
     exit = new Exit(544, 416);
     // Ende
-    ende = new SpielEnde(container.getHeight(), container.getWidth());
+    ende = new SpielEnde(karte.getHeight()*karte.getTileHeight(), karte.getWidth()*karte.getTileWidth());
   }
   
   // UPDATE BLOCK: Daten werden hier nachgeguckt und stetig geupdated
@@ -339,6 +334,12 @@ public class Tutorial extends BasicGameState {
   }
   
   public void keyPressed(int key, char c) {
+    if(ende.isGameOver()){
+      game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
+              new FadeInTransition(Color.black));
+      return;
+    }
+    
     // Wenn Key ESC oder P gedrückt werden, soll das Menü aufgerufen werden
     switch (key) {
       case Input.KEY_ESCAPE:
