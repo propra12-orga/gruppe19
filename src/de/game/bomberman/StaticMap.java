@@ -146,7 +146,8 @@ public class StaticMap extends BasicGameState {
   public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
 
     // falls keine Spieler mehr vorhanden sind: Spielende
-    if (player.isEmpty()) {
+    if (player.size()==1) {
+      ende.setText("Player " + ((Player)player.get(0)).getColor() + "\nwin!"); 
       ende.setGameOver(true);
     }
     // Abfrage: weiterspielen oder beenden
@@ -220,7 +221,7 @@ public class StaticMap extends BasicGameState {
           // Koordinaten runden der Bombe
           BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
           BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
-          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
+          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
           if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
             bomben.add(tmpBomb);
             // Sound der Bombe laden
@@ -231,7 +232,8 @@ public class StaticMap extends BasicGameState {
         if (exit.pruefeKollsion(pl) && MapCounter<2) {
           restartGame(container,sb);
         }
-        if (exit.pruefeKollsion(pl) && MapCounter==2) { 
+        if (exit.pruefeKollsion(pl) && MapCounter==2) {
+          ende.setText("Player " + ((Player)pl).getColor() + "\nwin!"); 
           ende.setGameOver(true);
         }
       }

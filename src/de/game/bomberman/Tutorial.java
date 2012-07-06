@@ -160,6 +160,7 @@ public class Tutorial extends BasicGameState {
     
     // falls keine Spieler mehr vorhanden sind: Spielende
     if (player.isEmpty()) {
+      ende.setText("You \nlose!");
       ende.setGameOver(true);
     }
     // Abfrage: weiterspielen oder beenden
@@ -233,7 +234,7 @@ public class Tutorial extends BasicGameState {
           // Koordinaten runden der Bombe
           BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
           BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
-          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
+          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
           if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
             bomben.add(tmpBomb);
             // Sound der Bombe laden

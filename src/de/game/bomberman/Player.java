@@ -21,9 +21,6 @@ public class Player extends SpielObjekt {
   
   private boolean Xtendency, Ytendency;
   
-  //Zur Auswahl der Animationsphasen im Spritesheet
-  int zeile = 0;
-  int spalte = 0; 
   // hiermit kann man spaeter die Farbe des Spielers einfach aendern
   protected SpriteSheet playerSSheet;
   // Steuerungen des Spielers werden als Variablen gesetzt
@@ -149,6 +146,9 @@ public class Player extends SpielObjekt {
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
   public void draw(Graphics g) {
+    //Zur Auswahl der Animationsphasen im Spritesheet
+    int zeile = 0;
+    int spalte = 0; 
     
     /**
      * Anhand der Playerposition und Tendenz wird entschieden welche
@@ -320,6 +320,27 @@ public class Player extends SpielObjekt {
     BombCounter = a;
   }
   
+  /**
+   * @return the color
+   */
+  public int getColor() {
+    return color;
+  }
+
+  /**
+   * @param color the color to set
+   */
+  public void setColor(int color) {
+    this.color = color;
+  }
+
+  /**
+   * @param maxCounter the maxCounter to set
+   */
+  public void setMaxCounter(int maxCounter) {
+    MaxCounter = maxCounter;
+  }
+
   /**
    * Die Tastenbelegung wird initialisiert durch setKeys() Methode.
    * @param left set left

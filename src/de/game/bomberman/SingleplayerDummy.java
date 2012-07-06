@@ -14,18 +14,24 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 import org.newdawn.slick.tiled.TiledMap;
 
-
 /**
- * ????????????????????????????????????????????????????????????????????????????????????????????????????????
- * ## Das ist die Schnittstelle aller Klassen. Die Klasse RandomMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
- * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die Mauern, als auch die Explosionen werden hier erstellt.
- * Hinzukommt noch Exit und Ende. Anders als bei der StaticMap wird hier bei jedem Start eine zufaellig erstellte Map generiert.
+ * ?????????????????????????????????????????????????????????????????????????????
+ * ??????????????????????????? ## Das ist die Schnittstelle aller Klassen. Die
+ * Klasse RandomMap ruft hier von allen Klassen Konstruktoren und Methoden auf.
+ * Hier wird das Spiel "zusammengesetzt". Sowohl die Spieler, die Bomben und die
+ * Mauern, als auch die Explosionen werden hier erstellt. Hinzukommt noch Exit
+ * und Ende. Anders als bei der StaticMap wird hier bei jedem Start eine
+ * zufaellig erstellte Map generiert.
  * 
- * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die Karte in einem Fenster mit den Spielern, den Mauern,
- * den Explosionen, des Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die Musik wird hier geladen.
- * # Hier findet die Abfrage ab, wenn keine Spieler mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier gesetzt.
- * Hier wird staendig Abgefragt, wo der Spieler sich nach Tastatureingaben befindet. 
- * # Die Kettenreaktion und Zerstoerung durch die Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart verantwortlich.
+ * Unser Spielname wird hier geschrieben. Grafiken werden gezeichnet, sodass die
+ * Karte in einem Fenster mit den Spielern, den Mauern, den Explosionen, des
+ * Ausgangs "Exit" gezeichnet wird. Das Menue wird auch hier erstellt. Auch die
+ * Musik wird hier geladen. # Hier findet die Abfrage ab, wenn keine Spieler
+ * mehr vorhanden sind --> SpielEnde. Die Explosionsgroesse und zeit wird hier
+ * gesetzt. Hier wird staendig Abgefragt, wo der Spieler sich nach
+ * Tastatureingaben befindet. # Die Kettenreaktion und Zerstoerung durch die
+ * Explosion wird hier abgefragt. Zudem ist diese Klasse fuer den Neustart
+ * verantwortlich.
  */
 public class SingleplayerDummy extends BasicGameState {
   
@@ -42,18 +48,17 @@ public class SingleplayerDummy extends BasicGameState {
   // Variablen: Exit und Ende
   protected Exit exit;
   protected SpielEnde ende;
-  protected int MapCounter=0;  
+  protected int MapCounter = 0;
   public static final int stateID = 2;
   
   protected boolean debug = false;
   private StateBasedGame game;
   
-//KONSTRUKTOR:
+  // KONSTRUKTOR:
   
- 
- public int getID() {
-     return stateID;
- }
+  public int getID() {
+    return stateID;
+  }
   
   // RENDER BLOCK: Grafiken werden gezeichnet
   
@@ -62,8 +67,8 @@ public class SingleplayerDummy extends BasicGameState {
    * @see org.newdawn.slick.Game#render(org.newdawn.slick.GameContainer,
    * org.newdawn.slick.Graphics)
    */
-  public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
-    
+  public void render(GameContainer container, StateBasedGame sb, Graphics g)
+      throws SlickException {
     
     // Hoehe und Breite der Karte
     container.setVSync(true);
@@ -73,7 +78,7 @@ public class SingleplayerDummy extends BasicGameState {
         / (float) (karte.getHeight() * karte.getTileHeight());
     g.scale(scaleX, scaleY); // bekommt die Werte
     karte.render(0, 0);
-
+    
     // Bomben werden gezeichnet
     for (SpielObjekt bomb : bomben) {
       bomb.draw(g);
@@ -88,12 +93,12 @@ public class SingleplayerDummy extends BasicGameState {
     for (SpielObjekt exp : explosion) {
       exp.draw(g);
     }
-    // Wand  wird gezeichnet
+    // Wand wird gezeichnet
     for (SpielObjekt bl : Mauer) {
       bl.draw(g);
     }
     // Menue, Ende wird gezeichnet
-      ende.draw(g);
+    ende.draw(g);
   }
   
   // INIT BLOCK: Initialisierung der Daten
@@ -102,7 +107,8 @@ public class SingleplayerDummy extends BasicGameState {
   /*
    * @see org.newdawn.slick.BasicGame#init(org.newdawn.slick.GameContainer)
    */
-  public void init(GameContainer container, StateBasedGame sb) throws SlickException {
+  public void init(GameContainer container, StateBasedGame sb)
+      throws SlickException {
     // reset objects
     explosion.clear();
     player.clear();
@@ -111,12 +117,13 @@ public class SingleplayerDummy extends BasicGameState {
     ende = null;
     exit = null;
     karte = null;
-    this.game = sb; 
+    this.game = sb;
     
     // Initialisierung der Karte
-    // Nach Neuladen des Spiels, wird der Map-Counter erhoeht, sodass die naechste Map geladen wird
+    // Nach Neuladen des Spiels, wird der Map-Counter erhoeht, sodass die
+    // naechste Map geladen wird
     switch (MapCounter) {
-      case 0:      
+      case 0:
         initMap("res/level01.tmx");
         break;
       case 1:
@@ -126,17 +133,19 @@ public class SingleplayerDummy extends BasicGameState {
         initMap("res/tutmap3.tmx");
         break;
       default:
-        break;}
+        break;
+    }
     // Spieler 1
     player.add(0, new Player(32, 32, 1));
-
+    
     ((Player) player.get(0)).setKeys(Input.KEY_LEFT, Input.KEY_RIGHT,
         Input.KEY_UP, Input.KEY_DOWN, Input.KEY_SPACE);
-  
+    
     // Exit wird erstellt und positioniert bei (x, y)
     exit = new Exit(544, 416);
     // Ende
-    ende = new SpielEnde(karte.getHeight()*karte.getTileHeight(), karte.getWidth()*karte.getTileWidth());
+    ende = new SpielEnde(karte.getHeight() * karte.getTileHeight(),
+        karte.getWidth() * karte.getTileWidth());
   }
   
   // UPDATE BLOCK: Daten werden hier nachgeguckt und stetig geupdated
@@ -146,9 +155,11 @@ public class SingleplayerDummy extends BasicGameState {
    * @see org.newdawn.slick.BasicGame#update(org.newdawn.slick.GameContainer,
    * int)
    */
-  public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
+  public void update(GameContainer container, StateBasedGame sb, int arg1)
+      throws SlickException {
     // falls keine Spieler mehr vorhanden sind: Spielende
     if (player.isEmpty()) {
+      ende.setText("You \nlose!");
       ende.setGameOver(true);
     }
     // Abfrage: weiterspielen oder beenden
@@ -158,6 +169,8 @@ public class SingleplayerDummy extends BasicGameState {
         bomb.update(arg1); // Bomben-Update
         // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
         if (bomb.isExplode()) {
+          bomb.getPlayer()
+              .setBombCounter(bomb.getPlayer().getBombCounter() - 1);
           buildExplodeArray(bomb);
           bomben.remove(bomb);
         }
@@ -217,23 +230,27 @@ public class SingleplayerDummy extends BasicGameState {
         
         // Eingabe der Steuerung: Bombe legen
         if (container.getInput().isKeyPressed(pl.getBomb())) {
-          float BombX;
-          float BombY;
-          // Koordinaten runden der Bombe
-          BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
-          BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
-          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
-          if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
-            bomben.add(tmpBomb);
-            // Sound der Bombe laden
-            Sound fx = new Sound("res/sfx/sfxtest.wav");
-            fx.play();
+          if (pl.getBombCounter() < pl.getMaxCounter()) {
+            float BombX;
+            float BombY;
+            // Koordinaten runden der Bombe
+            BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
+            BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
+            Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
+            if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
+              bomben.add(tmpBomb);
+              pl.setBombCounter(pl.getBombCounter() + 1);
+              // Sound der Bombe laden
+              Sound fx = new Sound("res/sfx/sfxtest.wav");
+              fx.play();
+            }
           }
         }
-        if (exit.pruefeKollsion(pl) && MapCounter<2) {
-          restartGame(container,sb);
+        if (exit.pruefeKollsion(pl) && MapCounter < 2) {
+          restartGame(container, sb);
         }
-        if (exit.pruefeKollsion(pl) && MapCounter==2) { 
+        if (exit.pruefeKollsion(pl) && MapCounter == 2) {
+          ende.setText("You \nwin!");
           ende.setGameOver(true);
         }
       }
@@ -274,9 +291,11 @@ public class SingleplayerDummy extends BasicGameState {
   }
   
   /**
-   * @param spObj Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe
-   * ## Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die zerstoerbaren Bloecke und den Gegner auszuschaltern
-   * und zu entfernen.
+   * @param spObj
+   *          Spielobjekt: baut die Explosion zu einem SpielObjekt Bombe ##
+   *          Diese Explosion ist dann spaeter im Spiel die Moeglichkeit die
+   *          zerstoerbaren Bloecke und den Gegner auszuschaltern und zu
+   *          entfernen.
    * @throws SlickException
    */
   private void buildExplodeArray(SpielObjekt spObj) throws SlickException {
@@ -351,42 +370,47 @@ public class SingleplayerDummy extends BasicGameState {
           
         }
       }
-    }    
+    }
   }
   
   /**
    * @param container
-   * ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
-   * von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt, dh geloescht und wieder
-   * in der anderen Methode neu gerendert.
+   *          ## In dieser Methode wird die Moeglichkeit geschrieben das Spiel
+   *          von neu zu starten. Dabei wird alles kurzzeitig auf null gesetzt,
+   *          dh geloescht und wieder in der anderen Methode neu gerendert.
    * @throws SlickException
    */
-  private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {
+  private void restartGame(GameContainer container, StateBasedGame sb)
+      throws SlickException {
     player.clear();
     bomben.clear();
     Mauer.clear();
     ende = null;
     exit = null;
     karte = null;
-    if(MapCounter<2){MapCounter++;}
-    else if(MapCounter==2){MapCounter=0;}
-    init(container,sb);
-
+    if (MapCounter < 2) {
+      MapCounter++;
+    } else if (MapCounter == 2) {
+      MapCounter = 0;
+    }
+    init(container, sb);
+    
   }
   
   /**
-   * @param ref Map-Name 
+   * @param ref
+   *          Map-Name
    * @throws SlickException
    */
   public void initMap(String ref) throws SlickException {
     
     karte = new TiledMap(ref, "res");
-
+    
     for (int x = 0; x < karte.getWidth(); x++) {
       for (int y = 0; y < karte.getHeight(); y++) {
         final int tileID = karte.getTileId(x, y, 0);
         switch (tileID) {
-          case 2:      
+          case 2:
             Mauer.add(new Block(x * 32, y * 32, true));
             break;
           case 17:

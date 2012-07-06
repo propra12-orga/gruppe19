@@ -147,7 +147,8 @@ public class RandomMap extends BasicGameState {
     
     
     // falls keine Spieler mehr vorhanden sind: Spielende
-    if (player.isEmpty()) {
+    if (player.size()==1) {
+      ende.setText("Player " + ((Player)player.get(0)).getColor() + "\nwin!"); 
       ende.setGameOver(true);
     }
       else {
@@ -215,7 +216,7 @@ public class RandomMap extends BasicGameState {
           // Koordinaten runden der Bombe
           BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
           BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
-          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
+          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
           if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
             tmpCounter++;
             pl.setBombCounter(tmpCounter);
@@ -242,6 +243,7 @@ public class RandomMap extends BasicGameState {
           restartGame(container,sb);
         }
         if (exit.pruefeKollsion(pl) && MapCounter==2) { 
+          ende.setText("Player " + ((Player)pl).getColor() + "\nwin!"); 
           ende.setGameOver(true);
         }
       }
