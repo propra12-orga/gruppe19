@@ -103,7 +103,6 @@ public class SingleplayerDummy extends BasicGameState {
     for (SpielObjekt pup : powerup) {
       pup.draw(g);
     }
-    
     // Menue, Ende wird gezeichnet
     ende.draw(g);
   }

@@ -99,6 +99,10 @@ public class Tutorial extends BasicGameState {
     for (SpielObjekt bl : Mauer) {
       bl.draw(g);
     }
+    // Zeichne PowerUps
+    for (SpielObjekt pup : powerup) {
+      pup.draw(g);
+    }
     // Menue, Ende wird gezeichnet
     ende.draw(g);
   }
@@ -171,7 +175,7 @@ public class Tutorial extends BasicGameState {
       ende.setText("You \nlose!");
       ende.setGameOver(true);
     }
- // Abfrage: weiterspielen oder beenden
+    // Abfrage: weiterspielen oder beenden
     if (!ende.isGameOver()) {
       for (int i = 0; i < bomben.size(); i++) {
         Bombe bomb = (Bombe) bomben.get(i);
