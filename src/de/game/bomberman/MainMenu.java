@@ -15,6 +15,13 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+/**
+ * Die Klasse "MainMenu" stellt das Hauptmenue des Spiels auf.
+ * In dieser Klasse werden die Menuepunkte geschrieben und ins Fenster gezeichnet.
+ * In MainMenu wird Musik geladen, ein neuer State zugeordnet und das Hintergrundbild geladen.
+ * Die Farbe der Menupunkte wird hier eingestellt.
+ * Auﬂerdem steht hier die Erkennung des Druecken der Tasten durch den Spieler.
+ */
 public class MainMenu extends BasicGameState {
   
   Image background = null;
@@ -76,7 +83,6 @@ public class MainMenu extends BasicGameState {
    * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
    *      org.newdawn.slick.state.StateBasedGame, int)
    */
-  
   public void update(GameContainer container, StateBasedGame game, int delta) {
   }
   
@@ -126,11 +132,17 @@ public class MainMenu extends BasicGameState {
     }
   }
   
+  /**
+   * Durch die Auswahl im MainMenu wird der Spieler - je nachdem was er ausgewaehlt hat - 
+   * in einen anderen state des Spiels gebracht.
+   * FadeOutTransition ist fuer ein fluessiges Uebergehen der States zustaendig.
+   * @param stateID
+   */
   private void enterStateAndreinit(int stateID) {
     try {
       game.getState(stateID).init(game.getContainer(), game);
     } catch (SlickException e) {
-      // TODO Auto-generated catch block
+      
       e.printStackTrace();
     }
     game.enterState(stateID, new FadeOutTransition(Color.black),
