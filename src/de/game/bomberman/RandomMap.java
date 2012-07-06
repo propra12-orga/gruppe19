@@ -119,7 +119,7 @@ public class RandomMap extends BasicGameState {
         Input.KEY_S, Input.KEY_LCONTROL);
     
     // Exit wird erstellt und positioniert bei (x, y)
-    exit = new Exit(288, 256);
+    exit = new Exit(288, 222);
     // Ende
     ende = new SpielEnde(container.getHeight(), container.getWidth());
   }
