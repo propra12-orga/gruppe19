@@ -87,8 +87,7 @@ public class MainMenu extends BasicGameState {
     if (key == Input.KEY_ENTER) {
       switch (selected) {
         case 0:
-          game.enterState(Tutorial.stateID, new FadeOutTransition(Color.black),
-              new FadeInTransition(Color.black));
+          enterStateAndreinit(Tutorial.stateID);
           break;
         case 1:
           enterStateAndreinit(SingleplayerDummy.stateID);

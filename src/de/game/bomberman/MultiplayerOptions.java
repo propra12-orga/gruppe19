@@ -80,16 +80,13 @@ public void keyReleased(int key, char c) {
   if (key == Input.KEY_ENTER) {
     switch (selected) {
       case 0:
-        game.enterState(RandomMap.stateID, new FadeOutTransition(Color.black),
-            new FadeInTransition(Color.black));  
+        enterStateAndreinit(RandomMap.stateID);
         break;
       case 1:
-        game.enterState(StaticMap.stateID, new FadeOutTransition(Color.black),
-            new FadeInTransition(Color.black)); 
+        enterStateAndreinit(StaticMap.stateID);
         break;
-      case 2:           
-        game.enterState(NetworkDummy.stateID, new FadeOutTransition(Color.black),
-            new FadeInTransition(Color.black));
+      case 2:
+        enterStateAndreinit(NetworkDummy.stateID);
         break;   
       case 3:           
         game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
@@ -97,6 +94,16 @@ public void keyReleased(int key, char c) {
         break;            
     }
   }
+}
+private void enterStateAndreinit(int stateID) {
+  try {
+    game.getState(stateID).init(game.getContainer(), game);
+  } catch (SlickException e) {
+    // TODO Auto-generated catch block
+    e.printStackTrace();
+  }
+  game.enterState(stateID, new FadeOutTransition(Color.black),
+      new FadeInTransition(Color.black));
 }
   }
 
