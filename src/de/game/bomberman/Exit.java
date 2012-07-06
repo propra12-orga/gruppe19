@@ -7,7 +7,7 @@ import org.newdawn.slick.geom.Polygon;
 import de.game.bomberman.SpielObjekt;
 
 /**
- * In der Klasse "Exit" wird die optische Beendigung des Hauptspiels erstellt. In diesem Sinne der Ausgang des Hauptspiels. 
+ * In der Klasse "Exit" wird die optische Beendigung des Hauptspiels erstellt. In diesem Sinne der Ausgang des Spiels. 
  */
 public class Exit extends SpielObjekt {
   

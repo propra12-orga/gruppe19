@@ -6,7 +6,9 @@ import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
- * ?????????????????????????????????????????????????????????????????????????????
+ * Die Klasse "GamePaused" ermoeglicht uns durch das Druecken der ESC Taste in ein Pausenmodus zu gelangen.
+ * Die Charakteristik der "Pause" steht hier, dh wie das Fenster aussieht und was es bewirkt;
+ * Der Hintergrund der "Pause" und die Auswertung der Tasten durch den Spieler wird hier geschrieben.
  * 
  */
 public class GamePaused extends BasicGameState {
@@ -26,11 +28,18 @@ public class GamePaused extends BasicGameState {
   
   public static final int stateID = 8;
   
-  // KONSTRUKTOR:
+  
+  /**
+   * Der Konstruktor fuer GamePaused.
+   * @param previousGameState
+   */
   public GamePaused(int previousGameState) {
     prevGameState = previousGameState;
   }
   
+  /* 
+   * @see org.newdawn.slick.state.BasicGameState#getID()
+   */
   public int getID() {
     return stateID;
   }
@@ -103,7 +112,7 @@ public class GamePaused extends BasicGameState {
             } catch (SlickException e) {
               e.printStackTrace();
             }
-            // Break weggelassen, um case 0 auch auszufuehren ;)
+            // Break weggelassen, um case 0 auch auszufuehren
           case 0:
             game.enterState(prevGameState, new FadeOutTransition(Color.black,100),
                 new FadeInTransition(Color.black,100));

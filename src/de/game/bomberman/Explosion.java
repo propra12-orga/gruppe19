@@ -59,7 +59,7 @@ public class Explosion extends SpielObjekt {
   }
 
   /**
-   * Der Setter von Counter.
+   * Der Setter von Counter. Er setzt den Counter.
    * @param counter to set
    */
   public void setCounter(int counter) {
