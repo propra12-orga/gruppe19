@@ -148,12 +148,12 @@ public class Tutorial extends BasicGameState {
     if (ende.isGameOver()) {
       // beenden
       if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        MapCounter=0;
+        resetGame(container,sb);
         sb.enterState(0); 
       }
       // weiterspielen
       if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        restartGame(container,sb);
+        retry(container,sb);
       }
     } else {
       for (int i = 0; i < bomben.size(); i++) {
@@ -165,7 +165,7 @@ public class Tutorial extends BasicGameState {
           bomben.remove(bomb);
         }
       }
-      // Groe�e der Explosion + Update 
+      // Groe�ｽe der Explosion + Update 
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -240,7 +240,7 @@ public class Tutorial extends BasicGameState {
         if (exit.pruefeKollsion(pl) && MapCounter<2) {
           restartGame(container,sb);
         }
-        if (exit.pruefeKollsion(pl) && MapCounter==3) { 
+        if (exit.pruefeKollsion(pl) && MapCounter==2) { 
           ende.setGameOver(true);
         }
       }
@@ -344,6 +344,28 @@ public class Tutorial extends BasicGameState {
     karte = null;
     if(MapCounter<2){MapCounter++;}
     else if(MapCounter==2){MapCounter=0;}
+    init(container,sb);
+
+  }
+  private void resetGame(GameContainer container, StateBasedGame sb) throws SlickException {
+    player.clear();
+    bomben.clear();
+    Mauer.clear();
+    ende = null;
+    exit = null;
+    karte = null;
+    MapCounter = 0;
+    init(container,sb);
+
+  }
+  
+  private void retry(GameContainer container, StateBasedGame sb) throws SlickException {
+    player.clear();
+    bomben.clear();
+    Mauer.clear();
+    ende = null;
+    exit = null;
+    karte = null;
     init(container,sb);
 
   }

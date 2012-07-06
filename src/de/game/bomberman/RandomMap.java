@@ -142,6 +142,7 @@ public class RandomMap extends BasicGameState {
     if (ende.isGameOver()) {
       // beenden
       if (container.getInput().isKeyPressed(Input.KEY_N)) {
+        restartGame(container,sb);
         sb.enterState(0);  
       }
       // weiterspielen

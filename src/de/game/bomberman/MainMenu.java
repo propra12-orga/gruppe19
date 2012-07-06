@@ -20,7 +20,7 @@ public class MainMenu extends BasicGameState {
     public static final int stateID = 0;
     private Font font;
     // Die Auswahlmoeglichkeiten
-    private String[] options = new String[] {"Tutorial","Singleplayer","Multiplayer", "Network","Options","Exit", "Random"};
+    private String[] options = new String[] {"Tutorial","Singleplayer","Multiplayer","Options","Exit"};
     // Der Index der ausgewaehlten Option
     private int selected;
     private StateBasedGame game;
@@ -50,9 +50,9 @@ public class MainMenu extends BasicGameState {
         g.setColor(Color.white);
         
         for (int i=0;i<options.length;i++) {
-            g.drawString(options[i], 400 - (font.getWidth(options[i])/2), 300+(i*50));
+            g.drawString(options[i], 400 - (font.getWidth(options[i])/2), 350+(i*50));
             if (selected == i) {
-                g.drawRect(200,290+(i*50),400,50);
+                g.drawRect(200,340+(i*50),400,50);
             }
         }
     }
@@ -91,23 +91,15 @@ public class MainMenu extends BasicGameState {
                 new FadeInTransition(Color.black));
             break;
           case 2:           
-            game.enterState(StaticMap.stateID, new FadeOutTransition(Color.black),
+            game.enterState(MultiplayerOptions.stateID, new FadeOutTransition(Color.black),
                 new FadeInTransition(Color.black));
             break;
           case 3:
-            game.enterState(NetworkDummy.stateID, new FadeOutTransition(Color.black),
-                new FadeInTransition(Color.black));
+            game.enterState(Options.stateID, new FadeOutTransition(Color.black),
+                new FadeInTransition(Color.black));    
             break;
           case 4:
-            game.enterState(Options.stateID, new FadeOutTransition(Color.black),
-                new FadeInTransition(Color.black));           
-            break;
-          case 5:
-            game.getContainer().exit();
-            break;
-          case 6:
-            game.enterState(RandomMap.stateID, new FadeOutTransition(Color.black),
-                new FadeInTransition(Color.black));
+            game.getContainer().exit();        
             break;
           default:
             System.out.println("FEHLER - Return to MAIN MENU");
