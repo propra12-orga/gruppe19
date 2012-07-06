@@ -80,6 +80,7 @@ public class GamePaused extends BasicGameState {
   }
   
   public void keyPressed(int key, char c) {
+    game.getContainer().getInput().clearKeyPressedRecord();
     switch (key) {
       case Input.KEY_DOWN:
         fx.play();

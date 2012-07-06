@@ -78,7 +78,8 @@ public class Options extends BasicGameState {
   /**
    * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
    */
-  public void keyReleased(int key, char c) {
+  public void keyPressed(int key, char c) {
+    game.getContainer().getInput().clearKeyPressedRecord();
     if (key == Input.KEY_DOWN) {
       fx.play();
       selected++;
