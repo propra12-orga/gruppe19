@@ -3,6 +3,7 @@ package de.game.bomberman;
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
@@ -261,6 +262,12 @@ public class SingleplayerDummy extends BasicGameState {
   }
   
   public void keyPressed(int key, char c) {
+    if(ende.isGameOver()){
+      game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
+              new FadeInTransition(Color.black));
+      return;
+    }
+    
     switch (key) {
       case Input.KEY_ESCAPE:
       case Input.KEY_P:

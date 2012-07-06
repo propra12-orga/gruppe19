@@ -153,18 +153,7 @@ public class Tutorial extends BasicGameState {
     if (player.isEmpty()) {
       ende.setGameOver(true);
     }
-    // Abfrage: weiterspielen oder beenden
-    if (ende.isGameOver()) {
-      // beenden
-      if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        resetGame(container,sb);
-        sb.enterState(0); 
-      }
-      // weiterspielen
-      if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        retry(container,sb);
-      }
-    } else {
+     else {
       for (int i = 0; i < bomben.size(); i++) {
         Bombe bomb = (Bombe) bomben.get(i);
         bomb.update(arg1); // Bomben-Update
@@ -379,30 +368,7 @@ public class Tutorial extends BasicGameState {
     init(container,sb);
 
   }
-  private void resetGame(GameContainer container, StateBasedGame sb) throws SlickException {
-    player.clear();
-    bomben.clear();
-    Mauer.clear();
-    ende = null;
-    exit = null;
-    karte = null;
-    MapCounter = 0;
-    init(container,sb);
 
-  }
-  
-  private void retry(GameContainer container, StateBasedGame sb) throws SlickException {
-    
-    explosion.clear();
-    player.clear();
-    bomben.clear();
-    Mauer.clear();
-    ende = null;
-    exit = null;
-    karte = null;
-    init(container,sb);
-
-  }
   
   /**
    * @param ref Map-Name 

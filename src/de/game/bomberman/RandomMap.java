@@ -3,6 +3,7 @@ package de.game.bomberman;
 import java.util.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.TiledMap;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
@@ -149,18 +150,7 @@ public class RandomMap extends BasicGameState {
     if (player.isEmpty()) {
       ende.setGameOver(true);
     }
-    // Abfrage: weiterspielen oder beenden
-    if (ende.isGameOver()) {
-      // beenden
-      if (container.getInput().isKeyPressed(Input.KEY_N)) {
-        resetGame(container,sb);
-        sb.enterState(0); 
-      }
-      // weiterspielen
-      if (container.getInput().isKeyPressed(Input.KEY_Y)) {
-        retry(container,sb);
-      }
-    } else {
+      else {
 
       // Groesse der Explosion + Update 
       for (int i = 0; i < explosion.size(); i++) {
@@ -259,6 +249,11 @@ public class RandomMap extends BasicGameState {
   }
   
   public void keyPressed(int key, char c) {
+    if(ende.isGameOver()){
+      game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
+              new FadeInTransition(Color.black));
+      return;
+    }
     switch (key) {
       case Input.KEY_ESCAPE:
       case Input.KEY_P:
@@ -367,32 +362,6 @@ public class RandomMap extends BasicGameState {
    * @throws SlickException
    */
   private void restartGame(GameContainer container, StateBasedGame sb) throws SlickException {
-    player.clear();
-    bomben.clear();
-    Mauer.clear();
-    ende = null;
-    exit = null;
-    karte = null;
-    init(container,sb);
-
-  }
-  private void resetGame(GameContainer container, StateBasedGame sb) throws SlickException {
-    
-    explosion.clear();
-    player.clear();
-    bomben.clear();
-    Mauer.clear();
-    ende = null;
-    exit = null;
-    karte = null;
-    MapCounter = 0;
-    init(container,sb);
-
-  }
-  
-  private void retry(GameContainer container, StateBasedGame sb) throws SlickException {
-    
-    explosion.clear();
     player.clear();
     bomben.clear();
     Mauer.clear();
