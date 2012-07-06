@@ -38,7 +38,7 @@ public void init(GameContainer container, StateBasedGame sb) throws SlickExcepti
  * @see org.newdawn.slick.state.GameState#render(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, org.newdawn.slick.Graphics)
  */
 public void render(GameContainer container, StateBasedGame sb, Graphics g) throws SlickException {
-    g.drawString("Hier kommt der Singleplayermodus gegen die KI hin", 150, 300);    
+    g.drawString("Hier kommt der Singleplayermodus gegen die KI hin. Durch ESC wieder zum Menu", 150, 300);    
   }
 
 
