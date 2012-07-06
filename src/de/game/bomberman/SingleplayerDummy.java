@@ -6,6 +6,7 @@ import org.newdawn.slick.tiled.TiledMap;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -156,15 +157,7 @@ public class SingleplayerDummy extends BasicGameState {
         retry(container,sb);
       }
     } else {
-      for (int i = 0; i < bomben.size(); i++) {
-        Bombe bomb = (Bombe) bomben.get(i);
-        bomb.update(arg1); // Bomben-Update
-        // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
-        if (bomb.isExplode()) {
-          buildExplodeArray(bomb);
-          bomben.remove(bomb);
-        }
-      }
+
       // Groesse der Explosion + Update 
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
@@ -216,10 +209,13 @@ public class SingleplayerDummy extends BasicGameState {
           if ((pl.getY() % 32) == 0) {
             pl.move(0, +1, Mauer);
           }
-        }
-        
+        }      
         // Eingabe der Steuerung: Bombe legen
-        if (container.getInput().isKeyPressed(pl.getBomb())) {
+
+        int tmpCounter = pl.getBombCounter();
+        int tmpMax = pl.getMaxCounter();
+        // Eingabe der Steuerung: Bombe legen
+        if (container.getInput().isKeyPressed(pl.getBomb()) && tmpCounter < tmpMax) {
           float BombX;
           float BombY;
           // Koordinaten runden der Bombe
@@ -227,10 +223,25 @@ public class SingleplayerDummy extends BasicGameState {
           BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
           Bombe tmpBomb = new Bombe((int) BombX, (int) BombY);
           if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
+            tmpCounter++;
+            pl.setBombCounter(tmpCounter);
             bomben.add(tmpBomb);
             // Sound der Bombe laden
             Sound fx = new Sound("res/sfx/sfxtest.wav");
             fx.play();
+          }
+        }
+        
+        for (int i1 = 0; i1 < bomben.size(); i1++) {
+          Bombe bomb = (Bombe) bomben.get(i1);
+          bomb.update(arg1); // Bomben-Update
+          // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
+          if (bomb.isExplode()) {
+            buildExplodeArray(bomb);
+            bomben.remove(bomb);
+            tmpCounter--;
+            pl.setBombCounter(tmpCounter);  
+            
           }
         }
         // Ende des Spiels durch: Esc druecken

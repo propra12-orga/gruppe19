@@ -29,6 +29,8 @@ public class Player extends SpielObjekt {
   // Steuerungen des Spielers werden als Variablen gesetzt
   private int left, right, up, down, bomb;
   protected int color = 1;
+  private int BombCounter = 0;
+  private int MaxCounter = 2;
   
   /**
    * Dieser Konstruktor ist nicht mehr wirklich noetig.
@@ -305,6 +307,17 @@ public class Player extends SpielObjekt {
    */
   public void setBomb(int bomb) {
     this.bomb = bomb;
+  }
+  
+  public int getMaxCounter() {
+    return MaxCounter;
+  }
+  
+  public int getBombCounter() {
+    return BombCounter;
+  }
+  public void setBombCounter(int a){
+    BombCounter = a;
   }
   
   /**
