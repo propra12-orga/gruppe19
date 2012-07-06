@@ -8,6 +8,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
@@ -25,6 +26,7 @@ public class MainMenu extends BasicGameState {
   // Der Index der ausgewaehlten Option
   private int selected;
   private StateBasedGame game;
+  private Sound fx = null;
   
   public int getID() {
     return stateID;
@@ -38,6 +40,7 @@ public class MainMenu extends BasicGameState {
       throws SlickException {
     background = new Image("res/menubackground.jpg");
     this.game = game;
+    fx = new Sound("res/sfx/SelectSound.wav");
     font = new AngelCodeFont("res/fonts/demo2.fnt", "res/fonts/demo2_00.tga");
   }
   
@@ -74,12 +77,14 @@ public class MainMenu extends BasicGameState {
    */
   public void keyReleased(int key, char c) {
     if (key == Input.KEY_DOWN) {
+      fx.play();
       selected++;
       if (selected >= options.length) {
         selected = 0;
       }
     }
     if (key == Input.KEY_UP) {
+      fx.play();
       selected--;
       if (selected < 0) {
         selected = options.length - 1;

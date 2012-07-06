@@ -21,6 +21,7 @@ public class MultiplayerOptions extends BasicGameState {
   private int selected;
   private StateBasedGame game;
   StateBasedGame sb;
+  private Sound fx = null;
   
   public static final int stateID = 7;
   
@@ -38,6 +39,7 @@ public class MultiplayerOptions extends BasicGameState {
       throws SlickException {
     background = new Image("res/menubackground.jpg");
     this.game = game;
+    fx = new Sound("res/sfx/SelectSound.wav");
     font = new AngelCodeFont("res/fonts/demo2.fnt", "res/fonts/demo2_00.tga");
   }
   
@@ -71,12 +73,14 @@ public class MultiplayerOptions extends BasicGameState {
   
   public void keyReleased(int key, char c) {
     if (key == Input.KEY_DOWN) {
+      fx.play();
       selected++;
       if (selected >= options.length) {
         selected = 0;
       }
     }
     if (key == Input.KEY_UP) {
+      fx.play();
       selected--;
       if (selected < 0) {
         selected = options.length - 1;

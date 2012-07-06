@@ -22,6 +22,7 @@ public class GamePaused extends BasicGameState {
   private StateBasedGame game;
   private int prevGameState;
   StateBasedGame sb;
+  private Sound fx = null;
   
   public static final int stateID = 8;
   
@@ -42,6 +43,7 @@ public class GamePaused extends BasicGameState {
       throws SlickException {
     background = new Image("res/menubackground.jpg");
     this.game = game;
+    fx = new Sound("res/sfx/SelectSound.wav");
     font = new AngelCodeFont("res/fonts/demo2.fnt", "res/fonts/demo2_00.tga");
   }
   
@@ -80,12 +82,14 @@ public class GamePaused extends BasicGameState {
   public void keyPressed(int key, char c) {
     switch (key) {
       case Input.KEY_DOWN:
+        fx.play();
         selected++;
         if (selected >= options.length) {
           selected = 0;
         }
         break;
       case Input.KEY_UP:
+        fx.play();
         selected--;
         if (selected < 0) {
           selected = options.length - 1;
@@ -99,7 +103,7 @@ public class GamePaused extends BasicGameState {
             } catch (SlickException e) {
               e.printStackTrace();
             }
-            // Break weggelassen, um case 0 auch auszuführen ;)
+            // Break weggelassen, um case 0 auch auszufuehren ;)
           case 0:
             game.enterState(prevGameState, new FadeOutTransition(Color.black,100),
                 new FadeInTransition(Color.black,100));

@@ -18,7 +18,7 @@ public class MainGame extends StateBasedGame {
     this.addState(new NetworkDummy());       // State fuer den Netzwerkmodus hinzugefuegt
     this.addState(new Options());   // State fuer das Optionsmenue hinzugefuegt
     this.addState(new MultiplayerOptions());   // State fuer das Optionsmenue hinzugefuegt
-   // this.addState(new Credits());   // State fuer das Anzeigen der Credits
+    this.addState(new Credits());   // State fuer das Anzeigen der Credits
   }
   
   public static void main(String[] argv) {
