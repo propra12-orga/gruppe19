@@ -3,7 +3,7 @@ package de.game.bomberman;
 import org.newdawn.slick.*;
 
 /**
- *  Die Klasse "Block" ist fuer die Erstellung der Bloecke im Spiel zustaendig.
+ *  Die Klasse "Block" ist fuer die Erstellung der Bloecke im Spiel noetig.
  *  Hier stehen die Methoden und Konstruktoren, auf die in anderen Klassen zugegriffen wird.
  */
 public class Block extends SpielObjekt {
@@ -24,6 +24,7 @@ public class Block extends SpielObjekt {
   
   /**
    * Mit diesen Koordinaten werden die zerstoerbaren Bloecke gebaut. Der Boolean-typ markiert die zerstoerbaren Bloecke.
+   * Bei true zerstoerbar, bei false nicht.
    * @param x Koordinate des Blocks
    * @param y Koordinate des Blocks
    * @param zerstoerbar ;pr�ft ob Block zerstoerbar ist
