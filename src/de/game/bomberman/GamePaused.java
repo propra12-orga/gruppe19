@@ -54,6 +54,7 @@ public class GamePaused extends BasicGameState {
     background.draw(0, 0);
     
     g.setFont(font);
+    g.setColor(Color.white);
     
     g.drawString("GAME PAUSED", container.getWidth()/2 - (font.getWidth("GAME PAUSED") / 2),180);
     
