@@ -13,7 +13,7 @@ public class Bombe extends SpielObjekt {
   private static String imPath = "res/bomb.png";
   
     //Radius der Explosion
-  private int ExplodeRadius = 3;                            
+  private int ExplodeRadius = 2;                            
   private Image im;
   
   SpriteSheet eggSheet = new SpriteSheet("res/egg.png", 32, 32);
@@ -60,6 +60,7 @@ public class Bombe extends SpielObjekt {
     explode = false;
     counter = 0;
     this.setPlayer(pl);
+    this.ExplodeRadius = pl.getBombRadius();
   }
   
   @Override

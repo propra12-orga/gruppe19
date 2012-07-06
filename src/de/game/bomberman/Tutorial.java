@@ -1,17 +1,18 @@
 package de.game.bomberman;
 
-import java.util.*;
-import org.newdawn.slick.*;
-import org.newdawn.slick.tiled.TiledMap;
+import java.util.ArrayList;
+
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.Sound;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
+import org.newdawn.slick.tiled.TiledMap;
 
 /**
  * ?????????????????????????????????????????????????????????????????????????????
@@ -44,6 +45,8 @@ public class Tutorial extends BasicGameState {
   protected ArrayList<SpielObjekt> Mauer = new ArrayList<SpielObjekt>();
   // SpielObjekt: Explosion
   protected ArrayList<SpielObjekt> explosion = new ArrayList<SpielObjekt>();
+  // SpielObjekt: PowerUp
+  protected ArrayList<SpielObjekt> powerup = new ArrayList<SpielObjekt>();
   // Variablen: Exit und Ende
   protected Exit exit;
   protected SpielEnde ende;
@@ -110,10 +113,11 @@ public class Tutorial extends BasicGameState {
       throws SlickException {
     
     // reset
+    powerup.clear();
+    explosion.clear();
     player.clear();
     bomben.clear();
     Mauer.clear();
-    explosion.clear();
     ende = null;
     exit = null;
     karte = null;
@@ -163,13 +167,15 @@ public class Tutorial extends BasicGameState {
       ende.setText("You \nlose!");
       ende.setGameOver(true);
     }
-    // Abfrage: weiterspielen oder beenden
+ // Abfrage: weiterspielen oder beenden
     if (!ende.isGameOver()) {
       for (int i = 0; i < bomben.size(); i++) {
         Bombe bomb = (Bombe) bomben.get(i);
         bomb.update(arg1); // Bomben-Update
         // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
         if (bomb.isExplode()) {
+          bomb.getPlayer()
+              .setBombCounter(bomb.getPlayer().getBombCounter() - 1);
           buildExplodeArray(bomb);
           bomben.remove(bomb);
         }
@@ -187,14 +193,19 @@ public class Tutorial extends BasicGameState {
           explosion.remove(i);
         }
       }
-      // Update der Explosion
-      for (SpielObjekt expl : explosion) {
-        expl.update(arg1);
-      }
+      
       // Update des Spielers
       for (int i = 0; i < player.size(); i++) {
         Player pl = (Player) player.get(i);
         pl.update(arg1, Mauer);
+        
+        // überprüfe Kollision mit PowerUPs
+        ArrayList<SpielObjekt> PUpsKoll = pl.pruefeKollsion(powerup);
+        for (SpielObjekt pup : PUpsKoll) {
+          pl.setMaxCounter(pl.getMaxCounter() + ((PowerUP) pup).getBombcount());
+          pl.setBombRadius(pl.getBombRadius() + ((PowerUP) pup).getBombradius());
+          powerup.remove(pup);
+        }
         
         // Steuerung des Spielers
         // Eingabe der Steuerung: Links gehen
@@ -229,17 +240,20 @@ public class Tutorial extends BasicGameState {
         
         // Eingabe der Steuerung: Bombe legen
         if (container.getInput().isKeyPressed(pl.getBomb())) {
-          float BombX;
-          float BombY;
-          // Koordinaten runden der Bombe
-          BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
-          BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
-          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
-          if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
-            bomben.add(tmpBomb);
-            // Sound der Bombe laden
-            Sound fx = new Sound("res/sfx/sfxtest.wav");
-            fx.play();
+          if (pl.getBombCounter() < pl.getMaxCounter()) {
+            float BombX;
+            float BombY;
+            // Koordinaten runden der Bombe
+            BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
+            BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
+            Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
+            if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
+              bomben.add(tmpBomb);
+              pl.setBombCounter(pl.getBombCounter() + 1);
+              // Sound der Bombe laden
+              Sound fx = new Sound("res/sfx/sfxtest.wav");
+              fx.play();
+            }
           }
         }
         if (exit.pruefeKollsion(pl) && MapCounter < 2) {

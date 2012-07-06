@@ -39,6 +39,8 @@ public class RandomMap extends BasicGameState {
   protected ArrayList<SpielObjekt> Mauer = new ArrayList<SpielObjekt>();
   // SpielObjekt: Explosion
   protected ArrayList<SpielObjekt> explosion = new ArrayList<SpielObjekt>();
+  // SpielObjekt: PowerUp
+  protected ArrayList<SpielObjekt> powerup = new ArrayList<SpielObjekt>();
   // Variablen: Exit und Ende
   protected Exit exit;
   protected SpielEnde ende;
@@ -104,6 +106,7 @@ public class RandomMap extends BasicGameState {
    */
   public void init(GameContainer container, StateBasedGame sb) throws SlickException {
     // reset objects
+    powerup.clear();
     explosion.clear();
     player.clear();
     bomben.clear();
@@ -144,16 +147,25 @@ public class RandomMap extends BasicGameState {
    * int)
    */
   public void update(GameContainer container, StateBasedGame sb, int arg1) throws SlickException {
-    
-    
     // falls keine Spieler mehr vorhanden sind: Spielende
     if (player.size()==1) {
       ende.setText("Player " + ((Player)player.get(0)).getColor() + "\nwin!"); 
       ende.setGameOver(true);
     }
-      else {
-
-      // Groesse der Explosion + Update 
+ // Abfrage: weiterspielen oder beenden
+    if (!ende.isGameOver()) {
+      for (int i = 0; i < bomben.size(); i++) {
+        Bombe bomb = (Bombe) bomben.get(i);
+        bomb.update(arg1); // Bomben-Update
+        // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
+        if (bomb.isExplode()) {
+          bomb.getPlayer()
+              .setBombCounter(bomb.getPlayer().getBombCounter() - 1);
+          buildExplodeArray(bomb);
+          bomben.remove(bomb);
+        }
+      }
+      // Groesse der Explosion + Update
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
@@ -166,14 +178,19 @@ public class RandomMap extends BasicGameState {
           explosion.remove(i);
         }
       }
-      //Update der Explosion
-      for (SpielObjekt expl : explosion) {
-        expl.update(arg1);
-      }
+      
       // Update des Spielers
       for (int i = 0; i < player.size(); i++) {
         Player pl = (Player) player.get(i);
         pl.update(arg1, Mauer);
+        
+        // überprüfe Kollision mit PowerUPs
+        ArrayList<SpielObjekt> PUpsKoll = pl.pruefeKollsion(powerup);
+        for (SpielObjekt pup : PUpsKoll) {
+          pl.setMaxCounter(pl.getMaxCounter() + ((PowerUP) pup).getBombcount());
+          pl.setBombRadius(pl.getBombRadius() + ((PowerUP) pup).getBombradius());
+          powerup.remove(pup);
+        }
         
         // Steuerung des Spielers
         // Eingabe der Steuerung: Links gehen
@@ -204,39 +221,24 @@ public class RandomMap extends BasicGameState {
           if ((pl.getY() % 32) == 0) {
             pl.move(0, +1, Mauer);
           }
-        }      
-        // Eingabe der Steuerung: Bombe legen
-
-        int tmpCounter = pl.getBombCounter();
-        int tmpMax = pl.getMaxCounter();
-        // Eingabe der Steuerung: Bombe legen
-        if (container.getInput().isKeyPressed(pl.getBomb()) && tmpCounter < tmpMax) {
-          float BombX;
-          float BombY;
-          // Koordinaten runden der Bombe
-          BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
-          BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
-          Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
-          if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
-            tmpCounter++;
-            pl.setBombCounter(tmpCounter);
-            bomben.add(tmpBomb);
-            // Sound der Bombe laden
-            Sound fx = new Sound("res/sfx/sfxtest.wav");
-            fx.play();
-          }
         }
         
-        for (int i1 = 0; i1 < bomben.size(); i1++) {
-          Bombe bomb = (Bombe) bomben.get(i1);
-          bomb.update(arg1); // Bomben-Update
-          // Kettenreaktion der Bombe + Entfernung der Bombe nach Explosion
-          if (bomb.isExplode()) {
-            buildExplodeArray(bomb);
-            bomben.remove(bomb);
-            tmpCounter--;
-            pl.setBombCounter(tmpCounter);  
-            
+        // Eingabe der Steuerung: Bombe legen
+        if (container.getInput().isKeyPressed(pl.getBomb())) {
+          if (pl.getBombCounter() < pl.getMaxCounter()) {
+            float BombX;
+            float BombY;
+            // Koordinaten runden der Bombe
+            BombX = (float) (Math.round(pl.getX() / 32.) * 32.);
+            BombY = (float) (Math.round(pl.getY() / 32.) * 32.);
+            Bombe tmpBomb = new Bombe((int) BombX, (int) BombY, pl);
+            if (tmpBomb.pruefeKollsion(bomben).isEmpty()) {
+              bomben.add(tmpBomb);
+              pl.setBombCounter(pl.getBombCounter() + 1);
+              // Sound der Bombe laden
+              Sound fx = new Sound("res/sfx/sfxtest.wav");
+              fx.play();
+            }
           }
         }
         if (exit.pruefeKollsion(pl) && MapCounter<2) {

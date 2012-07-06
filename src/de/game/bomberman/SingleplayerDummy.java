@@ -117,6 +117,7 @@ public class SingleplayerDummy extends BasicGameState {
   public void init(GameContainer container, StateBasedGame sb)
       throws SlickException {
     // reset objects
+    powerup.clear();
     explosion.clear();
     player.clear();
     bomben.clear();
@@ -207,8 +208,8 @@ public class SingleplayerDummy extends BasicGameState {
         // überprüfe Kollision mit PowerUPs
         ArrayList<SpielObjekt> PUpsKoll = pl.pruefeKollsion(powerup);
         for (SpielObjekt pup : PUpsKoll) {
-          pl.setMaxCounter(pl.getMaxCounter()+((PowerUP)pup).getBombcount());
-          pl.setBombRadius(pl.getBombRadius()+((PowerUP)pup).getBombradius());
+          pl.setMaxCounter(pl.getMaxCounter() + ((PowerUP) pup).getBombcount());
+          pl.setBombRadius(pl.getBombRadius() + ((PowerUP) pup).getBombradius());
           powerup.remove(pup);
         }
         
@@ -397,6 +398,7 @@ public class SingleplayerDummy extends BasicGameState {
    */
   private void restartGame(GameContainer container, StateBasedGame sb)
       throws SlickException {
+    powerup.clear();
     player.clear();
     bomben.clear();
     Mauer.clear();
