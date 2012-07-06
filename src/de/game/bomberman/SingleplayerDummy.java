@@ -359,6 +359,8 @@ public class SingleplayerDummy extends BasicGameState {
 
   }
   private void resetGame(GameContainer container, StateBasedGame sb) throws SlickException {
+    
+    explosion.clear();
     player.clear();
     bomben.clear();
     Mauer.clear();

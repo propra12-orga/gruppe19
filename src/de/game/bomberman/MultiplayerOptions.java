@@ -15,7 +15,7 @@ public class MultiplayerOptions extends BasicGameState {
   //Die stateID fuer das Menu
   private Font font;
   // Die Auswahlmoeglichkeiten
-  private String[] options = new String[] {"Random Map","Static Map","Network","Back"};
+  private String[] options = new String[] {"Random Map","Classic Map","Network","Back"};
   // Der Index der ausgewaehlten Option
   private int selected;
   private StateBasedGame game;
