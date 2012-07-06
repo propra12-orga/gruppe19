@@ -52,16 +52,19 @@ public class GamePaused extends BasicGameState {
   public void render(GameContainer container, StateBasedGame game, Graphics g) {
     // Hintergrund rendern
     background.draw(0, 0);
+    
     g.setFont(font);
+    
+    g.drawString("GAME PAUSED", container.getWidth()/2 - (font.getWidth("GAME PAUSED") / 2),180);
     
     for (int i = 0; i < options.length; i++) {
       g.setColor(Color.white);
       if (selected == i) {
         g.setColor(Color.red);
-        g.drawRect(200, 390 + (i * 50), 400, 50);
+        // g.drawRect(200, 390 + (i * 50), 400, 50);
       }
       g.drawString(options[i], 400 - (font.getWidth(options[i]) / 2),
-          400 + (i * 50));
+          230 + (i * 50));
     }
   }
   
@@ -97,19 +100,20 @@ public class GamePaused extends BasicGameState {
             }
             // Break weggelassen, um case 0 auch auszuführen ;)
           case 0:
-            game.enterState(prevGameState, new FadeOutTransition(Color.black),
-                new FadeInTransition(Color.black));
+            game.enterState(prevGameState, new FadeOutTransition(Color.black,100),
+                new FadeInTransition(Color.black,100));
             break;
           case 2:
             game.enterState(MainMenu.stateID,
-                new FadeOutTransition(Color.black), new FadeInTransition(
+                new FadeOutTransition(Color.black,100), new FadeInTransition(
                     Color.black));
             break;
         }
         break;
       case Input.KEY_ESCAPE:
-        game.enterState(prevGameState, new FadeOutTransition(Color.black),
-            new FadeInTransition(Color.black));
+      case Input.KEY_P:
+        game.enterState(prevGameState, new FadeOutTransition(Color.black,100),
+            new FadeInTransition(Color.black,100));
         break;
       default:
         break;

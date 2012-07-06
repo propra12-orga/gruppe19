@@ -49,14 +49,15 @@ public class MainMenu extends BasicGameState {
     // Hintergrund rendern
     background.draw(0, 0);
     g.setFont(font);
-    g.setColor(Color.white);
     
     for (int i = 0; i < options.length; i++) {
+      if (selected == i) {
+        g.setColor(Color.red);
+      } else {
+        g.setColor(Color.white);
+      }
       g.drawString(options[i], 400 - (font.getWidth(options[i]) / 2),
           230 + (i * 50));
-      if (selected == i) {
-        g.drawRect(200, 220 + (i * 50), 400, 50);
-      }
     }
   }
   
@@ -105,7 +106,7 @@ public class MainMenu extends BasicGameState {
           break;
         default:
           System.out.println("FEHLER - Return to MAIN MENU");
-          game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
+          game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black,100),
               new FadeInTransition(Color.black));
           
       }
