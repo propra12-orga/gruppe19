@@ -158,7 +158,7 @@ public class StaticMap extends BasicGameState {
           bomben.remove(bomb);
         }
       }
-      // Groe�ｽe der Explosion + Update 
+      // Groesse der Explosion + Update 
       for (int i = 0; i < explosion.size(); i++) {
         Explosion expl = (Explosion) explosion.get(i);
         expl.update(arg1);
