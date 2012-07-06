@@ -13,6 +13,11 @@ import org.newdawn.slick.state.StateBasedGame;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
+/**
+ * Die "Credits" Klasse ist fuer das spaetere Fenster zustaendig, indem die Credits des Spiels stehen.
+ * In dieser Klasse wird die stateID fuer das Credit-Fenster implementiert.
+ * Weiterhin steht hier der Quellcode fuer die Charakteristik des Fensters, also wie es aussieht und wie das Fenster beendet werden soll.
+ */
 public class Credits extends BasicGameState {
   
     Image background = null;
@@ -26,6 +31,9 @@ public class Credits extends BasicGameState {
     private StateBasedGame game;
     
     
+    /* 
+     * @see org.newdawn.slick.state.BasicGameState#getID()
+     */
     public int getID() {
       return stateID;
     }
@@ -64,20 +72,20 @@ public class Credits extends BasicGameState {
       g.drawString("Matthias Engelhardt................???", 80, 130);
       g.drawString("Hiep Dinh..........................???", 80, 170);
       g.drawString("Benjamin Schlueter.................???", 80, 210);
-      g.drawString("Ilgar Kara.........................???", 80, 250);
+      g.drawString("Ilgar Bosatov.........................???", 80, 250);
       g.drawString("Dennis-Marco Fanty.................???", 80, 290);
       g.drawString("Viktor Hellwig.....................???", 80, 330);
     }
 
-    /**
-     * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
-     */
 
+    /* 
+     * @see org.newdawn.slick.state.GameState#update(org.newdawn.slick.GameContainer, org.newdawn.slick.state.StateBasedGame, int)
+     */
     public void update(GameContainer container, StateBasedGame game, int delta) {    
     }
     
     
-    /**
+    /* 
      * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
      */
     public void keyReleased(int key, char c) {
@@ -93,6 +101,7 @@ public class Credits extends BasicGameState {
           selected = options.length - 1;
         }
       }
+      // durch Enter wird das Credit-Fenster verlassen
       if (key == Input.KEY_ENTER) {
         switch (selected) {
           case 0:
