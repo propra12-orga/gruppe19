@@ -104,7 +104,7 @@ public class StaticMap extends BasicGameState {
     music.loop();
     
     // Initialisierung der Karte
-    initMap("res/testmap3.tmx");
+    initMap("res/testmap2.tmx");
     // Spieler 1
     player.add(0, new Player(32, 32, 1));
     // Tastenbelegung Spieler 1
