@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="20" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="tiles_test" tilewidth="32" tileheight="32">
+  <image source="tiles_test.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="25" height="20">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC71VQQ7AIAhDfuAn/P8Td5kJqS0Tl+3QxJGJtBbsZtZ/QAuY3x5ilTXLhzEX+xWyffGMCSc8kO9O3EnuRqC4I5i2jAfTAGtArhh/ypPVh7zGDaZ7xoPpFOvE+40+wP8qWsX7GJDXba1f5ch4RC/GM1A3J3t2tWK+Qh6D8Kj66uQ+3vpqekr1c8VXrI93+qPagyd9XtWKzaVsDjzNkmwmMk8pDzRb9azM9t21mu1K35Mz1Bv1NS7TMUAy0AcAAA==
+  </data>
+ </layer>
+</map>

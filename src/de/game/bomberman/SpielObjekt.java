@@ -7,7 +7,7 @@ import org.newdawn.slick.geom.Polygon;
 
 /**
  * Die Klasse "SpielObjekt" ist fuer das Erstellen und Vergleichen von Kollisionen
- * mit Spielobjekten im Spiel zust�ndig.
+ * mit Spielobjekten im Spiel zustaendig.
  * Kollisionen werden durch Arraylisten erstellt.
  */
 public abstract class SpielObjekt {

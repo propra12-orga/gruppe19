@@ -1,41 +1,37 @@
 package de.game.bomberman;
 
-import org.newdawn.slick.AngelCodeFont;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Font;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Sound;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.*;
 import org.newdawn.slick.state.transition.FadeInTransition;
 import org.newdawn.slick.state.transition.FadeOutTransition;
 
 /**
- * Die Klasse "MainMenu" stellt das Hauptmenue des Spiels auf.
- * In dieser Klasse werden die Menuepunkte geschrieben und ins Fenster gezeichnet.
+ * Die Klasse "MultiplayerOptions" ertellt das Menu des Multiplayers.
+ * In dieser Klasse werden die Menuepunkte "Random Map, Classic Map und Network" geschrieben und ins Fenster gezeichnet.
  * Musik und das Hintergrundbild werden geladen und es wird eine neue StateID zugeteilt.
- * Die Farbe der Menupunkte wird hier eingestellt.
  * Auﬂerdem steht hier die Erkennung des Druecken der Tasten durch den Spieler.
  */
-public class MainMenu extends BasicGameState {
+public class MultiplayerOptions extends BasicGameState {
   
   Image background = null;
   // Die stateID fuer das Menu
-  public static final int stateID = 0;
   private Font font;
   // Die Auswahlmoeglichkeiten
-  private String[] options = new String[] { "Tutorial", "Singleplayer",
-      "Multiplayer", "Options", "Exit" };
+  private String[] options = new String[] { "Random Map", "Classic Map",
+      "Network", "Back" };
   // Der Index der ausgewaehlten Option
   private int selected;
   private StateBasedGame game;
+  StateBasedGame sb;
   private Sound fx = null;
   
+  public static final int stateID = 7;
+  
+  // KONSTRUKTOR:
+  
+  /* 
+   * @see org.newdawn.slick.state.BasicGameState#getID()
+   */
   public int getID() {
     return stateID;
   }
@@ -50,13 +46,6 @@ public class MainMenu extends BasicGameState {
     this.game = game;
     fx = new Sound("res/sfx/SelectSound.wav");
     font = new AngelCodeFont("res/fonts/demo2.fnt", "res/fonts/demo2_00.tga");
-    
-    // Hier wird die Musik
-    // geladen...
-    Music music = new Music("res/Music/test.ogg");
-    // ... und im Loop abgespielt
-    music.loop();
-
   }
   
   /**
@@ -78,7 +67,7 @@ public class MainMenu extends BasicGameState {
           230 + (i * 50));
     }
   }
-  
+      // die Erkennung des Tastendrucks
   /**
    * @see org.newdawn.slick.state.BasicGameState#update(org.newdawn.slick.GameContainer,
    *      org.newdawn.slick.state.StateBasedGame, int)
@@ -86,9 +75,6 @@ public class MainMenu extends BasicGameState {
   public void update(GameContainer container, StateBasedGame game, int delta) {
   }
   
-  /**
-   * @see org.newdawn.slick.state.BasicGameState#keyReleased(int, char)
-   */
   public void keyReleased(int key, char c) {
     if (key == Input.KEY_DOWN) {
       fx.play();
@@ -107,33 +93,24 @@ public class MainMenu extends BasicGameState {
     if (key == Input.KEY_ENTER) {
       switch (selected) {
         case 0:
-          enterStateAndreinit(Tutorial.stateID);
+          enterStateAndreinit(RandomMap.stateID);
           break;
         case 1:
-          enterStateAndreinit(SingleplayerDummy.stateID);
+          enterStateAndreinit(StaticMap.stateID);
           break;
         case 2:
-          game.enterState(MultiplayerOptions.stateID, new FadeOutTransition(
-              Color.black), new FadeInTransition(Color.black));
+          enterStateAndreinit(NetworkDummy.stateID);
           break;
         case 3:
-          game.enterState(Options.stateID, new FadeOutTransition(Color.black),
+          game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black),
               new FadeInTransition(Color.black));
           break;
-        case 4:
-          game.getContainer().exit();
-          break;
-        default:
-          System.out.println("FEHLER - Return to MAIN MENU");
-          game.enterState(MainMenu.stateID, new FadeOutTransition(Color.black,100),
-              new FadeInTransition(Color.black));
-          
       }
     }
   }
   
   /**
-   * Durch die Auswahl im MainMenu wird der Spieler - je nachdem was er ausgewaehlt hat - 
+   * Durch die Auswahl im MultiplayerOptions wird der Spieler - je nachdem was er ausgewaehlt hat - 
    * in einen anderen State des Spiels gebracht.
    * FadeOutTransition ist fuer ein fluessiges Uebergehen der States zustaendig.
    * @param stateID

@@ -21,14 +21,14 @@ public class Player extends SpielObjekt {
   
   private boolean Xtendency, Ytendency;
   
-  //Zur Auswahl der Animationsphasen im Spritesheet
-  int zeile = 0;
-  int spalte = 0; 
   // hiermit kann man spaeter die Farbe des Spielers einfach aendern
   protected SpriteSheet playerSSheet;
   // Steuerungen des Spielers werden als Variablen gesetzt
   private int left, right, up, down, bomb;
   protected int color = 1;
+  private int BombCounter = 0;
+  private int MaxCounter = 1;
+  private int BombRadius=2;
   
   /**
    * Dieser Konstruktor ist nicht mehr wirklich noetig.
@@ -147,6 +147,9 @@ public class Player extends SpielObjekt {
    * @see de.game.bomberman.SpielObjekt#draw(org.newdawn.slick.Graphics)
    */
   public void draw(Graphics g) {
+    //Zur Auswahl der Animationsphasen im Spritesheet
+    int zeile = 0;
+    int spalte = 0; 
     
     /**
      * Anhand der Playerposition und Tendenz wird entschieden welche
@@ -198,7 +201,7 @@ public class Player extends SpielObjekt {
     }
     
     g.drawImage(playerSSheet.getSprite(spalte, zeile), x, y);
-    g.draw(kollisionsFlaeche);
+    //g.draw(kollisionsFlaeche);
     g.drawString("X:" + getX() + " Y:" + getY(), 32 + (color - 1) * 128, 460);
   }
   
@@ -307,6 +310,38 @@ public class Player extends SpielObjekt {
     this.bomb = bomb;
   }
   
+  public int getMaxCounter() {
+    return MaxCounter;
+  }
+  
+  public int getBombCounter() {
+    return BombCounter;
+  }
+  public void setBombCounter(int a){
+    BombCounter = a;
+  }
+  
+  /**
+   * @return the color
+   */
+  public int getColor() {
+    return color;
+  }
+
+  /**
+   * @param color the color to set
+   */
+  public void setColor(int color) {
+    this.color = color;
+  }
+
+  /**
+   * @param maxCounter the maxCounter to set
+   */
+  public void setMaxCounter(int maxCounter) {
+    MaxCounter = maxCounter;
+  }
+
   /**
    * Die Tastenbelegung wird initialisiert durch setKeys() Methode.
    * @param left set left
@@ -321,5 +356,19 @@ public class Player extends SpielObjekt {
     this.up = up;
     this.down = down;
     this.bomb = bomb;
+  }
+
+  /**
+   * @return the bombRadius
+   */
+  public int getBombRadius() {
+    return BombRadius;
+  }
+
+  /**
+   * @param bombRadius the bombRadius to set
+   */
+  public void setBombRadius(int bombRadius) {
+    BombRadius = bombRadius;
   }
 }

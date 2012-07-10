@@ -13,7 +13,7 @@ public class Bombe extends SpielObjekt {
   private static String imPath = "res/bomb.png";
   
     //Radius der Explosion
-  private int ExplodeRadius = 3;                            
+  private int ExplodeRadius = 2;                            
   private Image im;
   
   SpriteSheet eggSheet = new SpriteSheet("res/egg.png", 32, 32);
@@ -21,6 +21,7 @@ public class Bombe extends SpielObjekt {
     //regelt die Zeit wann Bomben explodieren
   private int counter;                                      
   private boolean explode;
+  private Player player;
   
   /**
    * Der Explosionsradius prueft die Felder. 
@@ -53,11 +54,13 @@ public class Bombe extends SpielObjekt {
    * @param y Koordinate der Bombe
    * @throws SlickException
    */
-  public Bombe(int x, int y) throws SlickException {
+  public Bombe(int x, int y, Player pl) throws SlickException {
     super(x, y);
     im = new Image(imPath);
     explode = false;
     counter = 0;
+    this.setPlayer(pl);
+    this.ExplodeRadius = pl.getBombRadius();
   }
   
   @Override
@@ -97,5 +100,19 @@ public class Bombe extends SpielObjekt {
     if(counter==150){
       setExplode(true);
     }
+  }
+
+  /**
+   * @return the player
+   */
+  public Player getPlayer() {
+    return player;
+  }
+
+  /**
+   * @param player the player to set
+   */
+  public void setPlayer(Player player) {
+    this.player = player;
   }
 }
